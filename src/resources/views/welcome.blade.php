@@ -3,9 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
-
+        {{--- <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -125,8 +127,10 @@
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
+                    <div id="example"></div>
                 </div>
             </div>
         </div>
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>
