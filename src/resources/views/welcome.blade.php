@@ -128,6 +128,7 @@
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
                     <div id="example"></div>
+                    <div id="test"></div>
                 </div>
             </div>
         </div>

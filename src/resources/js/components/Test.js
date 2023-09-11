@@ -1,19 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-
-export default function Test(){
-    return <h1>CUBE</h1>
-}
-export default Test;
-
-if(document.getElementById('test')){
-    ReactDOM.render(<Test />, document.getElementById('test'));
-}
-/*
-import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Example() {
+function Test() {
+    return <h1>CUBE</h1>
+}
+    /*
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -27,10 +18,10 @@ function Example() {
             </div>
         </div>
     );
-}
-
-export default Example;
-
-if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
 }*/
+
+export default Test;
+
+if (document.getElementById('test')) {
+    ReactDOM.render(<Test />, document.getElementById('test'));
+}
