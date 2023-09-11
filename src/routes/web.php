@@ -22,3 +22,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::namespace('React')->prefix('react')->name('react.')->group(function(){
+    Route::get('test',[App\Http\Controllers\ReactController::class,'test'])->name('test');
+});
+
