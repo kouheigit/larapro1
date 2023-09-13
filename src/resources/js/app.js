@@ -13,6 +13,6 @@ require('./bootstrap');
  */
 
 require('./components/Test');
-
+require('./components/Test1');
 require('./components/Example');
 
