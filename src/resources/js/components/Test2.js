@@ -8,6 +8,8 @@ function Test2() {
             <p>Const test success</p>
         </div>
     );
+    //returnが必須
+    return test;
 }
 
 
