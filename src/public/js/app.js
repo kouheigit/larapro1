@@ -2076,6 +2076,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Test */ "./resources/js/components/Test.js");
 __webpack_require__(/*! ./components/Test1 */ "./resources/js/components/Test1.js");
+__webpack_require__(/*! ./components/Test2 */ "./resources/js/components/Test2.js");
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
 /***/ }),
@@ -2228,6 +2229,42 @@ function Test1() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Test1);
 if (document.getElementById('test1')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Test1, {}), document.getElementById('test1'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Test2.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Test2.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Test2)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Test2() {
+  var test = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      children: "Const test"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      children: "Const test success"
+    })]
+  });
+}
+
+//export default Test2;
+
+if (document.getElementById('test2')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Test1, {}), document.getElementById('test2'));
 }
 
 /***/ }),
