@@ -16,5 +16,5 @@ function Test2() {
 export default Test2;
 
 if (document.getElementById('test2')) {
-    ReactDOM.render(<Test1 />, document.getElementById('test2'));
+    ReactDOM.render(<Test2 />, document.getElementById('test2'));
 }
