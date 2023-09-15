@@ -2292,8 +2292,8 @@ function Test3() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
       style: {
-        color: 'red',
-        fontsize: '80px'
+        color: 'blue',
+        fontSize: '30px'
       },
       children: "\u65B0\u30DA\u30FC\u30B8Test3\u8FFD\u52A0"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {

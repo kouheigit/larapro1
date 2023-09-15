@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 function Test3(){
     return(
      <React.Fragment>
-         <h1 style={{ color: 'red', fontsize: '80px'}}>新ページTest3追加</h1>
+         <h1 style={{ color: 'blue', fontSize: '30px' }}>新ページTest3追加</h1>
          <p>アウトプットしていくサイト</p>
      </React.Fragment>
     )
