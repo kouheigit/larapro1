@@ -11,9 +11,11 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+//React-Test.blade.php
 require('./components/Test');
 require('./components/Test1');
 require('./components/Test2');
 require('./components/Example');
 
+//React-Test1.blade.php
+require('./components/Test3');
