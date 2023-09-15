@@ -3,4 +3,5 @@
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 <h1>React</h1>
 <div id="test3"></div>
+<div className="hero"></div>
 <script src="{{ mix('js/app.js') }}"></script>
