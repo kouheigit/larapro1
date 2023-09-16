@@ -20,3 +20,4 @@ require('./components/Example');
 //React-Test1.blade.php
 require('./components/Test3');
 require('./components/Test4');
+require('./components/Test5');
