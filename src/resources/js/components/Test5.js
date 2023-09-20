@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from "react-dom";
-const subtitle = 'アウトプットしていくサイト'
+const subtitle = 'ピカデリー小林'
 
 function Test5(){
     return (

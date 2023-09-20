@@ -2357,7 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var subtitle = 'アウトプットしていくサイト';
+var subtitle = 'ピカデリー小林';
 function Test5() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
