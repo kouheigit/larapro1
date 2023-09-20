@@ -26,5 +26,6 @@ require __DIR__.'/auth.php';
 Route::namespace('React')->prefix('react')->name('react.')->group(function(){
     Route::get('test',[App\Http\Controllers\ReactController::class,'test'])->name('test');
     Route::get('test1',[App\Http\Controllers\ReactController::class,'test1'])->name('test1');
+    Route::get('component',[App\Http\Controllers\ReactController::class,'component'])->name('component');
 });
 

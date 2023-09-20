@@ -14,4 +14,8 @@ class ReactController extends Controller
     {
         return view('react.test1');
     }
+    public function component(Request $request)
+    {
+        return view('react.component');
+    }
 }
