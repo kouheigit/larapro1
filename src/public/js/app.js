@@ -2084,6 +2084,9 @@ __webpack_require__(/*! ./components/Test3 */ "./resources/js/components/Test3.j
 __webpack_require__(/*! ./components/Test4 */ "./resources/js/components/Test4.js");
 __webpack_require__(/*! ./components/Test5 */ "./resources/js/components/Test5.js");
 
+//component.blade.php
+__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/Posts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

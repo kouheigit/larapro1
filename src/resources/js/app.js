@@ -21,3 +21,6 @@ require('./components/Example');
 require('./components/Test3');
 require('./components/Test4');
 require('./components/Test5');
+
+//component.blade.php
+require('./components/Posts');
