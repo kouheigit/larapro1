@@ -25,3 +25,4 @@ require('./components/Test5');
 //component.blade.php
 require('./components/Posts');
 require('./components/Posts1');
+require('./components/Posts2');
