@@ -2213,7 +2213,7 @@ function Posts() {
     id: "Posts",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-        children: "\u3046\u3063\u3061\u30FC"
+        children: "\u304A\u3059\u3059\u3081\u306E\u8A18\u4E8B"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(EachPost, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(EachPost, {})]
     })
   });

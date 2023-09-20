@@ -11,7 +11,6 @@ function EachPost(){
     )
 }
 
-
 function Posts(){
     return (
         <div id="Posts">
