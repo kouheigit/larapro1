@@ -23,4 +23,4 @@ require('./components/Test4');
 require('./components/Test5');
 
 //component.blade.php
-require('./components/Posts');
+
