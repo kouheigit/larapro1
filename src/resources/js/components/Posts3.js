@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 function Decoration(props){
     return (
@@ -11,12 +11,15 @@ function Decoration(props){
 
 function Posts3(){
     return (
-        <Decoration>
-            <h1>CUBE</h1>
-            <p>アウトプットしていくサイト</p>
-        </Decoration>
+        <div id="Posts3">
+            <Decoration>
+                <h1>CUBE</h1>
+                <p>アウトプットしていくサイト</p>
+            </Decoration>
+        </div>
     )
 }
+
 
 if (document.getElementById('Posts3')) {
     ReactDOM.render(<Posts3 />, document.getElementById('Posts3'));

@@ -2088,6 +2088,7 @@ __webpack_require__(/*! ./components/Test5 */ "./resources/js/components/Test5.j
 __webpack_require__(/*! ./components/Posts */ "./resources/js/components/Posts.js");
 __webpack_require__(/*! ./components/Posts1 */ "./resources/js/components/Posts1.js");
 __webpack_require__(/*! ./components/Posts2 */ "./resources/js/components/Posts2.js");
+__webpack_require__(/*! ./components/Posts3 */ "./resources/js/components/Posts3.js");
 
 /***/ }),
 
@@ -2314,6 +2315,37 @@ function EachPosts() {
 }
 if (document.getElementById('Posts2')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Posts2, {}), document.getElementById('Posts2'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Posts3.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Posts3.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Posts3() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    id: "Posts3",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      children: "\u7A4D\u6975\u7684\u5185\u7530"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      children: "\u30A2\u30AF\u30C8\u30EC\u306B\u30A2\u30C9\u30D0\u30A4\u30B9\u3092\u3057\u305F"
+    })]
+  });
+}
+if (document.getElementById('Posts3')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Posts3, {}), document.getElementById('Posts3'));
 }
 
 /***/ }),
