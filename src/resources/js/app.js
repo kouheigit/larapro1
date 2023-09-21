@@ -26,3 +26,4 @@ require('./components/Test5');
 require('./components/Posts');
 require('./components/Posts1');
 require('./components/Posts2');
+require('./components/Posts3');
