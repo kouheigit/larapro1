@@ -13,4 +13,3 @@ function Compindex(){
 if (document.getElementById('Compindex')) {
     ReactDOM.render(<Compindex />, document.getElementById('Compindex'));
 }
-
