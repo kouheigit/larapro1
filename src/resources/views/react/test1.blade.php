@@ -6,4 +6,5 @@
 {{--test4add--}}
 <div id="test4"></div>
 <div id="test5"></div>
+<div id="test5"></div>
 <script src="{{ mix('js/app.js') }}"></script>
