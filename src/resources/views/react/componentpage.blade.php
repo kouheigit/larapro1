@@ -1,2 +1,2 @@
-<h1>なめさん</h1>
+<h1>React-component</h1>
 <div id="Compindex"></div>
