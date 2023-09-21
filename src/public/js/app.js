@@ -2334,14 +2334,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function Decoration(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    style: {
+      color: 'red'
+    },
+    children: props.children
+  });
+}
 function Posts3() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     id: "Posts3",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "\u7A4D\u6975\u7684\u5185\u7530"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-      children: "\u30A2\u30AF\u30C8\u30EC\u306B\u30A2\u30C9\u30D0\u30A4\u30B9\u3092\u3057\u305F"
-    })]
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(Decoration, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+        children: "CUBE"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+        children: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u30B5\u30A4\u30C8"
+      })]
+    })
   });
 }
 if (document.getElementById('Posts3')) {
