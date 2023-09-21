@@ -1,11 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import Header from '../components/Compheader'
+import Hero from '../components/Comphero'
+import Footer from '../components/Compfooter'
 
-function Compindex(){
+export default function Compindex(){
     return (
         <div id="Compindex">
-                <h1>CUBE</h1>
-                <p>アウトプットしていくサイト</p>
+            <Header />
+            <main>
+                <Hero />
+            </main>
+
+            <Footer />
         </div>
     )
 }

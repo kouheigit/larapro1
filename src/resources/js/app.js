@@ -28,4 +28,8 @@ require('./components/Posts1');
 require('./components/Posts2');
 require('./components/Posts3');
 require('./components/Compindex');
+require('./components/Comphero');
+require('./components/Compheader');
+require('./components/Compfooter');
+
 
