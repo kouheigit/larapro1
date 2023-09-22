@@ -1,9 +1,9 @@
 /*import data list*/
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Header from 'components/Compheader'
-import Hero from 'components/Comphero'
-import Footer from 'components/Compfooter'
+import Header from '../components/Compheader'
+import Hero from '../components/Comphero'
+import Footer from '../components/Compfooter'
 
 export default function Compindex(){
     return (

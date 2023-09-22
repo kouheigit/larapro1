@@ -2162,6 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Compfooter() {
+  /*Footer*/
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("footer", {
     children: "FOOTER"
   });
@@ -2213,11 +2214,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Comphero() {
+  /*main content*/
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
       children: "CUBE"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-      children: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u3055\u3044\u3068"
+      children: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u30B5\u30A4\u30C8"
     })]
   });
 }
@@ -2241,6 +2243,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Comphero__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Comphero */ "./resources/js/components/Comphero.js");
 /* harmony import */ var _components_Compfooter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Compfooter */ "./resources/js/components/Compfooter.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/*import data list*/
 
 
 
