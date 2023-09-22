@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Header from '../components/Compheader'
 import Hero from '../components/Comphero'
 import Footer from '../components/Compfooter'
+import Footer from '../components/layout'
 
 export default function Compindex(){
     return (
