@@ -1,21 +1,17 @@
 /*import data list*/
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Header from '../components/Compheader'
 import Hero from '../components/Comphero'
-import Footer from '../components/Compfooter'
-import layout from '../components/layout'
+import Layout from "../components/layout";
 
+//The Compindex is the Home in the instruction book.
+//Compindexは教本のHomeに該当します。
 export default function Compindex(){
     return (
         <div id="Compindex">
-            <Header />
-
-            <main>
+            <Layout>
                 <Hero />
-            </main>
-
-            <Footer />
+            </Layout>
         </div>
     )
 }

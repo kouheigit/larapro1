@@ -2239,30 +2239,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _components_Compheader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Compheader */ "./resources/js/components/Compheader.js");
-/* harmony import */ var _components_Comphero__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Comphero */ "./resources/js/components/Comphero.js");
-/* harmony import */ var _components_Compfooter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Compfooter */ "./resources/js/components/Compfooter.js");
-/* harmony import */ var _components_layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/layout */ "./resources/js/components/layout.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_Comphero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Comphero */ "./resources/js/components/Comphero.js");
+/* harmony import */ var _components_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/layout */ "./resources/js/components/layout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /*import data list*/
 
 
 
 
 
-
-
-
 function Compindex() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     id: "Compindex",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Compheader__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("main", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Comphero__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Compfooter__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Comphero__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+    })
   });
 }
 if (document.getElementById('Compindex')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Compindex, {}), document.getElementById('Compindex'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Compindex, {}), document.getElementById('Compindex'));
 }
 
 /***/ }),
