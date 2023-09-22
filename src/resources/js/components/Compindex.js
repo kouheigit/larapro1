@@ -2,6 +2,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import Hero from '../components/Comphero'
+
+/*
+function Compindex() {
+    return (
+        <div id="Compindex">
+            <Hero />
+        </div>
+    );
+}*/
+
 import Layout from "../components/layout";
 
 //The Compindex is the Home in the instruction book.
@@ -15,7 +25,6 @@ export default function Compindex(){
         </div>
     )
 }
-
 if (document.getElementById('Compindex')) {
     ReactDOM.render(<Compindex />, document.getElementById('Compindex'));
 }

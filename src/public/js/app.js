@@ -2247,6 +2247,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/*
+function Compindex() {
+    return (
+        <div id="Compindex">
+            <Hero />
+        </div>
+    );
+}*/
+
+
 
 //The Compindex is the Home in the instruction book.
 //Compindexは教本のHomeに該当します。
