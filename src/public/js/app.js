@@ -2248,6 +2248,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//The Compindex is the Home in the instruction book.
+//Compindexは教本のHomeに該当します。
+
 function Compindex() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     id: "Compindex",
