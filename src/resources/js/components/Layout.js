@@ -1,10 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 
 import Header from '../components/Compheader'
 import Footer from '../components/Compfooter'
 
-export default function Layout({ children }){
+export default function Layout({ children }) {
     return (
         <>
             <Header />
