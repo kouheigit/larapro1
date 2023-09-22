@@ -10,6 +10,7 @@ export default function Compindex(){
     return (
         <div id="Compindex">
             <Header />
+
             <main>
                 <Hero />
             </main>

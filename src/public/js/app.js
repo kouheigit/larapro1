@@ -2230,38 +2230,9 @@ function Comphero() {
 /*!**********************************************!*\
   !*** ./resources/js/components/Compindex.js ***!
   \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Compindex)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _components_Compheader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Compheader */ "./resources/js/components/Compheader.js");
-/* harmony import */ var _components_Comphero__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Comphero */ "./resources/js/components/Comphero.js");
-/* harmony import */ var _components_Compfooter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Compfooter */ "./resources/js/components/Compfooter.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/*import data list*/
-
-
-
-
-
-
-
-function Compindex() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    id: "Compindex",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Compheader__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("main", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Comphero__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Compfooter__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
-  });
-}
-if (document.getElementById('Compindex')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Compindex, {}), document.getElementById('Compindex'));
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /data/resources/js/components/Compindex.js: Identifier 'Footer' has already been declared. (7:7)\n\n\u001b[0m \u001b[90m  5 |\u001b[39m \u001b[36mimport\u001b[39m \u001b[33mHero\u001b[39m \u001b[36mfrom\u001b[39m \u001b[32m'../components/Comphero'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  6 |\u001b[39m \u001b[36mimport\u001b[39m \u001b[33mFooter\u001b[39m \u001b[36mfrom\u001b[39m \u001b[32m'../components/Compfooter'\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m \u001b[36mimport\u001b[39m \u001b[33mFooter\u001b[39m \u001b[36mfrom\u001b[39m \u001b[32m'../components/layout'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  8 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[36mfunction\u001b[39m \u001b[33mCompindex\u001b[39m(){\u001b[0m\n\u001b[0m \u001b[90m 10 |\u001b[39m     \u001b[36mreturn\u001b[39m (\u001b[0m\n    at constructor (/data/node_modules/@babel/parser/lib/index.js:345:19)\n    at JSXParserMixin.raise (/data/node_modules/@babel/parser/lib/index.js:3199:19)\n    at ScopeHandler.checkRedeclarationInScope (/data/node_modules/@babel/parser/lib/index.js:1472:19)\n    at ScopeHandler.declareName (/data/node_modules/@babel/parser/lib/index.js:1443:12)\n    at JSXParserMixin.declareNameFromIdentifier (/data/node_modules/@babel/parser/lib/index.js:7452:16)\n    at JSXParserMixin.checkIdentifier (/data/node_modules/@babel/parser/lib/index.js:7448:12)\n    at JSXParserMixin.checkLVal (/data/node_modules/@babel/parser/lib/index.js:7387:12)\n    at JSXParserMixin.finishImportSpecifier (/data/node_modules/@babel/parser/lib/index.js:14091:10)\n    at JSXParserMixin.parseImportSpecifierLocal (/data/node_modules/@babel/parser/lib/index.js:14088:31)\n    at JSXParserMixin.maybeParseDefaultImportSpecifier (/data/node_modules/@babel/parser/lib/index.js:14212:12)\n    at JSXParserMixin.parseImportSpecifiersAndAfter (/data/node_modules/@babel/parser/lib/index.js:14065:29)\n    at JSXParserMixin.parseImport (/data/node_modules/@babel/parser/lib/index.js:14061:17)\n    at JSXParserMixin.parseStatementContent (/data/node_modules/@babel/parser/lib/index.js:12652:27)\n    at JSXParserMixin.parseStatementLike (/data/node_modules/@babel/parser/lib/index.js:12530:17)\n    at JSXParserMixin.parseModuleItem (/data/node_modules/@babel/parser/lib/index.js:12507:17)\n    at JSXParserMixin.parseBlockOrModuleBlockBody (/data/node_modules/@babel/parser/lib/index.js:13131:36)\n    at JSXParserMixin.parseBlockBody (/data/node_modules/@babel/parser/lib/index.js:13124:10)\n    at JSXParserMixin.parseProgram (/data/node_modules/@babel/parser/lib/index.js:12406:10)\n    at JSXParserMixin.parseTopLevel (/data/node_modules/@babel/parser/lib/index.js:12396:25)\n    at JSXParserMixin.parse (/data/node_modules/@babel/parser/lib/index.js:14292:10)\n    at parse (/data/node_modules/@babel/parser/lib/index.js:14333:38)\n    at parser (/data/node_modules/@babel/core/lib/parser/index.js:41:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/data/node_modules/@babel/core/lib/transformation/normalize-file.js:64:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/data/node_modules/@babel/core/lib/transformation/index.js:21:50)\n    at run.next (<anonymous>)\n    at transform (/data/node_modules/@babel/core/lib/transform.js:22:41)\n    at transform.next (<anonymous>)\n    at step (/data/node_modules/gensync/index.js:261:32)\n    at /data/node_modules/gensync/index.js:273:13\n    at async.call.result.err.err (/data/node_modules/gensync/index.js:223:11)\n    at /data/node_modules/gensync/index.js:189:28\n    at /data/node_modules/@babel/core/lib/gensync-utils/async.js:68:7\n    at /data/node_modules/gensync/index.js:113:33\n    at step (/data/node_modules/gensync/index.js:287:14)\n    at /data/node_modules/gensync/index.js:273:13\n    at async.call.result.err.err (/data/node_modules/gensync/index.js:223:11)");
 
 /***/ }),
 
