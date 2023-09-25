@@ -31,6 +31,6 @@ require('./components/Compindex');
 require('./components/Comphero');
 require('./components/Compheader');
 require('./components/Compfooter');
-require('./components/pages/_app');
+require('./pages/pagesindex');
 
 
