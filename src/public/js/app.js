@@ -2093,6 +2093,7 @@ __webpack_require__(/*! ./components/Compindex */ "./resources/js/components/Com
 __webpack_require__(/*! ./components/Comphero */ "./resources/js/components/Comphero.js");
 __webpack_require__(/*! ./components/Compheader */ "./resources/js/components/Compheader.js");
 __webpack_require__(/*! ./components/Compfooter */ "./resources/js/components/Compfooter.js");
+__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/pages/_app'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 /***/ }),
 
