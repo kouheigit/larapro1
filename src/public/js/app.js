@@ -2093,7 +2093,45 @@ __webpack_require__(/*! ./components/Compindex */ "./resources/js/components/Com
 __webpack_require__(/*! ./components/Comphero */ "./resources/js/components/Comphero.js");
 __webpack_require__(/*! ./components/Compheader */ "./resources/js/components/Compheader.js");
 __webpack_require__(/*! ./components/Compfooter */ "./resources/js/components/Compfooter.js");
-__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './pages/pagesindex'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(/*! ./blog/index */ "./resources/js/blog/index.js");
+
+/***/ }),
+
+/***/ "./resources/js/blog/index.js":
+/*!************************************!*\
+  !*** ./resources/js/blog/index.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Hero)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _components_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/layout */ "./resources/js/components/layout.js");
+/* harmony import */ var _components_Example__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Example */ "./resources/js/components/Example.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+function Hero() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    id: "herotest",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+      children: "CUBE"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u30B5\u30A4\u30C8"
+    })]
+  });
+}
+if (document.getElementById('herotest')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("herotest", {}), document.getElementById('herotest'));
+}
 
 /***/ }),
 
