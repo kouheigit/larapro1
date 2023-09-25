@@ -1,8 +1,8 @@
 /*import data list*/
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Hero from '../components/Comphero'
-
+import Hero from '../components/Comphero';
+import Layout from "../components/layout";
 /*
 function Compindex() {
     return (
@@ -12,10 +12,10 @@ function Compindex() {
     );
 }*/
 
-import Layout from "../components/layout";
 
 //The Compindex is the Home in the instruction book.
 //Compindexは教本のHomeに該当します。
+
 export default function Compindex(){
     return (
         <div id="Compindex">
@@ -25,6 +25,9 @@ export default function Compindex(){
         </div>
     )
 }
+
+
+
 if (document.getElementById('Compindex')) {
     ReactDOM.render(<Compindex />, document.getElementById('Compindex'));
 }

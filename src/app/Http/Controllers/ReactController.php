@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class ReactController extends Controller
 {
+    public function componentpage1(Request $request)
+    {
+        return view('react.componentpage1');
+    }
     public function componentpage(Request $request)
     {
         return view('react.componentpage');
@@ -22,4 +26,5 @@ class ReactController extends Controller
     {
         return view('react.component');
     }
+
 }

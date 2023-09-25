@@ -2257,8 +2257,6 @@ function Compindex() {
     );
 }*/
 
-
-
 //The Compindex is the Home in the instruction book.
 //Compindexは教本のHomeに該当します。
 
