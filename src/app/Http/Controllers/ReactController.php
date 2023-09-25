@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class ReactController extends Controller
 {
-    public function componentpage1(Request $request)
+    public function blog(Request $request)
     {
-        return view('react.componentpage1');
+        return view('react.blog');
     }
     public function componentpage(Request $request)
     {

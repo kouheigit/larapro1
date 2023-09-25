@@ -1,6 +1,6 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
-<h1>Comptest</h1>
-<div id="comp1"></div>
+<h1>Blog React Test</h1>
 <script src="{{ mix('js/app.js') }}"></script>
+
