@@ -2,6 +2,5 @@
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 <h1>Blog React Test</h1>
-<div id="blogindex"></div>
 <script src="{{ mix('js/app.js') }}"></script>
 
