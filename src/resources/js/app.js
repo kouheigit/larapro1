@@ -35,7 +35,6 @@ require('./components/bloghero');
 require('./components/bloghome');
 require('./components/blogabout');
 require('./components/blogblog');
-require('./components/blogblogs');
 
 
 
