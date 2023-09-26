@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactDOM from "react-dom";
+import Layout from "../components/Layout";
 
-function Bloghero(){
+function Bloghero({ title, subtitle }){
     return (
         <div id="bloghero">
-            <h1>ウルトラにいくなめだるま</h1>
+            <Layout>
+                <h1>{title}</h1>
+                <p>{subtitle}</p>
+            </Layout>
         </div>
     )
 }

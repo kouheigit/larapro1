@@ -2093,7 +2093,7 @@ __webpack_require__(/*! ./components/Compindex */ "./resources/js/components/Com
 __webpack_require__(/*! ./components/Comphero */ "./resources/js/components/Comphero.js");
 __webpack_require__(/*! ./components/Compheader */ "./resources/js/components/Compheader.js");
 __webpack_require__(/*! ./components/Compfooter */ "./resources/js/components/Compfooter.js");
-__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/blogindex'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(/*! ./components/bloghero */ "./resources/js/components/bloghero.js");
 
 /***/ }),
 
@@ -2717,6 +2717,38 @@ function Test5() {
 }
 if (document.getElementById('test5')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Test5, {}), document.getElementById('test5'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/bloghero.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/bloghero.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout */ "./resources/js/components/Layout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Bloghero() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    id: "bloghero",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+        children: "\u306A\u3081\u3055\u3093"
+      })
+    })
+  });
+}
+if (document.getElementById('bloghero')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Bloghero, {}), document.getElementById('bloghero'));
 }
 
 /***/ }),
