@@ -29,5 +29,6 @@ Route::namespace('React')->prefix('react')->name('react.')->group(function(){
     Route::get('component',[App\Http\Controllers\ReactController::class,'component'])->name('component');
     Route::get('componentpage',[App\Http\Controllers\ReactController::class,'componentpage'])->name('componentpage');
     Route::get('blog',[App\Http\Controllers\ReactController::class,'blog'])->name('blog');
+    Route::get('blogabout',[App\Http\Controllers\ReactController::class,'blogabout'])->name('blogabout');
 });
 
