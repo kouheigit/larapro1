@@ -5,7 +5,7 @@ import Bloghero from "../components/bloghero";
 function Blogblog(){
     return(
         <div id="blogblog">
-            <Bloghero title="Blog"subtitle="Recent Posts"/>
+            <Bloghero title="Blog"subtitle="Recent Posts" />
         </div>
     )
 }

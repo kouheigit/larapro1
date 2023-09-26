@@ -2096,6 +2096,7 @@ __webpack_require__(/*! ./components/Compfooter */ "./resources/js/components/Co
 __webpack_require__(/*! ./components/bloghero */ "./resources/js/components/bloghero.js");
 __webpack_require__(/*! ./components/bloghome */ "./resources/js/components/bloghome.js");
 __webpack_require__(/*! ./components/blogabout */ "./resources/js/components/blogabout.js");
+__webpack_require__(/*! ./components/blogblog */ "./resources/js/components/blogblog.js");
 
 /***/ }),
 
@@ -2751,6 +2752,54 @@ function Blogabout() {
 if (document.getElementById('blogabout')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Blogabout, {}), document.getElementById('blogabout'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/blogblog.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/blogblog.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _components_bloghero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/bloghero */ "./resources/js/components/bloghero.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Blogblog() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    id: "blogblog",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_bloghero__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      title: "Blog",
+      subtitle: "Recent Posts"
+    })
+  });
+}
+if (document.getElementById('blogblog')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Blogblog, {}), document.getElementById('blogblog'));
+}
+
+/*
+function Blogabout(){
+    return (
+        <div id="blogabout">
+            <Bloghero title="About"subtitle="About develop activities" />
+        </div>
+
+
+    )
+
+}
+
+
+if (document.getElementById('blogabout')) {
+    ReactDOM.render(<Blogabout />, document.getElementById('blogabout'));
+}*/
 
 /***/ }),
 
