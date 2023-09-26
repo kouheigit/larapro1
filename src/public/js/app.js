@@ -2095,6 +2095,7 @@ __webpack_require__(/*! ./components/Compheader */ "./resources/js/components/Co
 __webpack_require__(/*! ./components/Compfooter */ "./resources/js/components/Compfooter.js");
 __webpack_require__(/*! ./components/bloghero */ "./resources/js/components/bloghero.js");
 __webpack_require__(/*! ./components/bloghome */ "./resources/js/components/bloghome.js");
+__webpack_require__(/*! ./components/blogabout */ "./resources/js/components/blogabout.js");
 
 /***/ }),
 
@@ -2722,6 +2723,37 @@ if (document.getElementById('test5')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/blogabout.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/blogabout.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _components_bloghero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/bloghero */ "./resources/js/components/bloghero.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Blogabout() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    id: "blogabout",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_bloghero__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      title: "About",
+      subtitle: "About develop activities"
+    })
+  });
+}
+if (document.getElementById('blogabout')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Blogabout, {}), document.getElementById('blogabout'));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/bloghero.js":
 /*!*********************************************!*\
   !*** ./resources/js/components/bloghero.js ***!
@@ -2782,8 +2814,8 @@ function Bloghome() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     id: "bloghome",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_bloghero__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      title: "\u30B7\u30E5\u30E1\u30FC\u30EB\u6589\u85E4",
-      subtitle: "\u4ECB\u8B77\u58EB"
+      title: "CUBE",
+      subtitle: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u30B5\u30A4\u30C8"
     })
   });
 }
