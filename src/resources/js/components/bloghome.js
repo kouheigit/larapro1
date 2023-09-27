@@ -6,7 +6,10 @@ import Bloghero from "../components/bloghero";
 function Bloghome(){
     return (
         <div id="bloghome">
-            <Bloghero title="CUBE"subtitle="アウトプットしていくサイト" />
+            <Bloghero title="CUBE"
+                      subtitle="アウトプットしていくサイト"
+                      imageOn
+            />
         </div>
     )
 

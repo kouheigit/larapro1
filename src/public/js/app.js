@@ -2825,7 +2825,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function Bloghero(_ref) {
   var title = _ref.title,
-    subtitle = _ref.subtitle;
+    subtitle = _ref.subtitle,
+    _ref$imageOn = _ref.imageOn,
+    imageOn = _ref$imageOn === void 0 ? false : _ref$imageOn;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     id: "bloghero",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -2833,6 +2835,8 @@ function Bloghero(_ref) {
         children: title
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: subtitle
+      }), imageOn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("figure", {
+        children: "[\u753B\u50CF]"
       })]
     })
   });
@@ -2864,7 +2868,8 @@ function Bloghome() {
     id: "bloghome",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_bloghero__WEBPACK_IMPORTED_MODULE_2__["default"], {
       title: "CUBE",
-      subtitle: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u30B5\u30A4\u30C8"
+      subtitle: "\u30A2\u30A6\u30C8\u30D7\u30C3\u30C8\u3057\u3066\u3044\u304F\u30B5\u30A4\u30C8",
+      imageOn: true
     })
   });
 }
