@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::namespace('React')->prefix('react')->name('react.')->group(function(){
+    Route::get('bloglink',[App\Http\Controllers\ReactController::class,'bloglink'])->name('bloglink');
     Route::get('blogblog',[App\Http\Controllers\ReactController::class,'blogblog'])->name('blogblog');
     Route::get('test',[App\Http\Controllers\ReactController::class,'test'])->name('test');
     Route::get('test1',[App\Http\Controllers\ReactController::class,'test1'])->name('test1');

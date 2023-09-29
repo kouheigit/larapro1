@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class ReactController extends Controller
 {
 
+    public function bloglink(Request $request)
+    {
+        return view('react.bloglink');
+    }
     public function blogblog(Request $request)
     {
         return view('react.blogblog');
