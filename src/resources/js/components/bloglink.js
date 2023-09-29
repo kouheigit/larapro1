@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from "react-dom";
-import Link from 'next/js';
-/*npm linkがインストールできない*/
+
 
 export default function bloglink(){
     return (
-        
-        <Link href="/">
+
+        <a href="/">
             <a>Cube</a>
-        </Link>
+        </a>
 
     )
 }
