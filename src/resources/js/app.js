@@ -12,7 +12,6 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 //React-Test.blade.php
-//React-Test.blade.php
 require('./components/Test');
 require('./components/Test1');
 require('./components/Test2');
