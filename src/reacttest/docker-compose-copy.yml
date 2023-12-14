@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/src/app
+    command: npm start
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: teconet-db
+      MYSQL_DATABASE: teconet-db
+      MYSQL_USER: teconet-db
+      MYSQL_PASSWORD: teconet-db
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=teconet-db  # MySQLサービスのパスワードを指定
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql  # phpMyAdminはMySQLが起動してから起動する
