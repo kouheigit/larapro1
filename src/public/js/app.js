@@ -2740,6 +2740,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/*Blogabout*/
+
 function Blogabout() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     id: "blogabout",
