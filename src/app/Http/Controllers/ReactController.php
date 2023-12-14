@@ -11,6 +11,10 @@ class ReactController extends Controller
     {
         return view('react.bloglink');
     }
+    public function blogtest(Request $request)
+    {
+        return view('react.blogtest');
+    }
     public function blogblog(Request $request)
     {
         return view('react.blogblog');
