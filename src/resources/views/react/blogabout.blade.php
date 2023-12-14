@@ -4,5 +4,4 @@
 <h1>なめっくムーブ</h1>
 <div id="blogabout"></div>
 <div id="bloghome"></div>
-<div id="bloghome"></div>
 <script src="{{ mix('js/app.js') }}"></script>
