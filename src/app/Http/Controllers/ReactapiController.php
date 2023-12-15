@@ -13,6 +13,5 @@ class ReactapiController extends Controller
         $insert->password = $request->password;
         $insert->save();
         return response()->json($insert,200);
-
     }
 }
