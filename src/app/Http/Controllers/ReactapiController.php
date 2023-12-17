@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ReactapiController extends Controller
 {
     public function insert(Request $request)
-    {
+    {   /*insert add */
         /*
         $insert = new Insert();
         $insert->name = $request->name;
