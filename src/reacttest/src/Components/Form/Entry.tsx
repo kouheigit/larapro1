@@ -87,7 +87,7 @@ export default function Entry(props: any) {
             cv: cv,
 
         }
-        const url = 'http://localhost:4000/apply'
+        const url = 'http://localhost:8081/api/Reactapi'
         setNowLoading(true)
         axios.post(url, payload,{
             headers: {
@@ -224,13 +224,13 @@ export default function Entry(props: any) {
                             </svg>
                             アップロード
                         </button>
-                        <input 
-                            ref={resumeRef} 
+                        <input
+                            ref={resumeRef}
                             accept="image/*,.pdf,.xlsx,.xls,.doc,.docx"
                             onChange={(e) => {
                                 onResumeChange(e)
                             }}
-                            type="file" 
+                            type="file"
                             className="opacity-0 absolute inset-0 cursor-pointer"/>
                     </div>
                     <p className="text-xs text-slate-500">{resume? resume.name: ''}</p>
@@ -251,13 +251,13 @@ export default function Entry(props: any) {
                             </svg>
                             アップロード
                         </button>
-                        <input 
-                            ref={cvRef} 
+                        <input
+                            ref={cvRef}
                             accept="image/*,.pdf,.xlsx,.xls,.doc,.docx"
                             onChange={(e) => {
                                 onCvChange(e)
                             }}
-                            type="file" 
+                            type="file"
                             className="opacity-0 absolute inset-0 cursor-pointer"/>
                     </div>
                     <p className="text-xs text-slate-500">{cv? cv.name: ''}</p>
