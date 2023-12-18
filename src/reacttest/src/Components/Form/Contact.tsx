@@ -45,7 +45,8 @@ export default function Contact(props: any) {
             email: getValues('email'),
             message: message
         }
-        const url = 'http://localhost:4000/api'
+        const url = 'http://localhost:8081/api/Reactapi'
+        //const url = 'http://localhost:4000/api'
         setNowLoading(true)
         axios.post(url, payload).then(res => {
             console.log('success', res)
@@ -88,7 +89,7 @@ export default function Contact(props: any) {
                     </div>
                 </div>
             </div>
-            
+
             <div className="flex justify-center py-4">
                 <label className="relative">
                     <input type="checkbox" {...register('agreement')} className="peer" />
