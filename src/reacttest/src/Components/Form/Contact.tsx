@@ -46,7 +46,6 @@ export default function Contact(props: any) {
             message: message
         }
         const url = 'http://localhost:8081/api/Reactapi'
-        //const url = 'http://localhost:4000/api'
         setNowLoading(true)
         axios.post(url, payload).then(res => {
             console.log('success', res)
