@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Inquire;
 
@@ -21,19 +22,27 @@ class ReactapiController extends Controller
         $jobType = $request->jobType;
         $contact =$request->contact;
 
+        $value = [
+            'name' => $name,
+            'kana' => $kana,
+            'email' => $email,
+            'type' => $type,
+            'contact' => $contact,
+            'created_at' => new Carbon('Asia/Tokyo'),
+        ];
 
-
-            $value = [
-                'name' => $name,
-                'kana' => $kana,
-                'email' => $email,
-                'type' => $type,
-                'previousTitle' => $previousTitle,
-                'previousCompany' => $previousCompany,
-                'social' => $social,
-                'entrytype' => $entrytype,
-                'jobType' => $jobType,
-                'contact' => $contact,
+        $value1 = [
+            'name' => $name,
+            'kana' => $kana,
+            'email' => $email,
+            'type' => $type,
+            'previousTitle' => $previousTitle,
+            'previousCompany' => $previousCompany,
+            'social' => $social,
+            'entrytype' => $entrytype,
+            'jobType' => $jobType,
+            'contact' => $contact,
+            'created_at' => new Carbon('Asia/Tokyo'),
             ];
 
         /*insert add */
