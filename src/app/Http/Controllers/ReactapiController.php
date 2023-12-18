@@ -21,29 +21,30 @@ class ReactapiController extends Controller
         $entrytype = $request->entrytype;
         $jobType = $request->jobType;
         $contact =$request->contact;
-
-        $value = [
-            'name' => $name,
-            'kana' => $kana,
-            'email' => $email,
-            'type' => $type,
-            'contact' => $contact,
-            'created_at' => new Carbon('Asia/Tokyo'),
-        ];
-
-        $value1 = [
-            'name' => $name,
-            'kana' => $kana,
-            'email' => $email,
-            'type' => $type,
-            'previousTitle' => $previousTitle,
-            'previousCompany' => $previousCompany,
-            'social' => $social,
-            'entrytype' => $entrytype,
-            'jobType' => $jobType,
-            'contact' => $contact,
-            'created_at' => new Carbon('Asia/Tokyo'),
+        if($type==0) {
+            $value = [
+                'name' => $name,
+                'kana' => $kana,
+                'email' => $email,
+                'type' => $type,
+                'contact' => $contact,
+                'created_at' => new Carbon('Asia/Tokyo'),
             ];
+        }else {
+            $value1 = [
+                'name' => $name,
+                'kana' => $kana,
+                'email' => $email,
+                'type' => $type,
+                'previousTitle' => $previousTitle,
+                'previousCompany' => $previousCompany,
+                'social' => $social,
+                'entrytype' => $entrytype,
+                'jobType' => $jobType,
+                'contact' => $contact,
+                'created_at' => new Carbon('Asia/Tokyo'),
+            ];
+        }
 
         /*insert add */
         /*
