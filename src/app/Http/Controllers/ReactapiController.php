@@ -12,6 +12,7 @@ class ReactapiController extends Controller
         $name = $request->name;
         $kana = $request->kana;
         $email = $request->email;
+        //type 0 type 1
         $type = $request->type;
         $previousCompany = $request->previousCompany;
         $previousTitle = $request->previousTitle;
