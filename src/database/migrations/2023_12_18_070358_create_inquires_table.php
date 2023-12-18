@@ -15,11 +15,11 @@ class CreateInquiresTable extends Migration
     {
         Schema::create('inquires', function (Blueprint $table) {
             $table->id();
-            $table->string('name',255);
-            $table->string('kana',255);
-            $table->smallInteger('type');
-            $table->string('email',255);
-            $table->string('contact',1500);
+            $table->string('name',255)->nullable(true);
+            $table->string('kana',255)->nullable(true);
+            $table->smallInteger('type')->nullable(true);
+            $table->string('email',255)->nullable(true);
+            $table->string('contact',1500)->nullable(true);
             $table->timestamps();
         });
     }

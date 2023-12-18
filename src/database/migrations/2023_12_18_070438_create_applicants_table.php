@@ -15,16 +15,16 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->string('name',255);
-            $table->string('kana',255);
-            $table->smallInteger('type');
-            $table->smallInteger('entrytype');
-            $table->smallInteger('jobType');
-            $table->string('email',255);
-            $table->string('previousCompany',255);
-            $table->string('previousTitle',255);
-            $table->string('social',255);
-            $table->string('contact',1500);
+            $table->string('name',255)->nullable(true);
+            $table->string('kana',255)->nullable(true);
+            $table->smallInteger('type')->nullable(true);
+            $table->smallInteger('entrytype')->nullable(true);
+            $table->smallInteger('jobType')->nullable(true);
+            $table->string('email',255)->nullable(true);
+            $table->string('previousCompany',255)->nullable(true);
+            $table->string('previousTitle',255)->nullable(true);
+            $table->string('social',255)->nullable(true);
+            $table->string('contact',1500)->nullable(true);
             $table->timestamps();
         });
     }
