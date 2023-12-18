@@ -14,6 +14,7 @@ class ReactapiController extends Controller
         $kana = $request->kana;
         $email = $request->email;
         $contact =$request->contact;
+        $message = $request->message;
         //type 0 type 1
         $type = $request->type;
         $previousCompany = $request->previousCompany;
@@ -27,7 +28,7 @@ class ReactapiController extends Controller
                 'kana'=>$kana,
                 'email'=>$email,
                 'type'=>$type,
-                'contact'=>$contact,
+                'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
             Inquire::insert($value);
@@ -42,7 +43,7 @@ class ReactapiController extends Controller
                 'social'=>$social,
                 'entrytype'=>$entrytype,
                 'jobType'=>$jobType,
-                'contact'=>$contact,
+                'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
             //Inquire::insert($value1);
