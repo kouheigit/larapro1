@@ -16,7 +16,7 @@ class CreateInquiresTable extends Migration
         Schema::create('inquires', function (Blueprint $table) {
             $table->id();
             $table->string('name',255);
-            $table->string('kane',255);
+            $table->string('kana',255);
             $table->smallInteger('type');
             $table->string('email',255);
             $table->string('contact',1500);

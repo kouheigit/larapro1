@@ -13,6 +13,7 @@ class ReactapiController extends Controller
         $name = $request->name;
         $kana = $request->kana;
         $email = $request->email;
+        $contact =$request->contact;
         //type 0 type 1
         $type = $request->type;
         $previousCompany = $request->previousCompany;
@@ -20,7 +21,6 @@ class ReactapiController extends Controller
         $social = $request->social;
         $entrytype = $request->entrytype;
         $jobType = $request->jobType;
-        $contact =$request->contact;
         if($type==0) {
             $value = [
                 'name' => $name,
@@ -31,7 +31,7 @@ class ReactapiController extends Controller
                 'created_at' => new Carbon('Asia/Tokyo'),
             ];
             Inquire::insert($value);
-        }else {
+        }else{
             $value1 = [
                 'name' => $name,
                 'kana' => $kana,
