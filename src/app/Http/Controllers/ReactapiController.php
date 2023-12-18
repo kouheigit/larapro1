@@ -30,6 +30,7 @@ class ReactapiController extends Controller
                 'contact' => $contact,
                 'created_at' => new Carbon('Asia/Tokyo'),
             ];
+            Inquire::insert($value);
         }else {
             $value1 = [
                 'name' => $name,
@@ -44,6 +45,7 @@ class ReactapiController extends Controller
                 'contact' => $contact,
                 'created_at' => new Carbon('Asia/Tokyo'),
             ];
+            //Inquire::insert($value1);
         }
 
         /*insert add */
