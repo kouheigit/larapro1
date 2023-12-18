@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Inquire;
+use App\Models\Applicant;
 
 class ReactapiController extends Controller
 {
@@ -46,16 +47,8 @@ class ReactapiController extends Controller
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
-            //Inquire::insert($value1);
+            Applicant::insert($value1);
         }
-
-        /*insert add */
-        /*
-        $insert = new Insert();
-        $insert->name = $request->name;
-        $insert->password = $request->password;
-        $insert->save();
-        return response()->json($insert,200);*/
         return response()->json(200);
     }
 }
