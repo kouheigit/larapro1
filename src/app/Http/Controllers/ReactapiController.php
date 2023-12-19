@@ -25,6 +25,11 @@ class ReactapiController extends Controller
         $jobType = $request->jobType;
         $resume = $request->file('resume');
 
+        $filename = now()->format('YmdHis') . uniqid('', true) . "." .  $resume->extension();
+        $path =  $resume->storeAs('FILE/', $filename, 'public');
+
+
+
         //配列出力
         $jobs = $jobType[0];
         $entryTypes = $entryType[0];
@@ -59,6 +64,6 @@ class ReactapiController extends Controller
             Applicant::insert($value1);
         }
         //return response()->json(['success' => true], 200);
-        return response()->json($jobType,200);
+        return response()->json($path,200);
     }
 }
