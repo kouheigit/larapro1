@@ -20,9 +20,11 @@ class ReactapiController extends Controller
         $previousCompany = $request->previousCompany;
         $previousTitle = $request->previousTitle;
         $social = $request->social;
-        $entrytype = $request->entrytype;
-       // $jobType = json_decode($request->jobType);
-         $jobType[] = $request->jobType;
+        $entryType = $request->entryType;
+        $jobType = $request->jobType;
+
+        $jobs = $jobType[0];
+        $entryTypes = $entryType[0];
         if($type==0) {
             $value = [
                 'name'=>$name,
@@ -42,9 +44,9 @@ class ReactapiController extends Controller
                 'previousTitle'=>$previousTitle,
                 'previousCompany'=>$previousCompany,
                 'social'=>$social,
-                'entrytype'=>$entrytype,
-                'jobType'=>null,
-               // 'jobType'=>$jobType,
+                'entrytype'=>$entryTypes,
+               // 'jobType'=>null,
+                'jobType'=>$jobs,
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
@@ -52,6 +54,6 @@ class ReactapiController extends Controller
             Applicant::insert($value1);
         }
         //return response()->json(['success' => true], 200);
-        return response()->json(200);
+        return response()->json($jobType,200);
     }
 }
