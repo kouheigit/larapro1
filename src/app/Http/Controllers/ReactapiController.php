@@ -69,6 +69,7 @@ class ReactapiController extends Controller
                 $resume->storeAs('CV', $filename, 'public');
             }
         }
+        //レスポンス
         return response()->json($resume,200);
     }
 }
