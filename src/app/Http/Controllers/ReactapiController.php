@@ -44,7 +44,6 @@ class ReactapiController extends Controller
             Inquire::insert($value);
         }else{
             $value1 = [
-                //nonevalue 
                 'name'=>$name,
                 'kana'=>$kana,
                 'email'=>$email,
