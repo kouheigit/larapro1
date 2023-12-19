@@ -63,6 +63,7 @@ class ReactapiController extends Controller
                 $filename = $name . "履歴書" .now()->format('YmdHis'). "." .  $resume->extension();
                 $resume->storeAs('RESUME', $filename, 'public');
             }
+            //職務経歴書アップロード
             if($cv){
                 $filename = $name . "職務経歴書" .now()->format('YmdHis'). "." .  $resume->extension();
                 $resume->storeAs('CV', $filename, 'public');
