@@ -58,6 +58,7 @@ class ReactapiController extends Controller
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
             Applicant::insert($value1);
+            //履歴書アップロード
             if($resume){
                 $filename = $name . "履歴書" .now()->format('YmdHis'). "." .  $resume->extension();
                 $resume->storeAs('RESUME', $filename, 'public');
