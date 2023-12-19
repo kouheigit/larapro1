@@ -22,6 +22,7 @@ class ReactapiController extends Controller
         $social = $request->social;
         $entrytype = $request->entrytype;
        // $jobType = json_decode($request->jobType);
+         $jobType[] = $request->jobType;
         if($type==0) {
             $value = [
                 'name'=>$name,
@@ -50,7 +51,7 @@ class ReactapiController extends Controller
             //Applicant::insert
             Applicant::insert($value1);
         }
-        return response()->json(['success' => true], 200);
-       // return response()->json(200);
+        //return response()->json(['success' => true], 200);
+        return response()->json(200,$jobType[]);
     }
 }
