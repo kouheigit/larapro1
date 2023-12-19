@@ -45,7 +45,6 @@ class ReactapiController extends Controller
                 'previousCompany'=>$previousCompany,
                 'social'=>$social,
                 'entrytype'=>$entryTypes,
-               // 'jobType'=>null,
                 'jobType'=>$jobs,
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
