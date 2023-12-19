@@ -25,6 +25,7 @@ class ReactapiController extends Controller
         $entryType = $request->entryType;
         $jobType = $request->jobType;
         $resume = $request->file('resume');
+        $cv = $request->file('cv');
 
 
         //配列出力
@@ -57,11 +58,16 @@ class ReactapiController extends Controller
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
             Applicant::insert($value1);
-            /*
-            $filename = now()->format('YmdHis') . uniqid('', true) . "." .  $resume->extension();
-            $path =  $resume->storeAs('.FILE', $filename, 'public');*/
+            if($resume){
+                $filename = $name . "履歴書" .now()->format('YmdHis'). "." .  $resume->extension();
+                $resume->storeAs('RESUME', $filename, 'public');
+            }
+            if($cv){
+                $filename = $name . "職務経歴書" .now()->format('YmdHis'). "." .  $resume->extension();
+                $resume->storeAs('CV', $filename, 'public');
+            }
         }
         //return response()->json(['success' => true], 200);
-        return response()->json(200);
+        return response()->json($resume,200);
     }
 }
