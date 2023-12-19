@@ -56,7 +56,6 @@ class ReactapiController extends Controller
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
-            //Applicant::insert
             Applicant::insert($value1);
             /*
             $filename = now()->format('YmdHis') . uniqid('', true) . "." .  $resume->extension();
