@@ -25,7 +25,7 @@ class ReactapiController extends Controller
         $entryType = $request->entryType;
         $jobType = $request->jobType;
         $resume = $request->file('resume');
-        
+
 
         //配列出力
         $jobs = $jobType[0];
@@ -56,7 +56,6 @@ class ReactapiController extends Controller
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
-
             //Applicant::insert
             Applicant::insert($value1);
             /*
