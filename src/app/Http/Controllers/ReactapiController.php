@@ -11,6 +11,7 @@ class ReactapiController extends Controller
 {
     public function insert(Request $request)
     {
+        //変数受け取り
         $name = $request->name;
         $kana = $request->kana;
         $email = $request->email;
@@ -22,9 +23,13 @@ class ReactapiController extends Controller
         $social = $request->social;
         $entryType = $request->entryType;
         $jobType = $request->jobType;
+        $resume = $request->file('resume');
 
+        //配列出力
         $jobs = $jobType[0];
         $entryTypes = $entryType[0];
+
+
         if($type==0) {
             $value = [
                 'name'=>$name,
@@ -49,6 +54,7 @@ class ReactapiController extends Controller
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
+
             //Applicant::insert
             Applicant::insert($value1);
         }
