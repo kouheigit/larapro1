@@ -24,6 +24,7 @@ class ReactapiController extends Controller
         $social = $request->social;
         $entryType = $request->entryType;
         $jobType = $request->jobType;
+        //file 
         $resume = $request->file('resume');
         $cv = $request->file('cv');
 
