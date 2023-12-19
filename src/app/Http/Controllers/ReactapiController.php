@@ -52,6 +52,6 @@ class ReactapiController extends Controller
             Applicant::insert($value1);
         }
         //return response()->json(['success' => true], 200);
-        return response()->json(200,$jobType[]);
+        return response()->json(200);
     }
 }

@@ -72,11 +72,12 @@ export default function Entry(props: any) {
     const [nowLoading, setNowLoading] = useState(false)
 
     const submit = () => {
-        const jobTypeValues = getValues('jobType');
+       // const jobTypeValues = getValues('jobType');
         const payload = {
             entryType: entryType,
             type: getValues('type'),
-            jobType: Array.isArray(jobTypeValues) ? jobTypeValues : [jobTypeValues],
+            jobType: getValues('jobType'),
+            //jobType: Array.isArray(jobTypeValues) ? jobTypeValues : [jobTypeValues],
             name: getValues('name'),
             kana: getValues('kana'),
             email: getValues('email'),
