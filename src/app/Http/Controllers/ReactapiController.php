@@ -14,7 +14,6 @@ class ReactapiController extends Controller
         $name = $request->name;
         $kana = $request->kana;
         $email = $request->email;
-        $contact =$request->contact;
         $message = $request->message;
         //type 0 type 1
         $type = $request->type;
@@ -22,7 +21,7 @@ class ReactapiController extends Controller
         $previousTitle = $request->previousTitle;
         $social = $request->social;
         $entrytype = $request->entrytype;
-        $jobType = json_decode($request->jobType);
+       // $jobType = json_decode($request->jobType);
         if($type==0) {
             $value = [
                 'name'=>$name,
@@ -43,7 +42,8 @@ class ReactapiController extends Controller
                 'previousCompany'=>$previousCompany,
                 'social'=>$social,
                 'entrytype'=>$entrytype,
-                'jobType'=>$jobType,
+                'jobType'=>null,
+               // 'jobType'=>$jobType,
                 'contact'=>$message,
                 'created_at'=>new Carbon('Asia/Tokyo'),
             ];
