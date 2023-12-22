@@ -1,12 +1,12 @@
 import React from 'react';
 
 // Appコンポーネント
-function Newapp() {
+function NewApp() {
     return (
-        <div className="Newapp">
+        <div>
             <h1>Hello, React!</h1>
         </div>
     );
 }
 
-export default Newapp;
+export default NewApp;
