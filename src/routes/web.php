@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 Route::namespace('Kpg')->prefix('kpg')->name('kpg.')->group(function() {
-    Route::get('kpg', [App\Http\Controllers\KpgController::class, 'index'])->name('kpg');
+    Route::get('index', [App\Http\Controllers\KpgController::class, 'index'])->name('index');
 });
 Route::namespace('React')->prefix('react')->name('react.')->group(function(){
     Route::get('bloglink',[App\Http\Controllers\ReactController::class,'bloglink'])->name('bloglink');
