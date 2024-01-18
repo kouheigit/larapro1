@@ -3,7 +3,12 @@
 </head>
 <body>
 <section id="test value">
-    <h1>KPG-RESTART</h1>
+    <div class="title">
+        <h1>KPG TEST SITE</h1>
+    </div>
+    <div class="subtitle">
+        <b>空ノ庭</b>
+    </div>
 </section>
 </body>
 </html>
