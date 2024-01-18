@@ -22,8 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-Route::get('kpg',[App\Http\Controllers\KpgController::class,'index'])->name('kpg');
-
+Route::namespace('Kpg')->prefix('kpg')->name('kpg.')->group(function() {
+    Route::get('kpg', [App\Http\Controllers\KpgController::class, 'index'])->name('kpg');
+});
 Route::namespace('React')->prefix('react')->name('react.')->group(function(){
     Route::get('bloglink',[App\Http\Controllers\ReactController::class,'bloglink'])->name('bloglink');
     Route::get('blogblog',[App\Http\Controllers\ReactController::class,'blogblog'])->name('blogblog');
