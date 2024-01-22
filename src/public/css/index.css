@@ -1,0 +1,28 @@
+@charset"utf-8";
+body {
+    font-family: arial;
+    font-size: 24px;
+    margin: 25px;
+    width: 1350px;
+    height: 200px;
+
+}
+
+section {
+    /* 水平方向の中央揃え */
+    text-align: center;
+}
+.subtitle{
+}
+
+/*
+@charset"utf-8";
+body {
+    margin: 0;
+    padding: 0;
+    line-height:2;
+    background: url("../img/fast1.jpg") no-repeat center center;
+    background-size: 100%;
+    background-repeat: repeat-y;
+    font-family: 'Noto Sans JP', sans-serif;
+}*/
