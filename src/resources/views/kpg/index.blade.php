@@ -14,11 +14,11 @@
     <div class="freeday">
         <b>FREEDAY</b>
         <p>freeday content</p>
-        <p class="seemore">さらに見る</p>
+        <p class="freeday-seemore">さらに見る</p>
     </div>
     <div class="fixday">
         <b>fixday</b>
-        <p class="seemore">さらに見る</p>
+        <p class="fixday-seemore">さらに見る</p>
     </div>
 </section>
 </body>
