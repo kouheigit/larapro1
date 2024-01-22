@@ -38,6 +38,23 @@ class CreateNewusersTable extends Migration
             $table->string('company_address2')->nullable(true);
             $table->string('company_tel')->nullable(true);
             $table->string('company_fax')->nullable(true);
+            $table->string('send_name')->nullable(true);
+            $table->string('send_kana')->nullable(true);
+            $table->string('send_zip1')->nullable(true);
+            $table->string('send_zip2')->nullable(true);
+            $table->string('send_tel')->nullable(true);
+            $table->smallInteger('type')->nullable(true);
+            $table->smallInteger('agree')->nullable(true);
+            $table->smallInteger('status');
+            $table->smallInteger('user_id');
+            $table->timestamps('deleted_at')->nullable(true);
+            $table->timestamps();
+
+
+
+
+
+
 
 
 
