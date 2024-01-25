@@ -33,6 +33,5 @@ class Reservation extends Model
         'upload2',
         'upload3',
         'deleted_at',
-
     ];
 }
