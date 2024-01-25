@@ -15,9 +15,9 @@ class CreateFreedaysTable extends Migration
     {
         Schema::create('freedays', function (Blueprint $table) {
             $table->id();
-            $table->int('user_id');
-            $table->int('freedays');
-            $table->int('max_freedays');
+            $table->integer('user_id');
+            $table->integer('freedays');
+            $table->integer('max_freedays');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

@@ -15,9 +15,9 @@ class CreateCalendarsTable extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->id();
-            $table->int('hotel_id');
-            $table->int('user_id')->nullable(true);
-            $table->bigIncrements('calender_id')->nullable(true);
+            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('calender_id')->nullable(true);
             $table->date('start_date')->nullable(true);
             $table->date('end_date')->nullable(true);
             $table->smallInteger('status');

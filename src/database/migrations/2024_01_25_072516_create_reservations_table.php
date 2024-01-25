@@ -15,11 +15,11 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->int('hotel_id');
-            $table->int('user_id');
-            $table->int('owner_id');
-            $table->int('invitation_id')->nullable('true');
-            $table->bigIncrements('calendar_id')->nullable('true');
+            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('invitation_id')->nullable('true');
+            $table->unsignedBigInteger('calendar_id')->nullable('true');
             $table->date('checkin_date');
             $table->date('checkout_date');
             $table->time('checkin_time')->nullable('true');
@@ -29,15 +29,15 @@ class CreateReservationsTable extends Migration
             $table->smallInteger('adult');
             $table->smallInteger('child');
             $table->smallInteger('dog');
-            $table->string('note')->nullable('true');;
-            $table->string('room_key')->nullable('true');;
+            $table->string('note')->nullable('true');
+            $table->string('room_key')->nullable('true');
             $table->smallInteger('payment');
             $table->smallInteger('status');
-            $table->string('upload')->nullable('true');;
-            $table->string('upload1')->nullable('true');;
-            $table->string('upload2')->nullable('true');;
-            $table->string('upload3')->nullable('true');;
-            $table->timestamps('deleted_at')->nullable('true');
+            $table->string('upload')->nullable('true');
+            $table->string('upload1')->nullable('true');
+            $table->string('upload2')->nullable('true');
+            $table->string('upload3')->nullable('true');
+           // $table->timestamps('deleted_at')->nullable('true');
             $table->timestamps();
         });
     }

@@ -47,21 +47,7 @@ class CreateNewusersTable extends Migration
             $table->smallInteger('agree')->nullable(true);
             $table->smallInteger('status');
             $table->smallInteger('user_id');
-            $table->timestamps('deleted_at')->nullable(true);
-            $table->timestamps();
-
-
-
-
-
-
-
-
-
-
-
-
-
+           // $table->timestamps('deleted_at')->nullable(true);
             $table->timestamps();
         });
     }
