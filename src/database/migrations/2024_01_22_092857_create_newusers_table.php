@@ -15,7 +15,7 @@ class CreateNewusersTable extends Migration
     {
         Schema::create('newusers', function (Blueprint $table) {
             $table->id();
-            $table->strig('member_id')->nullable(true);
+            $table->string('member_id')->nullable(true);
             $table->string('name')->nullable(true);
             $table->string('email')->nullable(true);
             $table->timestamp('email_verified_at')->nullable(true);

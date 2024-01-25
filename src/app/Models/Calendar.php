@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Freeday extends Model
+class Calendar extends Model
 {
     use HasFactory;
-    protected $table ='freedays';
+    protected $table ='calendars';
     protected $fillable = [
+        'hotel_id',
         'user_id',
-        'freedays',
-        'max_freedays',
+        'calendar_id',
         'start_date',
         'end_date',
+        'status'
     ];
 }

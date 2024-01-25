@@ -10,7 +10,6 @@ class Newuser extends Model
     use HasFactory;
     protected $table ='newusers';
     protected $fillable = [
-        'id',
         'member_id',
         'name',
         'email',
