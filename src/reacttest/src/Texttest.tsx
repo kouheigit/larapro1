@@ -10,6 +10,7 @@ export default function Texttest() {
             <p>宮本天外</p>
             <p>複数行記述する時は中に何も記述してないカッコを記述する</p>
             <p>億万長者</p>
+            <p>ナメック</p>
         </>
     );
 
