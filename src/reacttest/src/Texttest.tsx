@@ -7,8 +7,7 @@ export default function Texttest() {
             <h1>Value test</h1>
             <h1>どうする徳川家康</h1>
             <h2>どうしない家康</h2>
-            <h2>どうもしない</h2>
-            <h1>家康</h1>
+            <h1>test</h1>
             <h1>2億</h1>
             <h1>億万長者</h1>
             <p>宮本天外</p>
