@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class ReactController extends Controller
 {
-
+    public function pokemon(Request $reqeust)
+    {
+        return view('react.pokemon');
+    }
     public function bloglink(Request $request)
     {
         return view('react.bloglink');

@@ -26,6 +26,7 @@ Route::namespace('Kpg')->prefix('kpg')->name('kpg.')->group(function() {
     Route::get('index', [App\Http\Controllers\KpgController::class, 'index'])->name('index');
 });
 Route::namespace('React')->prefix('react')->name('react.')->group(function(){
+    Route::get('pokemon',[App\Http\Controllers\ReactController::class,'pokemon'])->name('pokemon');
     Route::get('bloglink',[App\Http\Controllers\ReactController::class,'bloglink'])->name('bloglink');
     Route::get('blogblog',[App\Http\Controllers\ReactController::class,'blogblog'])->name('blogblog');
     Route::get('blogtest',[App\Http\Controllers\ReactController::class,'blogtest'])->name('blogtest');
