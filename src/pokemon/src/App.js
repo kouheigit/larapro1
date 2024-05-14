@@ -1,7 +1,9 @@
 import './App.css';
+import { useEffect, useState} from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
 
 function App() {
+    const [pokemonNames, setPokemonNames] = useState([]);
     const pokemon = [
         {
         id:1,
@@ -23,6 +25,7 @@ function App() {
         }
     ];
 
+    const url = "https://pokeapi.co/api/v2/pokemon";
 
   return (
       <div className="app-container">
