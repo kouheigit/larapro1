@@ -1,8 +1,12 @@
 import './App.css';
+//STEP5 useStateで状態管理からスタート
+//開始
+//useEffect,useStateを追加している
 import { useEffect, useState} from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
 
 function App() {
+    //useStateを追加している途中
     const [pokemonNames, setPokemonNames] = useState([]);
     const pokemon = [
         {
@@ -25,6 +29,7 @@ function App() {
         }
     ];
 
+    // const urlを追加している
     const url = "https://pokeapi.co/api/v2/pokemon";
 
   return (
