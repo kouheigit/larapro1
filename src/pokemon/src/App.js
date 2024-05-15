@@ -58,8 +58,15 @@ function App() {
           <h1>ポケモン図鑑</h1>
           <div classNmae='pokemon-container'>
               <div className='all-container'>
-                  
-
+                  {pokemons.map((pokemon,index) => (
+                      <PokemonThumbnails
+                      id={pokemons.id}
+                      name={pokemonNames[index]}
+                      image={pokemon.image}
+                      type={pokemon.type}
+                      key={pokemon.key}
+                      />
+                  ))}
               </div>
           </div>
       </div>
