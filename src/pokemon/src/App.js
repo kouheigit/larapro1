@@ -45,6 +45,7 @@ function App() {
                 setData(data);*/
                 console.log(data.results[0].name);
                 //namesの配列にnameを格納する
+                //result配列の中のnameをconst namesの中に格納する
                 const names = [
                     data.result[0].name,
                     data.result[1].name,
@@ -53,6 +54,8 @@ function App() {
                 setPokemonNames(names);
             })
     },[])
+    //map関数で処理する
+    //mapの中のindexは配列の数にあたる
   return (
       <div className="app-container">
           <h1>ポケモン図鑑</h1>
