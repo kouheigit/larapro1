@@ -36,9 +36,15 @@ function App() {
         fetch(url)
             //urlの情報をjsonに変更する
             .then(res => res.json())
+            //dataという配列に格納している
             .then(data => {
                 //Logを出力している
+                //デバック出力
+                /*
+                console.log(data);
+                setData(data);*/
                 console.log(data.results[0].name);
+                //namesの配列にnameを格納する
                 const names = [
                     data.result[0].name,
                     data.result[1].name,
