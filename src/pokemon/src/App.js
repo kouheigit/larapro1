@@ -56,6 +56,8 @@ function App() {
     },[])
     //map関数で処理する
     //mapの中のindexは配列の数にあたる
+    //indexはmap特有の関数で配列pokemonとは無関係
+    //pokemonの配列を出力している
   return (
       <div className="app-container">
           <h1>ポケモン図鑑</h1>
