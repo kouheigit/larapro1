@@ -47,9 +47,9 @@ function App() {
                 //namesの配列にnameを格納する
                 //result配列の中のnameをconst namesの中に格納する
                 const names = [
-                    data.result[0].name,
-                    data.result[1].name,
-                    data.result[2].name,
+                    data.results[0].name,
+                    data.results[1].name,
+                    data.results[2].name,
                 ]
                 setPokemonNames(names);
             })
@@ -69,7 +69,7 @@ function App() {
                       name={pokemonNames[index]}
                       image={pokemon.image}
                       type={pokemon.type}
-                      key={pokemon.key}
+                      key={index}
                       />
                   ))}
               </div>
