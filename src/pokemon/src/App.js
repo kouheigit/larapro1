@@ -32,6 +32,21 @@ function App() {
     // const urlを追加している
     const url = "https://pokeapi.co/api/v2/pokemon";
 
+    useEffect(() => {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.results[0].name);
+                const names = [
+                        data.results[0].name,
+                        data.results[1].name,
+                        data.results[2].name,
+                ]
+                setPokemonNames(names);
+            })
+    }, [])
+
+
   return (
       <div className="app-container">
           <h1>ポケモン図鑑</h1>
