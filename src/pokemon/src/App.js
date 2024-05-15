@@ -32,9 +32,12 @@ function App() {
     const url = "https://pokeapi.co/api/v2/pokemon";
 
     useEffect(() =>{
+        //fetch urlでurlを読み込む
         fetch(url)
+            //urlの情報をjsonに変更する
             .then(res => res.json())
             .then(data => {
+                //Logを出力している
                 console.log(data.results[0].name);
                 const names = [
                     data.result[0].name,
