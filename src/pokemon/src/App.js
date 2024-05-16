@@ -33,18 +33,11 @@ function App() {
     // const urlを追加している
     const url = "https://pokeapi.co/api/v2/pokemon";
     //関数化する
+    {/*
     useEffect(() =>{
-        //fetch urlでurlを読み込む
         fetch(url)
-            //urlの情報をjsonに変更する
             .then(res => res.json())
-            //dataという配列に格納している
             .then(data => {
-                //Logを出力している
-                //デバック出力
-                /*
-                console.log(data);
-                setData(data);*/
                 console.log(data.results[0].name);
                 //namesの配列にnameを格納する
                 //result配列の中のnameをconst namesの中に格納する
@@ -55,7 +48,7 @@ function App() {
                 ]
                 setPokemonNames(names);
             })
-    },[])
+    },[])*/}
 
 
 
