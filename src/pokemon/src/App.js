@@ -34,6 +34,7 @@ function App() {
     const url = "https://pokeapi.co/api/v2/pokemon";
     //関数化する
 
+    //これでAPIの中身は全て確認できた
     const createPokemonObject = () => {
         fetch(url)
             .then(res => res.json())
