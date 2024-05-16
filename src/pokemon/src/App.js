@@ -38,6 +38,11 @@ function App() {
     //spriteは画像関係を司どる
     //画像については"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
     //stripe,other,official-artworkから出力する
+
+
+
+   //下記のものはURLからJSONを取得してconsole.logにエラーを出力する例
+    {/*
     const createPokemonObject = () => {
         fetch(url)
             .then(res => res.json())
@@ -49,9 +54,9 @@ function App() {
 
     useEffect(() => {
         createPokemonObject();
-    }, []);
+    }, []);*/}
 
-
+//下記のものは処理が終わり次第これは消す
     {/*
     useEffect(() =>{
         fetch(url)
