@@ -33,8 +33,7 @@ function App() {
     // const urlを追加している
     const url = "https://pokeapi.co/api/v2/pokemon";
     //関数化する
-    const url = "https://pokeapi.co/api/v2/pokemon";
-    //関数化する
+
     const createPokemonObject = () => {
         fetch(url)
             .then(res => res.json())
@@ -75,7 +74,7 @@ function App() {
   return (
       <div className="app-container">
           <h1>ポケモン図鑑</h1>
-          <div classNmae='pokemon-container'>
+          <div className='pokemon-container'>
               <div className='all-container'>
                   {pokemons.map((pokemon,index) => (
                       <PokemonThumbnails
