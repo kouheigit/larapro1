@@ -37,12 +37,15 @@ function App() {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.result);
+                console.log(data.results[0].url); // 最初のポケモンのURLを表示
             })
-    }
-    useEffect( () => {
+            .catch(error => console.error('Error:', error));
+    };
+
+    useEffect(() => {
         createPokemonObject();
-    })
+    }, []);
+
 
     {/*
     useEffect(() =>{
