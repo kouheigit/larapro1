@@ -56,6 +56,9 @@ function App() {
                 setPokemonNames(names);
             })
     },[])
+
+
+
     //map関数で処理する
     //mapの中のindexは配列の数にあたる
     //indexはmap特有の関数で配列pokemonとは無関係
