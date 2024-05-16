@@ -34,7 +34,10 @@ function App() {
     const url = "https://pokeapi.co/api/v2/pokemon";
     //関数化する
 
-    //これでAPIの中身は全て確認できた
+    //↓下記のものは消すな
+    //spriteは画像関係を司どる
+    //画像については"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+    //stripe,other,official-artworkから出力する
     const createPokemonObject = () => {
         fetch(url)
             .then(res => res.json())
