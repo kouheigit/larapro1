@@ -1,6 +1,7 @@
 import './App.css';
 //STEP5 useStateで状態管理からスタート
 //useEffect,useStateを追加している
+//開始
 import { useEffect, useState} from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
 
