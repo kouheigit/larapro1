@@ -40,6 +40,20 @@ function App() {
     //stripe,other,official-artworkから出力する
 
 
+    const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
+    const createPokemonObject = () => {
+        fetch(pokemonUrl)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                // ポケモンの画像の場所
+                // - (ハイフン)にlintで自動で半角スペースが入ってしまうため、[]で対応
+                // data.sprites.other.official-artwork.front_default でも大丈夫です
+                console.log(data.sprites.other["official-artwork"].front_default);
+                // ポケモンのタイプの場所
+                console.log(data.types[0].type.name);
+            })
+    }
 
    //下記のものはURLからJSONを取得してconsole.logにエラーを出力する例
     {/*
