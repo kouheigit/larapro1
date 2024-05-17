@@ -38,6 +38,7 @@ function App() {
     //spriteは画像関係を司どる
     //画像については"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
     //stripe,other,official-artworkから出力する
+    //出力
 
 
     const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
