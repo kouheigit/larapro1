@@ -42,6 +42,7 @@ function App() {
 
 
     const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
+    //メソットを変更するところから
     const createPokemonObject = () => {
         fetch(pokemonUrl)
             .then(res => res.json())
