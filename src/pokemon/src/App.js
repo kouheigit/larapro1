@@ -61,11 +61,10 @@ function App() {
             .then(res => res.json())
             .then(data => {
                 console.log(data.result)
-                sellpokemons(data.results)
+                setAllPokemons(data.results)
                 setUrl(data.text);
             })
     }
-
     useEffect(() =>{
         getAllPokemons();
         createPokemonObject();
