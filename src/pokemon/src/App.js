@@ -78,6 +78,7 @@ function App() {
                 .then(data => {
                     const image = data.sprites.other["official-artwork"].front_default;
                     const type = data.types[0].type.name;
+                    //改修
                     console.log(data.name,image,type);
                 })
 
