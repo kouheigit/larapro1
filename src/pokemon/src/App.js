@@ -42,7 +42,12 @@ function App() {
 
     const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
 
+    //ローディング中の処理の追加
+    const [isLoading, setIsLoading] = useState(false);
+
     const getAllPokemons = () =>{
+        //ローディング中の追加
+        setIsLoading(true);
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -52,6 +57,10 @@ function App() {
                // setUrl(data.text);
 
                 setUrl(data.next);
+            })
+            //ローディング中の追加
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
