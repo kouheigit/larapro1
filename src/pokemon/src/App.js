@@ -41,7 +41,7 @@ function App() {
 
 
     const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
-
+    //ローディング処理
     //ローディング中の処理の追加
     const [isLoading, setIsLoading] = useState(false);
 
