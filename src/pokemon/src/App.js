@@ -76,12 +76,16 @@ function App() {
             fetch(pokemonUrl)
                 .then(res => res.json())
                 .then(data => {
-                    const image = data.sprites.other["official-artwork"].front_default;
-                    const type = data.types[0].type.name;
-                    //改修
-                    console.log(data.name,image,type);
+                    const _image = data.sprites.other["official-artwork"].front_default;
+                    const _type = data.types[0].type.name;
+                    const newList = {
+                        id: data.id,
+                        name: data.name,
+                        image: _image,
+                        type: _type,
+                    }
+                    setAllPokemons(currentList => [...currentList,newList]);
                 })
-
         })
     }
     useEffect(() =>{
@@ -132,16 +136,19 @@ function App() {
           <h1>ポケモン図鑑</h1>
           <div className='pokemon-container'>
               <div className='all-container'>
-                  {pokemons.map((pokemon,index) => (
+                  {allPokemons.map((pokemon,index) => (
                       <PokemonThumbnails
                       id={pokemons.id}
-                      name={allPokemons[index]?.name}
+                      name={pokemon.name}
                       image={pokemon.image}
                       type={pokemon.type}
                       key={index}
                       />
                   ))}
               </div>
+              <button className='load-more' onClick={getAllPokemons}>
+                  もっとみる！
+              </button>
           </div>
       </div>
   );
