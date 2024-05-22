@@ -29,9 +29,9 @@ function App() {
         }
     ];
 
-
+    //20件取得してくる
+    const [url,setUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=20");
     // const urlを追加している
-    const url = "https://pokeapi.co/api/v2/pokemon";
     //関数化する
 
     //↓下記のものは消すな
@@ -41,6 +41,19 @@ function App() {
 
 
     const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
+
+    const getAllPokemons = () =>{
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.result)
+                setAllPokemons(data.results)
+               // setUrl(data.text);
+
+                setUrl(data.next);
+            })
+    }
+
     //メソットを変更するところから
     const createPokemonObject = () => {
         fetch(pokemonUrl)
@@ -56,15 +69,6 @@ function App() {
             })
     }
 
-    const getAllPokemons = () =>{
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.result)
-                setAllPokemons(data.results)
-                setUrl(data.text);
-            })
-    }
     useEffect(() =>{
         getAllPokemons();
         createPokemonObject();
@@ -117,7 +121,7 @@ function App() {
                   {pokemons.map((pokemon,index) => (
                       <PokemonThumbnails
                       id={pokemons.id}
-                      name={pokemonNames[index]}
+                      name={allPokemons[index]?.name}
                       image={pokemon.image}
                       type={pokemon.type}
                       key={index}
