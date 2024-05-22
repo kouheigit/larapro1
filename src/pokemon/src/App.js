@@ -7,7 +7,7 @@ import PokemonThumbnails from "./PokemonThumbnails";
 
 function App() {
     //useStateを追加している途中
-    const [pokemonNames, setPokemonNames] = useState([]);
+    const [allPokemons, setAllPokemons] = useState([]);
     const pokemons = [
         {
         id:1,
