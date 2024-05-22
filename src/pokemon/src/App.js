@@ -38,7 +38,7 @@ function App() {
     //spriteは画像関係を司どる
     //画像については"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
     //stripe,other,official-artworkから出力する
-    
+
 
     const pokemonUrl = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
     //メソットを変更するところから
@@ -55,6 +55,21 @@ function App() {
                 console.log(data.types[0].type.name);
             })
     }
+
+    const getAllPokemons = () =>{
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.result)
+                sellpokemons(data.results)
+                setUrl(data.text);
+            })
+    }
+
+    useEffect(() =>{
+        getAllPokemons();
+        createPokemonObject();
+    },[])
 
    //下記のものはURLからJSONを取得してconsole.logにエラーを出力する例
     {/*
