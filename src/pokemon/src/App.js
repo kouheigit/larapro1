@@ -157,7 +157,7 @@ function App() {
                   ))}
               </div>
               <button className='load-more' onClick={getAllPokemons}>
-                  もっとみる！
+                  もっとみる!
               </button>
           </div>
       </div>
