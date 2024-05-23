@@ -4,6 +4,8 @@ import './App.css';
 //開始
 import { useEffect, useState} from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
+import pokemonJson from "./pokemon.json";
+import pokemonTypeJson from "./pokemonType.json";
 
 function App() {
     //useStateを追加している途中
@@ -84,19 +86,45 @@ function App() {
             const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
             fetch(pokemonUrl)
                 .then(res => res.json())
-                .then(data => {
+                .then(async (data) => {
                     const _image = data.sprites.other["official-artwork"].front_default;
+                    const _iconImage = data.sprites.other.dream_world.front_default;
                     const _type = data.types[0].type.name;
+                    const japanese = await translateToJapanese(data.name, _type);
                     const newList = {
                         id: data.id,
                         name: data.name,
+                        iconImage: _iconImage,
                         image: _image,
                         type: _type,
-                    }
-                    setAllPokemons(currentList => [...currentList,newList]);
+                        jpName: japanese.name,
+                        jpType: japanese.type
+
+                }
+                    setAllPokemons(currentList => [...currentList, newList].sort((a, b) => a.id - b.id));
                 })
         })
     }
+    const translateToJapanese = async (name,type) => {
+        const jpName = await pokemonJson.find(
+            (pokemon) =>pokemon.en.toLowerCase() === name
+        ).ja;
+        const jpType = await pokemonTypeJson[type];
+        console.log(jpType)
+        return { name:jpName, type: jpType };
+    }
+
+    {/*
+    const translateToJapanese = async (name, type) => {
+        +    const jpName = await pokemonJson.find(
+            +      (pokemon) => pokemon.en.toLowerCase() === name
+        +    ).ja;
+        +    const jpType = await pokemonTypeJson[type];
+        +    console.log(jpType)
+        +    return { name: jpName, type: jpType };
+        +  }*/}
+
+
     useEffect(() =>{
         getAllPokemons();
     },[])
@@ -150,14 +178,21 @@ function App() {
                       id={pokemons.id}
                       name={pokemon.name}
                       image={pokemon.image}
+                      iconImage={pokemon.iconImage}
                       type={pokemon.type}
                       key={index}
+                      jpName={pokemon.jpName}
+                      jpType={pokemon.jpType}
                       />
                   ))}
               </div>
-              <button className='load-more' onClick={getAllPokemons}>
-                  もっとみる！
-              </button>
+              {isLoading　? (
+                  <div className='load-more'>now loading...</div>
+              ) : (
+                  <button className='load-more' onClick={getAllPokemons}>
+                      もっと見る
+                  </button>
+              )}
           </div>
       </div>
   );
