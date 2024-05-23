@@ -55,7 +55,7 @@ function App() {
                 setAllPokemons(data.results)
                 createPokemonObject(data.results);
                // setUrl(data.text);
-
+                //Urlをセットする
                 setUrl(data.next);
             })
             //ローディング中の追加
