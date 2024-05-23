@@ -55,7 +55,7 @@ function App() {
                 setAllPokemons(data.results)
                 createPokemonObject(data.results);
                // setUrl(data.text);
-                //Urlをセットする
+                //次の20件のURLをセットする
                 setUrl(data.next);
             })
             //ローディング中の追加
@@ -93,6 +93,7 @@ function App() {
                         image: _image,
                         type: _type,
                     }
+                    //既存のデータを展開し、新しいデータを追加する
                     setAllPokemons(currentList => [...currentList,newList]);
                 })
         })
