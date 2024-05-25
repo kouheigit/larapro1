@@ -1,7 +1,7 @@
 import './App.css';
 //STEP5 useStateで状態管理からスタート
 //useEffect,useStateを追加している
-//pokemon
+//pokemonstart
 import { useEffect, useState} from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
 import pokemonJson from "./pokemon.json";
