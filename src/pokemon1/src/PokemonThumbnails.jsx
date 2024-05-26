@@ -1,8 +1,8 @@
 import React from "react";
+
 //コンポーネントを定義する
-const PokemonThumbnails = () =>{
-    return<div>PokemonThimbnails</div>
-    /*
+/*
++const PokemonThumbnails = ({ id, name, image, type }) => {
     return (
         <div>
             +     <div className="number">
@@ -14,9 +14,9 @@ const PokemonThumbnails = () =>{
             +        <h3>{type}</h3>
             +      </div>
         </div>
-    );*/
+    );
 };
-
+*/
 //デフォルトエクスポートする
 export default PokemonThumbnails;
 
