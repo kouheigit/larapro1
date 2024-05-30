@@ -1,5 +1,8 @@
 import './App.css';
+import { useEffect } from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
+
+
 function App() {
     const pokemon = [
         {
@@ -21,14 +24,10 @@ function App() {
             type: "くさ",
         }
     ]
+    /*"https://pokeapi.co/api/v2/pokemon"*/
+    useEffect(()=>{
 
-    /*
-    +  const pokemon = {
-        +    id: 1,
-        +    name: "フシギダネ",
-        +    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-        +    type: "くさ"
-    +  }*/
+    })
 
 
   return (
