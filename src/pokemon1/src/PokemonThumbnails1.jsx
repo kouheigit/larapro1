@@ -1,7 +1,7 @@
 import React from "react";
 
-const PokemonThumbnails1 = () =>{
-    <div>PokemonThumbnails</div>
+const PokemonThumbnails = () =>{
+  <div>ポケモン図鑑</div>
 };
 
-export default PokemonThumbnails1;
+export default PokemonThumbnails;
