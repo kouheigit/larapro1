@@ -22,7 +22,7 @@ function App() {
         id = {pokemon.id}
         name = {pokemon.name}
         image = {pokemon.image}
-        tyep = {pokemon.type}
+        type = {pokemon.type}
         />
     </div>
   );
