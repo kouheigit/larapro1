@@ -5,3 +5,5 @@ const PokemonThumbnails = () =>{
 };
 
 export default PokemonThumbnails;
+export default PokemonThumbnails;
+export default PokemonThumbnails;
