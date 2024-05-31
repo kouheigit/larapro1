@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
 
 
@@ -24,6 +24,7 @@ function App() {
             type: "くさ",
         }
     ]
+    /*
     const url = "https://pokeapi.co/api/v2/pokemon";
     useEffect(()=> {
         fetch(url)
@@ -31,13 +32,14 @@ function App() {
             .then(data =>{
                 console.log(data);
             })
-    },[])
+    },[])*/
 
 
   return (
     <div className="App">
         <div className='pokemon-container'>
             <div className='all-container'>
+                {/*}
         <PokemonThumbnails
         id = {pokemon[0].id}
         name = {pokemon[0].name}
@@ -55,7 +57,7 @@ function App() {
             name = {pokemon[2].name}
             image = {pokemon[2].image}
             type = {pokemon[2].type}
-        />
+        />*/}
             </div>
         </div>
     </div>
