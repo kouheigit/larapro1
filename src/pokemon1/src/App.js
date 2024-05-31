@@ -42,15 +42,7 @@ function App() {
                 console.log(data);
             })
     },[])
-    /*
-    const url = "https://pokeapi.co/api/v2/pokemon";
-    useEffect(()=> {
-        fetch(url)
-        .then(res => res.json())
-            .then(data =>{
-                console.log(data);
-            })
-    },[])*/
+
 
 
   return (
