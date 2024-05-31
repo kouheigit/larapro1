@@ -57,6 +57,19 @@ function App() {
     <div className="App">
         <div className='pokemon-container'>
             <div className='all-container'>
+                <PokemonThumbnails
+                    id = {pokemon[0].id}
+                    name = {pokemon[0].name}
+                    image = {pokemon[0].image}
+                    type = {pokemon[0].type}
+                />
+                <PokemonThumbnails
+                    id = {pokemon[1].id}
+                    name = {pokemon[1].name}
+                    image = {pokemon[1].image}
+                    type = {pokemon[1].type}
+                    />
+                
                 {/*}
         <PokemonThumbnails
         id = {pokemon[0].id}
