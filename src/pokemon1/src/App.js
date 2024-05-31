@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState  } from "react";
 import PokemonThumbnails from "./PokemonThumbnails";
-
+//STEP9 API から取得したデータを画面に表示
 function App() {
 
     const [allPokemons, setAllPokemons] = useState([]);
