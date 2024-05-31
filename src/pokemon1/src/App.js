@@ -69,26 +69,12 @@ function App() {
                     image = {pokemon[1].image}
                     type = {pokemon[1].type}
                     />
-                
-                {/*}
-        <PokemonThumbnails
-        id = {pokemon[0].id}
-        name = {pokemon[0].name}
-        image = {pokemon[0].image}
-        type = {pokemon[0].type}
-        />
-        <PokemonThumbnails
-            id = {pokemon[1].id}
-            name = {pokemon[1].name}
-            image = {pokemon[1].image}
-            type = {pokemon[1].type}
-        />
-        <PokemonThumbnails
-            id = {pokemon[2].id}
-            name = {pokemon[2].name}
-            image = {pokemon[2].image}
-            type = {pokemon[2].type}
-        />*/}
+                <PokemonThumbnails
+                    id = {pokemon[2].id}
+                    name = {pokemon[2].name}
+                    image = {pokemon[2].image}
+                    type = {pokemon[2].type}
+                    />
             </div>
         </div>
     </div>
