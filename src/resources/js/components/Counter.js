@@ -21,3 +21,6 @@ if (document.getElementById('counter')) {
     ReactDOM.render(<Counter />, document.getElementById('counter'));
 }
 
+/*
+
+ */

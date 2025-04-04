@@ -10,4 +10,6 @@
 <div id="test2"></div>
 <div id="counter"></div>
 <div id="todo"></div>
+<div id="todo"></div>
+<div id="todo"></div>
 <script src="{{ mix('js/app.js') }}"></script>
