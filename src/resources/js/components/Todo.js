@@ -2,11 +2,15 @@ import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 
 function Todo(){
-
+    const [todos,setTodos] = useState('');
     return (
         <div className="todo">
-            <h1>テスト表示</h1>
-            <input type="text"/>
+            <input
+                type="text"
+                value={todos}
+                onChange={(e) => setTodos(e.target.value)}
+            />
+            <p>入力された値: {todos}</p>
         </div>
     );
 }
