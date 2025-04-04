@@ -7,4 +7,7 @@
 <div id="test4"></div>
 <div id="test5"></div>
 <div id="test5"></div>
+<div id="test2"></div>
+<div id="counter"></div>
+<div id="todo"></div>
 <script src="{{ mix('js/app.js') }}"></script>

@@ -19,10 +19,13 @@ require('./components/Test1');
 require('./components/Test2');
 require('./components/Example');
 
+
 //React-Test1.blade.php
 require('./components/Test3');
 require('./components/Test4');
 require('./components/Test5');
+require('./components/counter');
+require('./components/todo');
 
 //component.blade.php
 require('./components/Posts');
