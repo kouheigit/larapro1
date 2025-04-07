@@ -2,6 +2,8 @@ import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 
 function Todo(){
+
+    const [todo,setTodos] = useState([]);
     const [inputs,setInput] = useState('');
     const array = [1,2,3,4,5];
     return (
