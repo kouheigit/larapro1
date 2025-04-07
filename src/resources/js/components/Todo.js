@@ -2,13 +2,13 @@ import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 
 function Todo(){
-    const [todos,setTodos] = useState('');
+    const [inputs,setInput] = useState('');
     const array = [1,2,3,4,5];
     return (
         <div className="todo">
-            <input type="text" value={todos} onChange={(e) => setTodos(e.target.value)}/>
-            <p>入力された値: {todos}</p>
-            
+            <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
+            <p>入力された値: {inputs}</p>
+
             {array.map((item) => {
                 return <li>{item}</li>;
             })}
