@@ -3017,6 +3017,7 @@ function Todo() {
     _useState2 = _slicedToArray(_useState, 2),
     todos = _useState2[0],
     setTodos = _useState2[1];
+  var array = [1, 2, 3, 4, 5];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "todo",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -3027,6 +3028,10 @@ function Todo() {
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
       children: ["\u5165\u529B\u3055\u308C\u305F\u5024: ", todos]
+    }), array.map(function (item) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+        children: item
+      });
     })]
   });
 }
