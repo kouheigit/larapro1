@@ -3030,6 +3030,11 @@ function Todo() {
     setTodos([].concat(_toConsumableArray(todos), [inputs]));
     setInput('');
   };
+  var deleteTodo = function deleteTodo(deleteIndex) {
+    setTodos(todos.filter(function (_, index) {
+      return index !== deleteIndex;
+    }));
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "todo",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -3045,7 +3050,12 @@ function Todo() {
       children: "\u8FFD\u52A0"
     }), todos.map(function (todo, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-        children: [todo, index]
+        children: [todo, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          onClick: function onClick() {
+            return deleteTodo(index);
+          },
+          children: "\u524A\u9664"
+        })]
       }, index);
     })]
   });
