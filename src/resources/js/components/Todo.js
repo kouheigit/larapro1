@@ -17,9 +17,9 @@ function Todo(){
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
             <p>入力された値: {inputs}</p>
             <button onClick={addTodo}>追加</button>
-            {array.map((todos) => {
-                return <li>{todos}</li>;
-            })}
+            {todos.map((todo, index) => (
+                <li key={index}>{todo}{index}</li>
+            ))}
         </div>
     );
 }

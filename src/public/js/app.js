@@ -3025,7 +3025,6 @@ function Todo() {
     _useState4 = _slicedToArray(_useState3, 2),
     inputs = _useState4[0],
     setInput = _useState4[1];
-  var array = [1, 2, 3, 4, 5];
   var addTodo = function addTodo() {
     if (inputs.trim() === '') return;
     setTodos([].concat(_toConsumableArray(todos), [inputs]));
@@ -3044,10 +3043,10 @@ function Todo() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addTodo,
       children: "\u8FFD\u52A0"
-    }), array.map(function (item) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-        children: item
-      });
+    }), todos.map(function (todo, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+        children: [todo, index]
+      }, index);
     })]
   });
 }
