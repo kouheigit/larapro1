@@ -3,15 +3,13 @@ import React, { useState } from 'react';
 
 function Todo(){
 
-    const [todo,setTodos] = useState([]);
+    const [todos,setTodos] = useState([]);
     const [inputs,setInput] = useState('');
     const array = [1,2,3,4,5];
-
     const addTodo = ()=>{
-        if(input.trim()==='') return;
-        setTodos([todo,inputs]);
+        if(inputs.trim()==='') return;
+        setTodos([...todos,inputs]);
         setInput('');
-        inputs('');
     };
 
     return (
@@ -19,7 +17,6 @@ function Todo(){
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
             <p>入力された値: {inputs}</p>
             <button onClick={addTodo}>追加</button>
-
             {array.map((item) => {
                 return <li>{item}</li>;
             })}
