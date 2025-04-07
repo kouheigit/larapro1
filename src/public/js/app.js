@@ -3013,21 +3013,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Todo() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
-    todos = _useState2[0],
+    todo = _useState2[0],
     setTodos = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    inputs = _useState4[0],
+    setInput = _useState4[1];
   var array = [1, 2, 3, 4, 5];
+  var addTodo = function addTodo() {
+    if (input.trim() === '') return;
+    setTodos([todo, inputs]);
+    setInput('');
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "todo",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
       type: "text",
-      value: todos,
+      value: inputs,
       onChange: function onChange(e) {
-        return setTodos(e.target.value);
+        return setInput(e.target.value);
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-      children: ["\u5165\u529B\u3055\u308C\u305F\u5024: ", todos]
+      children: ["\u5165\u529B\u3055\u308C\u305F\u5024: ", inputs]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: addTodo,
+      children: "\u8FFD\u52A0"
     }), array.map(function (item) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
         children: item

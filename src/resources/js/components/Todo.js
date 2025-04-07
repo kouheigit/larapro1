@@ -6,10 +6,19 @@ function Todo(){
     const [todo,setTodos] = useState([]);
     const [inputs,setInput] = useState('');
     const array = [1,2,3,4,5];
+
+    const addTodo = ()=>{
+        if(input.trim()==='') return;
+        setTodos([todo,inputs]);
+        setInput('');
+        inputs('');
+    };
+
     return (
         <div className="todo">
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
             <p>入力された値: {inputs}</p>
+            <button onClick={addTodo}>追加</button>
 
             {array.map((item) => {
                 return <li>{item}</li>;
