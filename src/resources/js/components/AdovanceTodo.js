@@ -23,7 +23,6 @@ function AdvanceTodo(){
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
             <p>入力された値: {inputs}</p>
             <button onClick={addTodo}>追加</button>
-            {/*<li key={index}>{todo}{index}</li>*/}
             {todos.map((todo, index) => (
                 <li key={index}><input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>
                     {todo}<button onClick={() => deleteTodo(index)}>削除</button></li>
