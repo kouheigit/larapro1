@@ -2087,6 +2087,7 @@ __webpack_require__(/*! ./components/Test4 */ "./resources/js/components/Test4.j
 __webpack_require__(/*! ./components/Test5 */ "./resources/js/components/Test5.js");
 __webpack_require__(/*! ./components/counter */ "./resources/js/components/counter.js");
 __webpack_require__(/*! ./components/todo */ "./resources/js/components/todo.js");
+__webpack_require__(/*! ./components/advancedTodo */ "./resources/js/components/advancedTodo.js");
 
 //component.blade.php
 __webpack_require__(/*! ./components/Posts */ "./resources/js/components/Posts.js");
@@ -2762,6 +2763,38 @@ function Test5() {
 }
 if (document.getElementById('test5')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Test5, {}), document.getElementById('test5'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/advancedTodo.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/advancedTodo.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function advanceTodo() {
+  // list(count, setCount) に相当。セッションで言えば count = $_SESSION['count'];
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "advanceTodo",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+      children: "\u3053\u308C\u304C\u6B63\u898F\u306E\u8868\u73FE\u3067\u3059"
+    })
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (advanceTodo);
+if (document.getElementById('advanceTodo')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("advanceTodo", {}), document.getElementById('advanceTodo'));
 }
 
 /***/ }),

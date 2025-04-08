@@ -1,20 +1,17 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Test2() {
-    const test = (
-        <div>
-            <h1>Const test</h1>
-            <p>Const test success</p>
+function advanceTodo(){
+    // list(count, setCount) に相当。セッションで言えば count = $_SESSION['count'];
+
+    return (
+        <div className="advanceTodo">
+            <h2>これが正規の表現です</h2>
         </div>
     );
-    //returnが必須
-    return test;
 }
 
+export default advanceTodo;
 
-export default Test2;
-
-if (document.getElementById('advancedTodo')) {
-    ReactDOM.render(<Test2 />, document.getElementById('advancedTodo'));
+if (document.getElementById('advanceTodo')) {
+    ReactDOM.render(<advanceTodo />, document.getElementById('advanceTodo'));
 }
