@@ -12,4 +12,5 @@
 <div id="todo"></div>
 <div id="todo"></div>
 <div id="todo"></div>
+<div id="advancedTodo"></div>
 <script src="{{ mix('js/app.js') }}"></script>
