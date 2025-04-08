@@ -5,7 +5,8 @@ function AdvanceTodo(){
 
     const [todos,setTodos] = useState([]);
     const [inputs,setInput] = useState('');
-    
+    const [checks,setCheck] = useState(false);
+
 
 
     const addTodo = ()=>{
@@ -24,7 +25,8 @@ function AdvanceTodo(){
             <button onClick={addTodo}>追加</button>
             {/*<li key={index}>{todo}{index}</li>*/}
             {todos.map((todo, index) => (
-                <li key={index}>{todo}<button onClick={() => deleteTodo(index)}>削除</button></li>
+                <li key={index}><input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>
+                    {todo}<button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
         </div>
     );

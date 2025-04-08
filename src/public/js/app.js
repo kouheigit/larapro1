@@ -2189,6 +2189,10 @@ function AdvanceTodo() {
     _useState4 = _slicedToArray(_useState3, 2),
     inputs = _useState4[0],
     setInput = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    checks = _useState6[0],
+    setCheck = _useState6[1];
   var addTodo = function addTodo() {
     if (inputs.trim() === '') return;
     setTodos([].concat(_toConsumableArray(todos), [inputs]));
@@ -2214,7 +2218,13 @@ function AdvanceTodo() {
       children: "\u8FFD\u52A0"
     }), todos.map(function (todo, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-        children: [todo, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "checkbox",
+          checked: checks,
+          onChange: function onChange(e) {
+            return setCheck(e.target.checked);
+          }
+        }), todo, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           onClick: function onClick() {
             return deleteTodo(index);
           },
