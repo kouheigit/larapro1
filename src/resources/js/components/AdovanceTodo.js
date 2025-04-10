@@ -14,6 +14,7 @@ function AdvanceTodo(){
         setTodos([...todos,inputs]);
         setInput('');
     };
+
     const deleteTodo = (deleteIndex) => {
         setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
@@ -26,7 +27,7 @@ function AdvanceTodo(){
             <button onClick={addTodo}>追加</button>
             {todos.map((todo, index) => (
                 <li key={index}>
-                    <input type="checkbox" checked={checks} onChange={handleChange}/>
+                    <input type="checkbox" checked={checks} onChange={handleChange} />
                     {/*<input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>*/}
                     {todo}<button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
