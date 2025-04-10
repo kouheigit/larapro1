@@ -25,7 +25,8 @@ function AdvanceTodo(){
             {/*修正以前の状態*/}
             <button onClick={addTodo}>追加</button>
             {todos.map((todo, index) => (
-                <li key={index}><input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>
+                <li key={index}>
+                    {/*<input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>*/}
                     {todo}<button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
         </div>
