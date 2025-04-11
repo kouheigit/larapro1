@@ -5,7 +5,7 @@ function AdvanceTodo(){
 
     const [todos,setTodos] = useState([]);
     const [inputs,setInput] = useState('');
-    const [checks,setCheck] = useState(false);
+ //   const [checks,setCheck] = useState(false);
 
     //値を追加するメソット
     const addTodo = ()=>{
@@ -18,7 +18,19 @@ function AdvanceTodo(){
     const deleteTodo = (deleteIndex) => {
         setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
+    const toggleCheck = (index) => {
+        setTodos(
+            todos.map((todo, i) => {
+                if (i === index) {
+                    return { ...todo, done: !todo.done };
+                } else {
+                    return todo;
+                }
+            })
+        );
+    };
 
+/*
     const handleChange = (e)=>{
         const checked = e.target.checked;
         updateState(checked);
@@ -26,7 +38,7 @@ function AdvanceTodo(){
 
     const updateState = (checked) =>{
         setCheck(checked);
-    };
+    };*/
 
     return (
         <div className="todo">
@@ -36,10 +48,13 @@ function AdvanceTodo(){
             <button onClick={addTodo}>追加</button>
             {todos.map((todo, index) => (
                 <li key={index}>
-                    <input type="checkbox" checked={checks} onChange={handleChange} />
+                    <input type="checkbox" checked={todo.done} onChange={() =>toggleCheck(index)} />
+                    <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                    {/* <input type="checkbox" checked={checks} onChange={handleChange} />*/}
                     {/*<input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>*/}
-                    {todo.text}<button onClick={() => deleteTodo(index)}>削除</button></li>
+                        {todo.text}</span><button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
+
         </div>
     );
 }
