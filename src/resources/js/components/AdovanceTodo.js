@@ -10,7 +10,7 @@ function AdvanceTodo(){
     //値を追加するメソット
     const addTodo = ()=>{
         if(inputs.trim()==='') return;
-        setTodos([...todos, { text: inputs }]);
+        setTodos([...todos, { text: inputs,done: false }]);
         //setTodos([...todos,inputs]);
         setInput('');
     };
