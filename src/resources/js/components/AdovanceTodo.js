@@ -7,16 +7,25 @@ function AdvanceTodo(){
     const [inputs,setInput] = useState('');
     const [checks,setCheck] = useState(false);
 
-
-
+    //値を追加するメソット
     const addTodo = ()=>{
         if(inputs.trim()==='') return;
-        setTodos([...todos,inputs]);
+        setTodos([...todos, { text: inputs }]);
+        //setTodos([...todos,inputs]);
         setInput('');
     };
-
+    //値を削除するメソット
     const deleteTodo = (deleteIndex) => {
         setTodos(todos.filter((_, index) => index !== deleteIndex));
+    };
+
+    const handleChange = (e)=>{
+        const checked = e.target.checked;
+        updateState(checked);
+    };
+
+    const updateState = (checked) =>{
+        setCheck(checked);
     };
 
     return (
@@ -29,7 +38,7 @@ function AdvanceTodo(){
                 <li key={index}>
                     <input type="checkbox" checked={checks} onChange={handleChange} />
                     {/*<input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>*/}
-                    {todo}<button onClick={() => deleteTodo(index)}>削除</button></li>
+                    {todo.text}<button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
         </div>
     );

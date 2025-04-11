@@ -2193,15 +2193,28 @@ function AdvanceTodo() {
     _useState6 = _slicedToArray(_useState5, 2),
     checks = _useState6[0],
     setCheck = _useState6[1];
+
+  //値を追加するメソット
   var addTodo = function addTodo() {
     if (inputs.trim() === '') return;
-    setTodos([].concat(_toConsumableArray(todos), [inputs]));
+    setTodos([].concat(_toConsumableArray(todos), [{
+      text: inputs
+    }]));
+    //setTodos([...todos,inputs]);
     setInput('');
   };
+  //値を削除するメソット
   var deleteTodo = function deleteTodo(deleteIndex) {
     setTodos(todos.filter(function (_, index) {
       return index !== deleteIndex;
     }));
+  };
+  var handleChange = function handleChange(e) {
+    var checked = e.target.checked;
+    updateState(checked);
+  };
+  var updateState = function updateState(checked) {
+    setCheck(checked);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "todo",
@@ -2221,10 +2234,8 @@ function AdvanceTodo() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "checkbox",
           checked: checks,
-          onChange: function onChange(e) {
-            return setCheck(e.target.checked);
-          }
-        }), todo, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          onChange: handleChange
+        }), todo.text, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           onClick: function onClick() {
             return deleteTodo(index);
           },
