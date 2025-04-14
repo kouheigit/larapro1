@@ -2302,7 +2302,9 @@ __webpack_require__.r(__webpack_exports__);
 function AdvanceTodo1() {
   var _useCounter = (0,_hooks_useCounter__WEBPACK_IMPORTED_MODULE_2__.useCounter)(),
     todos = _useCounter.todos,
+    setTodos = _useCounter.setTodos,
     inputs = _useCounter.inputs,
+    setInput = _useCounter.setInput,
     addTodo = _useCounter.addTodo,
     deleteTodo = _useCounter.deleteTodo,
     toggleCheck = _useCounter.toggleCheck;
@@ -3255,7 +3257,9 @@ function useCounter() {
   };
   return {
     todos: todos,
+    setTodos: setTodos,
     inputs: inputs,
+    setInput: setInput,
     addTodo: addTodo,
     deleteTodo: deleteTodo,
     toggleCheck: toggleCheck

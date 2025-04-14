@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useCounter } from '../hooks/useCounter';
 
 function AdvanceTodo1() {
-    const { todos,inputs, addTodo, deleteTodo, toggleCheck } = useCounter();
+    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter();
 
     return (
         <div className="todo">

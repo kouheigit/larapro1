@@ -31,5 +31,5 @@ export function useCounter() {
             })
         );
     }
-    return { todos,inputs,addTodo,deleteTodo,toggleCheck };
+    return { todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck };
 };
