@@ -1,9 +1,5 @@
 import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
-
-
-
-
 export function useCounter() {
 
     const [todos, setTodos] = useState([]);

@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import React, { useState } from 'react';
 import { useCounter } from '../hooks/useCounter';
 
 function AdvanceTodo1() {

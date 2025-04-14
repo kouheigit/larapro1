@@ -2291,16 +2291,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _hooks_useCounter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useCounter */ "./resources/js/hooks/useCounter.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var _hooks_useCounter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks/useCounter */ "./resources/js/hooks/useCounter.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 function AdvanceTodo1() {
-  var _useCounter = (0,_hooks_useCounter__WEBPACK_IMPORTED_MODULE_2__.useCounter)(),
+  var _useCounter = (0,_hooks_useCounter__WEBPACK_IMPORTED_MODULE_1__.useCounter)(),
     todos = _useCounter.todos,
     setTodos = _useCounter.setTodos,
     inputs = _useCounter.inputs,
@@ -2308,33 +2306,33 @@ function AdvanceTodo1() {
     addTodo = _useCounter.addTodo,
     deleteTodo = _useCounter.deleteTodo,
     toggleCheck = _useCounter.toggleCheck;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "todo",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
       type: "text",
       value: inputs,
       onChange: function onChange(e) {
         return setInput(e.target.value);
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
       children: ["\u5165\u529B\u3055\u308C\u305F\u5024: ", inputs]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addTodo,
       children: "\u8FFD\u52A0"
     }), todos.map(function (todo, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "checkbox",
           checked: todo.done,
           onChange: function onChange() {
             return toggleCheck(index);
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           style: {
             textDecoration: todo.done ? 'line-through' : 'none'
           },
           children: todo.text
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           onClick: function onClick() {
             return deleteTodo(index);
           },
@@ -2346,7 +2344,7 @@ function AdvanceTodo1() {
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdvanceTodo1);
 if (document.getElementById('AdvanceTodo1')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(AdvanceTodo1, {}), document.getElementById('AdvanceTodo1'));
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(AdvanceTodo1, {}), document.getElementById('AdvanceTodo1'));
 }
 
 /***/ }),
