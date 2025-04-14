@@ -28,7 +28,7 @@ function AdvanceTodo1(){
             })
         );
     };
-    
+
     return (
         <div className="todo">
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
