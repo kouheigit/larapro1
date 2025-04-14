@@ -5,7 +5,6 @@ function AdvanceTodo1(){
 
     const [todos,setTodos] = useState([]);
     const [inputs,setInput] = useState('');
- //   const [checks,setCheck] = useState(false);
 
     //値を追加するメソット
     const addTodo = ()=>{
@@ -29,17 +28,7 @@ function AdvanceTodo1(){
             })
         );
     };
-
-/*
-    const handleChange = (e)=>{
-        const checked = e.target.checked;
-        updateState(checked);
-    };
-//test
-    const updateState = (checked) =>{
-        setCheck(checked);
-    };*/
-
+    
     return (
         <div className="todo">
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
