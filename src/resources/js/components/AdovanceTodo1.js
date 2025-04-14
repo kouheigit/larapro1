@@ -62,5 +62,5 @@ function AdvanceTodo1(){
 export default AdvanceTodo1;
 
 if (document.getElementById('AdvanceTodo1')) {
-    ReactDOM.render(<AdvanceTodo />, document.getElementById('AdvanceTodo1'));
+    ReactDOM.render(<AdvanceTodo1 />, document.getElementById('AdvanceTodo1'));
 }

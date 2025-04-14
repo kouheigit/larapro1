@@ -27,6 +27,7 @@ require('./components/Test4');
 require('./components/Test5');
 require('./components/counter');
 require('./components/AdovanceTodo');
+require('./components/AdovanceTodo1');
 
 //component.blade.php
 require('./components/Posts');

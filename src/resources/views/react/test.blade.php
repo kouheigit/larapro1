@@ -6,6 +6,7 @@
 <div id="test2"></div>
 <div id="example"></div>
 
+
 <script src="{{ mix('js/app.js') }}"></script>
 <h1>React Test</h1>
 
