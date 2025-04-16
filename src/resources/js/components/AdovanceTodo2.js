@@ -21,7 +21,7 @@ function AdvanceTodo2() {
     );
 }
 
-export default AdvanceTodo1;
+export default AdvanceTodo2;
 
 if (document.getElementById('AdvanceTodo2')) {
     ReactDOM.render(<AdvanceTodo2 />, document.getElementById('AdvanceTodo2'));
