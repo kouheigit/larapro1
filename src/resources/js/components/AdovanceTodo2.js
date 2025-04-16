@@ -14,8 +14,6 @@ function AdvanceTodo2() {
                 <li key={index}>
                     <input type="checkbox" checked={todo.done} onChange={() =>toggleCheck(index)} />
                     <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
-                    {/* <input type="checkbox" checked={checks} onChange={handleChange} />*/}
-                    {/*<input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>*/}
                         {todo.text}</span><button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
 
