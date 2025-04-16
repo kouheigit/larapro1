@@ -2390,6 +2390,21 @@ function AdvanceTodo2() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addTodo,
       children: "\u8FFD\u52A0"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('all');
+      },
+      children: "\u3059\u3079\u3066"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('done');
+      },
+      children: "\u5B8C\u4E86"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('undone');
+      },
+      children: "\u672A\u5B8C\u4E86"
     }), todos.map(function (todo, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
