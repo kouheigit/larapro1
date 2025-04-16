@@ -20,8 +20,6 @@ function AdvanceTodo2() {
                     <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                         {todo.text}</span><button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
-                });
-            ))}
         </div>
     );
 }

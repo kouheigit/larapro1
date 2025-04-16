@@ -2435,7 +2435,7 @@ function AdvanceTodo2() {
           children: "\u524A\u9664"
         })]
       }, index);
-    }), "}); ))}"]
+    })]
   });
 }
 {/*
