@@ -4,8 +4,7 @@ export function useCounter1() {
 
     const [todos, setTodos] = useState([]);
     const [inputs, setInput] = useState('');
-    //フィルター
-    const [filter,setFilter] = useState('all');
+    const[filter,setFilter] = useState('all');
 
     //値を追加するメソット
     const addTodo = () => {

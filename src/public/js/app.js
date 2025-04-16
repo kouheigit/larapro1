@@ -3378,7 +3378,6 @@ function useCounter1() {
     _useState4 = _slicedToArray(_useState3, 2),
     inputs = _useState4[0],
     setInput = _useState4[1];
-  //フィルター
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('all'),
     _useState6 = _slicedToArray(_useState5, 2),
     filter = _useState6[0],
