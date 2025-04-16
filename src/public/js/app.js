@@ -3390,7 +3390,6 @@ function useCounter1() {
       text: inputs,
       done: false
     }]));
-    //setTodos([...todos,inputs]);
     setInput('');
   };
   //値を削除するメソット

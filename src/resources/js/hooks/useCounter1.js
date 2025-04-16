@@ -10,7 +10,6 @@ export function useCounter1() {
     const addTodo = () => {
         if (inputs.trim() === '') return;
         setTodos([...todos, {text: inputs, done: false}]);
-        //setTodos([...todos,inputs]);
         setInput('');
     };
     //値を削除するメソット
