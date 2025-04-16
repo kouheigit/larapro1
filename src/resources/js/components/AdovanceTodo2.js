@@ -1,8 +1,10 @@
 import ReactDOM from 'react-dom';
 import { useCounter1 } from '../hooks/useCounter1';
 
+
 function AdvanceTodo2() {
     const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter1();
+    const [filter,setFilter] = useState('all');
 
     return (
         <div className="todo">
@@ -18,10 +20,19 @@ function AdvanceTodo2() {
                     <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                         {todo.text}</span><button onClick={() => deleteTodo(index)}>削除</button></li>
             ))}
-
+                });
+            ))}
         </div>
     );
 }
+{/*
+const filteredTodos = todos.filter((todo) => {
+  if (filter === 'done') return todo.done;
+  if (filter === 'undone') return !todo.done;
+  return true;
+});
+ */}
+
 
 export default AdvanceTodo2;
 
