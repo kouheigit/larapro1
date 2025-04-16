@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
-import { useCounter } from '../hooks/useCounter';
+import { useCounter1 } from '../hooks/useCounter1';
 
 function AdvanceTodo2() {
-    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter();
+    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter1();
 
     return (
         <div className="todo">
