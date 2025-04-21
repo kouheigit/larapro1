@@ -31,14 +31,7 @@ function AdvanceTodo2() {
         </div>
     );
 }
-/*
- //  フィルタリングされたToDoリストを生成
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === 'done') return todo.done;
-    if (filter === 'undone') return !todo.done;
-    return true;
-  });
- */
+
 export default AdvanceTodo2;
 
 if (document.getElementById('AdvanceTodo2')) {
