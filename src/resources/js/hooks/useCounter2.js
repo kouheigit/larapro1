@@ -9,10 +9,6 @@ export function useCounter() {
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
-    /*
-    useEffect(()=>{
-        localStorage.setItem('todos',JSON.stringify(todos));
-    },[todos])*/
 
 
     //値を追加するメソット
