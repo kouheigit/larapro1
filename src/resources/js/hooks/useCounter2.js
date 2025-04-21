@@ -5,6 +5,9 @@ export function useCounter() {
     const [todos, setTodos] = useState([]);
     const [inputs, setInput] = useState('');
 
+    useEffect(()=>{
+    },[])
+
     //値を追加するメソット
     const addTodo = () => {
         if (inputs.trim() === '') return;
