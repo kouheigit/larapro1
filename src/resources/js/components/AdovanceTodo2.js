@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import { useCounter } from '../hooks/useCounter';
+import React,{ useState } from 'react';
 
 function AdvanceTodo2() {
     const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter();
@@ -22,7 +23,7 @@ function AdvanceTodo2() {
             <button onClick={()=>setFilter('done')}>完了</button>
             <button onClick={()=>setFilter('undone')}>未完了</button>
 
-            {todos.map((todo, index) => (
+            {filteredTodos.map((todo, index) => (
                 <li key={index}>
                     <input type="checkbox" checked={todo.done} onChange={() =>toggleCheck(index)} />
                     <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
