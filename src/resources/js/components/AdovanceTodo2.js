@@ -5,6 +5,13 @@ function AdvanceTodo2() {
     const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter();
     const[filter,setFilter] = useState('all');
 
+    const filteredTodos = todos.filter((todo)=>{
+        if(filter === 'done') return todo.done;
+        if(filter ==='undone') return !todo.done;
+        return true;
+    });
+
+
 
     return (
         <div className="todo">
@@ -26,7 +33,14 @@ function AdvanceTodo2() {
         </div>
     );
 }
-
+/*
+ //  フィルタリングされたToDoリストを生成
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'done') return todo.done;
+    if (filter === 'undone') return !todo.done;
+    return true;
+  });
+ */
 export default AdvanceTodo2;
 
 if (document.getElementById('AdvanceTodo2')) {
