@@ -30,6 +30,7 @@ require('./components/AdovanceTodo');
 require('./components/AdovanceTodo1');
 require('./components/AdovanceTodo2');
 require('./components/AdovanceTodo3');
+require('./components/AdovanceTodo3');
 
 //component.blade.php
 require('./components/Posts');

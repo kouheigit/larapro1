@@ -6,9 +6,7 @@ export function useCounter() {
     const [inputs, setInput] = useState('');
     const[items,setItem] = useState('');
 
-    useEffect(()=>{
-        console.log(setItem);
-    },[])
+
     //ストレージに保存する処理
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
