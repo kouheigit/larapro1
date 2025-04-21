@@ -33,7 +33,7 @@ function AdvanceTodo3() {
     );
 }
 
-export default AdvanceTodo2;
+export default AdvanceTodo3;
 
 if (document.getElementById('AdvanceTodo3')) {
     ReactDOM.render(<AdvanceTodo3 />, document.getElementById('AdvanceTodo3'));
