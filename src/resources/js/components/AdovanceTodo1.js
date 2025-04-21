@@ -3,7 +3,6 @@ import { useCounter } from '../hooks/useCounter';
 
 function AdvanceTodo1() {
     const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter();
-
     return (
         <div className="todo">
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
