@@ -4,8 +4,11 @@ export function useCounter() {
 
     const [todos, setTodos] = useState([]);
     const [inputs, setInput] = useState('');
-    //const [items,setItem] =useState('');
+    const[items,setItem] = useState('');
 
+    useEffect(()=>{
+        localStorage.setItem('todos',JSON.stringify(todos));
+    },[todos])
     /*
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
