@@ -7,8 +7,13 @@ export function useCounter() {
     const[items,setItem] = useState('');
 
     useEffect(()=>{
+        console.log(setItem);
+    },[])
+    //ストレージに保存する処理
+    useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
+
 
 
     //値を追加するメソット
