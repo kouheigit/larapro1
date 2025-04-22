@@ -12,9 +12,15 @@ export function useCounter2() {
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
 
-    useEffect(()=>{
-        console.log(JSON.stringify(todos));
-    },[])
+    
+    /*
+    useEffect(() => {
+    const stored = localStorage.getItem('todos');
+    if (stored) {
+        setTodos(JSON.parse(stored));
+    }
+}, []);
+     */
 
 
     //値を追加するメソット

@@ -3523,9 +3523,15 @@ function useCounter2() {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    console.log(JSON.stringify(todos));
+
+  /*
+  useEffect(() => {
+  const stored = localStorage.getItem('todos');
+  if (stored) {
+      setTodos(JSON.parse(stored));
+  }
   }, []);
+   */
 
   //値を追加するメソット
   var addTodo = function addTodo() {
