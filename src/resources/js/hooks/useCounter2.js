@@ -11,6 +11,7 @@ export function useCounter2() {
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
+
     useEffect(()=>{
         console.log(JSON.stringify(todos));
     },[])
