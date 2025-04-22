@@ -6,13 +6,20 @@ export function useCounter2() {
     const [inputs, setInput] = useState('');
     const[items,setItem] = useState('');
 
+    useEffect(() =>{
+        const stored = localStorage.getItem('todos');
+        if(stored){
+            setTodos(Json.parse(stored));
+        }
 
+
+    },[])
     //ストレージに保存する処理
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
 
-    
+
     /*
     useEffect(() => {
     const stored = localStorage.getItem('todos');

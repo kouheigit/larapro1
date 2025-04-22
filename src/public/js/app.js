@@ -3518,7 +3518,12 @@ function useCounter2() {
     _useState6 = _slicedToArray(_useState5, 2),
     items = _useState6[0],
     setItem = _useState6[1];
-
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    var stored = localStorage.getItem('todos');
+    if (stored) {
+      setTodos(Json.parse(stored));
+    }
+  }, []);
   //ストレージに保存する処理
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     localStorage.setItem('todos', JSON.stringify(todos));
