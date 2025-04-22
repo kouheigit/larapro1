@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, { useState,useEffect } from 'react';
-export function useCounter() {
+export function useCounter2() {
 
     const [todos, setTodos] = useState([]);
     const [inputs, setInput] = useState('');
@@ -11,7 +11,9 @@ export function useCounter() {
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
-
+    useEffect(()=>{
+        console.log(JSON.stringify(todos));
+    },[])
 
 
     //値を追加するメソット
