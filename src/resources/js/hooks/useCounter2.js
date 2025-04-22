@@ -9,7 +9,7 @@ export function useCounter2() {
     useEffect(() =>{
         const stored = localStorage.getItem('todos');
         if(stored){
-            setTodos(Json.parse(stored));
+            setTodos(JSON.parse(stored));
         }
 
 
