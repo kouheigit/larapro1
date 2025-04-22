@@ -4,7 +4,6 @@ export function useCounter2() {
 
     const [todos, setTodos] = useState([]);
     const [inputs, setInput] = useState('');
-    const[items,setItem] = useState('');
 
     //ローカルストレージを出力している
     useEffect(() =>{
@@ -20,7 +19,7 @@ export function useCounter2() {
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
 
-    
+
 
     //値を追加するメソット
     const addTodo = () => {

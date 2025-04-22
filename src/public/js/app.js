@@ -3514,10 +3514,6 @@ function useCounter2() {
     _useState4 = _slicedToArray(_useState3, 2),
     inputs = _useState4[0],
     setInput = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-    _useState6 = _slicedToArray(_useState5, 2),
-    items = _useState6[0],
-    setItem = _useState6[1];
 
   //ローカルストレージを出力している
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
