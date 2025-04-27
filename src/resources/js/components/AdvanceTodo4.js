@@ -3,7 +3,10 @@ import React,{ useState } from "react";
 
 
 function AdvanceTodo4(){
-    
+const [todos,setTodos] = useState([]);
+const [inputs,setInputs] = useState('');
+
+
 }
 
 export default AdvanceTodo4;
