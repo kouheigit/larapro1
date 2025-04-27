@@ -28,10 +28,12 @@ export function useCounter2() {
         //setTodos([...todos,inputs]);
         setInput('');
     };
+
     //値を削除するメソット
     const deleteTodo = (deleteIndex) => {
         setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
+
     const toggleCheck = (index) => {
         setTodos(
             todos.map((todo, i) => {
