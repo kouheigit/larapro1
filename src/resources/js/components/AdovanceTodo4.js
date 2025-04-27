@@ -16,7 +16,6 @@ function AdovanceTodo4(){
         <div class="todo4">
             <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
             <p>入力された値{inputs}</p>
-            <p>入力された値{inputs}</p>
             <button onClick={addTodo}>追加</button>
         </div>
     );
