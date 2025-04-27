@@ -46,5 +46,9 @@ class ReactController extends Controller
     {
         return view('react.component');
     }
+    public function reactrouting(Request $request)
+    {
+        return view('react.reactrouting');
+    }
 
 }
