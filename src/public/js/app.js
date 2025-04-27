@@ -2604,6 +2604,7 @@ function AdovanceTodo4() {
     }]));
     setInput('');
   };
+  var deleteTodo = function deleteTodo(_deleteTodo) {};
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     "class": "todo4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -2617,6 +2618,17 @@ function AdovanceTodo4() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addTodo,
       children: "\u8FFD\u52A0"
+    }), todos.map(function (todo, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: todo.text
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          onClick: function onClick() {
+            return deleteTodo(index);
+          },
+          children: "\u524A\u9664\u3059\u308B"
+        })]
+      }, index);
     })]
   });
 }

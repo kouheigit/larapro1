@@ -11,12 +11,21 @@ function AdovanceTodo4(){
         setTodos([...todos,{ text:inputs, done: false }]);
         setInput('');
     };
+    const deleteTodo = (deleteTodo) =>{
+
+    }
 
     return(
         <div class="todo4">
             <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
             <p>入力された値{inputs}</p>
             <button onClick={addTodo}>追加</button>
+            {todos.map((todo,index) => (
+                <li key={index}>
+                    <p>{todo.text}</p>
+                    <button onClick={()=>deleteTodo(index)}>削除する</button>
+                </li>
+                ))}
         </div>
     );
 
