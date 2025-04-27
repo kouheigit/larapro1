@@ -4,12 +4,19 @@ import React,{ useState } from "react";
 
 function AdovanceTodo4(){
     const [todos,setTodos] = useState([]);
-    const [inputs,setInputs] = useState('');
+    const [inputs,setInput] = useState('');
+
+    const addTodo= () =>{
+        if(inputs.trim()==='') return;
+        setTodos([...todos,{ text:inputs, done: false }]);
+        setInput('');
+    };
 
     return(
         <div class="todo4">
-            <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
+            <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
             <p>入力された値{inputs}</p>
+            <button onClick={addTodo}>追加</button>
         </div>
     );
 
