@@ -13,6 +13,10 @@ require('./bootstrap');
  */
 
 require('./components/Sometext');
+
+//Reactrouting.blade.php
+require('./components/AdovanceTodo4');
+
 //React-Test.blade.php
 require('./components/Test');
 require('./components/Test1');
@@ -30,7 +34,8 @@ require('./components/AdovanceTodo');
 require('./components/AdovanceTodo1');
 require('./components/AdovanceTodo2');
 require('./components/AdovanceTodo3');
-require('./components/AdovanceTodo3');
+
+
 
 //component.blade.php
 require('./components/Posts');
