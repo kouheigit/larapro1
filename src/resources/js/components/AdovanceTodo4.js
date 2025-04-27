@@ -11,10 +11,14 @@ function AdovanceTodo4(){
         setTodos([...todos,{ text:inputs, done: false }]);
         setInput('');
     };
-    const deleteTodo = (deleteTodo) =>{
-
+    const deleteTodo = (deleteIndex) =>{
+        setTodos(todos.filter((test,index) => index!==deleteIndex))
     }
-
+    /*
+    const filter_include_a = members.filter((output, index) => {
+  return output.includes("a");
+});
+     */
     return(
         <div class="todo4">
             <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>

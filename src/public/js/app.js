@@ -2604,7 +2604,16 @@ function AdovanceTodo4() {
     }]));
     setInput('');
   };
-  var deleteTodo = function deleteTodo(_deleteTodo) {};
+  var deleteTodo = function deleteTodo(deleteIndex) {
+    setTodos(todos.filter(function (test, index) {
+      return index !== deleteIndex;
+    }));
+  };
+  /*
+  const filter_include_a = members.filter((output, index) => {
+  return output.includes("a");
+  });
+   */
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     "class": "todo4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
