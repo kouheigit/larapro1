@@ -2609,6 +2609,7 @@ function AdovanceTodo4() {
       return index !== deleteIndex;
     }));
   };
+
   /*
   const filter_include_a = members.filter((output, index) => {
   return output.includes("a");
