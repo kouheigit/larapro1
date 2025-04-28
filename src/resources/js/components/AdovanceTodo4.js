@@ -15,9 +15,7 @@ function AdovanceTodo4(){
         setTodos(todos.filter((test,index)=>index!==deleteIndex))
     }
     const togglecheck = (index) =>{
-       setTodos(
-           todos
-       )
+      
     }
 
     /*
