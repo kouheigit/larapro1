@@ -30,7 +30,6 @@ function AdovanceTodo4(){
             <button onClick={addTodo}>追加</button>
             {todos.map((todo,index) => (
                 <li key={index}>
-                    <input type="checkbox" onClick={()=>toggleCheck(index)} />
                     <p>{todo.text}</p>
                     <button onClick={()=>deleteTodo(index)}>削除する</button>
                 </li>
