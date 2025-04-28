@@ -14,7 +14,13 @@ function AdovanceTodo4(){
     const deleteTodo = (deleteIndex)=>{
         setTodos(todos.filter((test,index)=>index!==deleteIndex))
     }
-   
+   const togglecheck = (index)=>{
+        setTodos(
+            todos.map((todo,i)=>{
+
+            })
+        )
+   }
 
     /*
     const filter_include_a = members.filter((output, index) => {
