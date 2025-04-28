@@ -17,7 +17,10 @@ function AdovanceTodo4(){
    const togglecheck = (index)=>{
         setTodos(
             todos.map((todo,i)=>{
-
+                if(todo === i)
+                    return{ ...todo,done: !todo.done };
+                else
+                    return todo;
             })
         )
    }
