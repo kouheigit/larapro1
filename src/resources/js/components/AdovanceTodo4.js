@@ -14,10 +14,8 @@ function AdovanceTodo4(){
     const deleteTodo = (deleteIndex)=>{
         setTodos(todos.filter((test,index)=>index!==deleteIndex))
     }
-    const togglecheck = (index) => {
 
-    }
-
+    //togglecheckのメソットを記述する
 
 
     /*
@@ -32,7 +30,6 @@ function AdovanceTodo4(){
             <button onClick={addTodo}>追加</button>
             {todos.map((todo,index) => (
                 <li key={index}>
-                    <input type="checkbox" checked={todo.done}
                     <p>{todo.text}</p>
                     <button onClick={()=>deleteTodo(index)}>削除する</button>
                 </li>
