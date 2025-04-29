@@ -14,10 +14,8 @@ function AdovanceTodo4(){
     const deleteTodo = (deleteIndex)=>{
         setTodos(todos.filter((test,index)=>index!==deleteIndex))
     }
-
     //togglecheckのメソットを記述する
-
-
+    
     /*
     const filter_include_a = members.filter((output, index) => {
   return output.includes("a");
