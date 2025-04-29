@@ -16,6 +16,7 @@ require('./components/Sometext');
 
 //Reactrouting.blade.php
 require('./components/AdovanceTodo4');
+require('./components/App');
 
 //React-Test.blade.php
 require('./components/Test');

@@ -2078,6 +2078,7 @@ __webpack_require__(/*! ./components/Sometext */ "./resources/js/components/Some
 
 //Reactrouting.blade.php
 __webpack_require__(/*! ./components/AdovanceTodo4 */ "./resources/js/components/AdovanceTodo4.js");
+__webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
 
 //React-Test.blade.php
 __webpack_require__(/*! ./components/Test */ "./resources/js/components/Test.js");
@@ -2657,6 +2658,36 @@ function AdvanceTodo4() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdvanceTodo4);
 if (document.getElementById('AdvanceTodo4')) {
   react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(AdvanceTodo4, {}), document.getElementById('AdvanceTodo4'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/App.js":
+/*!****************************************!*\
+  !*** ./resources/js/components/App.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function App() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      children: "\u8868\u793A\u30C6\u30B9\u30C8"
+    })
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+if (document.getElementById('App')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(App, {}), document.getElementById('App'));
 }
 
 /***/ }),
