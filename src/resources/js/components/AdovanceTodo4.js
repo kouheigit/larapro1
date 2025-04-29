@@ -16,9 +16,7 @@ function AdvanceTodo4() {
         <div className="todo">
             <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
             <p>入力された値: {inputs}</p>
-            {/*修正以前の状態*/}
             <button onClick={addTodo}>追加</button>
-
             <button onClick={()=>setFilter('all')}>すべて</button>
             <button onClick={()=>setFilter('done')}>完了</button>
             <button onClick={()=>setFilter('undone')}>未完了</button>
