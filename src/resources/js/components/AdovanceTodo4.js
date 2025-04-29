@@ -16,7 +16,11 @@ function AdovanceTodo4(){
     }
     //togglecheckのメソットを記述する
     const toggleCheck = (index) =>{
-        
+        setTodos(
+            todos.map((todo,i)=>{
+                
+            })
+        )
     }
     /*
     const filter_include_a = members.filter((output, index) => {
