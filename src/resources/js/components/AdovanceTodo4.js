@@ -1,55 +1,40 @@
-import ReactDOM from "react-dom";
-import React,{ useState } from "react";
+import ReactDOM from 'react-dom';
+import { useCounter2 } from '../hooks/useCounter2';
+import React,{ useState } from 'react';
 
+function AdvanceTodo4() {
+    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter2();
+    const[filter,setFilter] = useState('all');
 
-function AdovanceTodo4(){
-    const [todos,setTodos] = useState([]);
-    const [inputs,setInput] = useState('');
+    const filteredTodos = todos.filter((todo)=>{
+        if(filter === 'done') return todo.done;
+        if(filter === 'undone') return !todo.done;
+        return true;
+    });
 
-    const addTodo= () =>{
-        if(inputs.trim()==='') return;
-        setTodos([...todos,{ text:inputs, done: false }]);
-        setInput('');
-    };
-    const deleteTodo = (deleteIndex)=>{
-        setTodos(todos.filter((test,index)=>index!==deleteIndex))
-    }
-    //togglecheckのメソットを記述する
-    const toggleCheck = (index)=> {
-        setTodos(
-            todos.map((todo,i)=>{
-                if(i === index){
-                    return {...todos,done:!todo.done}
-                }else{
-                    return todos;
-                }
-            })
-        );
-    }
-    /*
-    const filter_include_a = members.filter((output, index) => {
-  return output.includes("a");
-});
-     */
-    return(
-        <div class="todo4">
-            <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
-            <p>入力された値{inputs}</p>
+    return (
+        <div className="todo">
+            <input type="text" value={inputs} onChange={(e) => setInput(e.target.value)}/>
+            <p>入力された値: {inputs}</p>
+            {/*修正以前の状態*/}
             <button onClick={addTodo}>追加</button>
-            {todos.map((todo,index) => (
+
+            <button onClick={()=>setFilter('all')}>すべて</button>
+            <button onClick={()=>setFilter('done')}>完了</button>
+            <button onClick={()=>setFilter('undone')}>未完了</button>
+
+            {filteredTodos.map((todo, index) => (
                 <li key={index}>
-                    <button type="checkbox" checked={todos.done} onChange={()=>toggleCheck(index)}/>
-                    <p>{todo.text}</p>
-                    <button onClick={()=>deleteTodo(index)}>削除する</button>
-                </li>
-                ))}
+                    <input type="checkbox" checked={todo.done} onChange={() =>toggleCheck(index)} />
+                    <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                        {todo.text}</span><button onClick={() => deleteTodo(index)}>削除</button></li>
+            ))}
         </div>
     );
-
 }
 
-export default  AdovanceTodo4;
+export default AdvanceTodo4;
 
-if (document.getElementById('AdovanceTodo4')) {
-    ReactDOM.render(<AdovanceTodo4 />, document.getElementById('AdovanceTodo4'));
+if (document.getElementById('AdvanceTodo4')) {
+    ReactDOM.render(<AdvanceTodo4 />, document.getElementById('AdvanceTodo4'));
 }
