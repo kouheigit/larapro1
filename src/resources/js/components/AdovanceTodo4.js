@@ -15,17 +15,7 @@ function AdovanceTodo4(){
         setTodos(todos.filter((test,index)=>index!==deleteIndex))
     }
     //togglecheckのメソットを記述する
-    const toggleCheck = (index) =>{
-        setTodos(
-            todos.map((todo,i)=>{
-                if(i === index){
-                    return {...todos,done:!todos.done }
-                }else{
-                    return todos;
-                }
-            })
-        )
-    }
+
     /*
     const filter_include_a = members.filter((output, index) => {
   return output.includes("a");
@@ -38,7 +28,6 @@ function AdovanceTodo4(){
             <button onClick={addTodo}>追加</button>
             {todos.map((todo,index) => (
                 <li key={index}>
-                    <button type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)}/>
                     <p>{todo.text}</p>
                     <button onClick={()=>deleteTodo(index)}>削除する</button>
                 </li>
