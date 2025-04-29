@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom';
-import { useCounter2 } from '../hooks/useCounter2';
+import { useCounter3 } from '../hooks/useCounter3';
 import React,{ useState } from 'react';
 
 function AdvanceTodo4() {
-    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter2();
+    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter3();
     const[filter,setFilter] = useState('all');
 
     const filteredTodos = todos.filter((todo)=>{
