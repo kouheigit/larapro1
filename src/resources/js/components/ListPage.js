@@ -12,6 +12,6 @@ function ListPage(){
 
 export default ListPage;
 
-if (document.getElementById('')) {
+if (document.getElementById('ListPage')) {
     ReactDOM.render(<ListPage />, document.getElementById('ListPage'));
 }
