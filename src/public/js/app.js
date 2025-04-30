@@ -2184,13 +2184,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function AddPage() {
   var _useCounter = (0,_hooks_useCounter3__WEBPACK_IMPORTED_MODULE_2__.useCounter3)(),
-    todos = _useCounter.todos,
-    setTodos = _useCounter.setTodos,
     inputs = _useCounter.inputs,
     setInput = _useCounter.setInput,
-    addTodo = _useCounter.addTodo,
-    deleteTodo = _useCounter.deleteTodo,
-    toggleCheck = _useCounter.toggleCheck;
+    addTodo = _useCounter.addTodo;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       type: "text",
@@ -2987,20 +2983,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _hooks_useCounter3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useCounter3 */ "./resources/js/hooks/useCounter3.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 function ListPage() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "\u30C6\u30B9\u30C8\u30EA\u30B9\u30C8\u30DA\u30FC\u30B8"
-    })
+  var _useCounter = (0,_hooks_useCounter3__WEBPACK_IMPORTED_MODULE_2__.useCounter3)(),
+    todos = _useCounter.todos,
+    setTodos = _useCounter.setTodos,
+    inputs = _useCounter.inputs,
+    setInput = _useCounter.setInput,
+    addTodo = _useCounter.addTodo,
+    deleteTodo = _useCounter.deleteTodo,
+    toggleCheck = _useCounter.toggleCheck;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('all'),
+    _useState2 = _slicedToArray(_useState, 2),
+    filter = _useState2[0],
+    setFilter = _useState2[1];
+  var filteredTodos = todos.filter(function (todo) {
+    if (filter === 'done') return todo.done;
+    if (filter === 'undone') return !todo.done;
+    return true;
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('all');
+      },
+      children: "\u3059\u3079\u3066"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('done');
+      },
+      children: "\u5B8C\u4E86"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('undone');
+      },
+      children: "\u672A\u5B8C\u4E86"
+    }), filteredTodos.map(function (todo, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+          type: "checkbox",
+          checked: todo.done,
+          onChange: function onChange() {
+            return toggleCheck(index);
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          style: {
+            textDecoration: todo.done ? 'line-through' : 'none'
+          },
+          children: todo.text
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          onClick: function onClick() {
+            return deleteTodo(index);
+          },
+          children: "\u524A\u9664"
+        })]
+      }, index);
+    })]
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListPage);
 if (document.getElementById('ListPage')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ListPage, {}), document.getElementById('ListPage'));
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ListPage, {}), document.getElementById('ListPage'));
 }
 
 /***/ }),
