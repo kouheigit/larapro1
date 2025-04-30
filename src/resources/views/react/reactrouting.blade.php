@@ -2,7 +2,6 @@
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 <h1>React root</h1>
-<div id="AdovanceTodo3"></div>
-<div id="AdovanceTodo4"></div>
 <div id="App"></div>
+<div id="AdvanceTodo4"></div>
 <script src="{{ mix('js/app.js') }}"></script>
