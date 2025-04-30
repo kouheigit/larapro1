@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import React from 'react';
 
 export default function App(){
     return (
