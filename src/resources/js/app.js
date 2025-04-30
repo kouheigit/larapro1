@@ -25,6 +25,7 @@ require('./components/Test');
 require('./components/Test1');
 require('./components/Test2');
 require('./components/Example');
+require('./components/AdvanceTodo');
 
 
 
