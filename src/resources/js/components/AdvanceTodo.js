@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 function AdvanceTodo(){
     const [todos,setTodos] = useState([]);
     const [inputs,setInputs] = useState('');
-    
+
+
     return(
         <div>
 
