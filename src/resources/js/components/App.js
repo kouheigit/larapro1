@@ -5,6 +5,7 @@ function App(){
     return (
         <div>
             <h1>表示テスト</h1>
+            <h1>小林内田</h1>
         </div>
     );
 }
