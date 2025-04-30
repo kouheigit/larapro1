@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import ListPage from './ListPage';
+import AddPage from './AddPage';
 
 export default function App(){
     return (
@@ -9,7 +11,16 @@ export default function App(){
                 <Link to="/list">リスト</Link>
                 <Link to="add">追加</Link>
             </nav>
+            <Switch>
+                <Route path="/list">
+                    <ListPage />
+                </Route>
+                <Route path="/add">
+                    <AddPage />
+                </Route>
+            </Switch>
         </Router>
+
     );
 }
 
