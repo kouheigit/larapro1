@@ -9,7 +9,7 @@ export default function App(){
         <Router>
             <nav>
                 <Link to="/list">リスト</Link>
-                <Link to="add">追加</Link>
+                <Link to="/add">追加</Link>
             </nav>
             <Switch>
                 <Route path="/list">
