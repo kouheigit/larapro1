@@ -5,7 +5,8 @@ export default function App(){
     return (
         <Router>
             <nav>
-
+                <Link to="/list">リスト</Link>
+                <Link to="add">追加</Link>
             </nav>
         </Router>
     );
