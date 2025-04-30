@@ -5,7 +5,7 @@ import { useCounter3 } from '../hooks/useCounter3';
 
 
 function AddPage(){
-    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter3();
+    const {inputs,setInput, addTodo} = useCounter3();
     return(
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
