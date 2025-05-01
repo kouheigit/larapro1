@@ -3333,6 +3333,9 @@ function ReviewaddTodo() {
     text: '勉強',
     done: true
   }];
+  todos.filter(function (todo) {
+    return todo.text.includes('買');
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
       children: "\u6B63\u5E38\u306A\u30B3\u30FC\u30C9"

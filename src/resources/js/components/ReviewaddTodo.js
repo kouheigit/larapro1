@@ -9,7 +9,7 @@ function ReviewaddTodo(){
         { text: '買い物', done: false },
         { text: '勉強', done: true }
     ];
-
+    todos.filter((todo)=>todo.text.includes('買'));
 
     return(
         <div>
