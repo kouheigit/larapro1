@@ -14,7 +14,10 @@ function AdvanceTodo(){
 
     return(
         <div>
+            <h1>なめだるま</h1>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
+            <p>{inputs}</p>
+            <button onClick={addTodo}>追加する</button>
         </div>
     );
 
