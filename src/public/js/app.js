@@ -2075,7 +2075,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 __webpack_require__(/*! ./components/Sometext */ "./resources/js/components/Sometext.js");
-
+__webpack_require__(/*! ./components/ReviewaddTodo */ "./resources/js/components/ReviewaddTodo.js");
 //Reactrouting.blade.php
 __webpack_require__(/*! ./components/AdovanceTodo4 */ "./resources/js/components/AdovanceTodo4.js");
 __webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
@@ -3301,6 +3301,37 @@ function Posts3() {
 }
 if (document.getElementById('Posts3')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Posts3, {}), document.getElementById('Posts3'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/ReviewaddTodo.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ReviewaddTodo.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function ReviewaddTodo() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      children: "ReviewaddTodo\u306F\u6B63\u5E38\u306B\u8868\u793A\u3055\u308C\u3066\u307E\u3059"
+    })
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewaddTodo);
+if (document.getElementById('ReviewaddTodo')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ReviewaddTodo, {}), document.getElementById('ReviewaddTodo'));
 }
 
 /***/ }),

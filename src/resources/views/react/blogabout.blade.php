@@ -4,5 +4,5 @@
 <h1>なめっくムーブ</h1>
 <div id="blogabout"></div>
 <div id="bloghome"></div>
-<div id="AdvanceTodo"></div>
+<div id="ReviewaddTodo"></div>
 <script src="{{ mix('js/app.js') }}"></script>
