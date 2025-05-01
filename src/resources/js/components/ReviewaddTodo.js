@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 
 
 function ReviewaddTodo(){
-    const [todos,setTodos] = useState([]);
+    const [todo,setTodo] = useState([]);
+    
     return(
         <div>
             <h1>ReviewaddTodoは正常に表示されてます</h1>
