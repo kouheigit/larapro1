@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import ReviewaddTodo from "./ReviewaddTodo";
 
 function ReviewaddTodo1(){
     const todos = [
@@ -7,12 +8,23 @@ function ReviewaddTodo1(){
         { text: '数学', done: false },
         { text: '理科', done: true }
     ];
-    const bool = todos.filter((todo))
-    //const newRandomArry = randomArry.filter(Boolean)
-    const todovalues = todos.filter((todo) => todo.text.includes('買'));
+    const bool = todos.filter((todo)=> todo.done == true);
+
     return(
         <div>
-
+            {bool.map((todo,index)=>(
+                <li key={index}>
+                    <p>
+                        {todo.done}
+                    </p>
+                </li>
+            ))}
         </div>
     );
+}
+
+export default ReviewaddTodo1;
+
+if (document.getElementById('ReviewaddTodo1')) {
+    ReactDOM.render(<ReviewaddTodo1 />, document.getElementById('ReviewaddTodo1'));
 }

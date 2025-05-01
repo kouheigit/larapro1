@@ -14,7 +14,7 @@ require('./bootstrap');
 
 
 require('./components/ReviewaddTodo');
-
+require('./components/ReviewaddTodo1');
 //Reactrouting.blade.php
 require('./components/AdovanceTodo4');
 require('./components/App');
