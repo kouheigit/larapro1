@@ -13,6 +13,8 @@ function ReviewaddTodo(){
 
     return(
         <div>
+            {todos.map((todo,index)=>())
+            }
             <h1>正常なコード</h1>
         </div>
     );
