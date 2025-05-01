@@ -3335,7 +3335,7 @@ function ReviewaddTodo() {
   }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "ReviewaddTodo\u306F\u6B63\u5E38\u306B\u8868\u793A\u3055\u308C\u3066\u307E\u3059"
+      children: "\u6B63\u5E38\u306A\u30B3\u30FC\u30C9"
     })
   });
 }

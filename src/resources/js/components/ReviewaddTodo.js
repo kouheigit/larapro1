@@ -3,14 +3,17 @@ import React, { useState } from 'react';
 
 
 function ReviewaddTodo(){
+
     const todos = [
         { text: '掃除', done: false },
         { text: '買い物', done: false },
         { text: '勉強', done: true }
     ];
+
+
     return(
         <div>
-            <h1>ReviewaddTodoは正常に表示されてます</h1>
+            <h1>正常なコード</h1>
         </div>
     );
 
