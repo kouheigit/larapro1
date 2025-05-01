@@ -3393,7 +3393,7 @@ function ReviewaddTodo1() {
     children: bool.map(function (todo, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-          children: todo.done
+          children: todo.text
         })
       }, index);
     })

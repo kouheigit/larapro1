@@ -14,7 +14,7 @@ function ReviewaddTodo1(){
             {bool.map((todo,index)=>(
                 <li key={index}>
                     <p>
-                        {todo.done}
+                        {todo.text}
                     </p>
                 </li>
             ))}
