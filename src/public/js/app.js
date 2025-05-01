@@ -2074,7 +2074,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-__webpack_require__(/*! ./components/Sometext */ "./resources/js/components/Sometext.js");
+__webpack_require__(/*! ./components/ReviewaddTodo */ "./resources/js/components/ReviewaddTodo.js");
 
 //Reactrouting.blade.php
 __webpack_require__(/*! ./components/AdovanceTodo4 */ "./resources/js/components/AdovanceTodo4.js");
@@ -3305,41 +3305,13 @@ if (document.getElementById('Posts3')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Sometext.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/Sometext.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Sometext)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/***/ "./resources/js/components/ReviewaddTodo.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ReviewaddTodo.js ***!
+  \**************************************************/
+/***/ (() => {
 
 
-
-
-
-function Sometext() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "\u30CA\u30E1\u30C3\u30AF\u30E0\u30FC\u30D6"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-      children: "\u306A\u3081\u3055\u3093"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-      children: "\u306A\u3081\u3055\u3093"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "\u304F\u3045\u304F\u3045\u304F\u3045\u30AF\u30EA\u30B1\u30C3\u30C8"
-    })]
-  });
-}
-if (document.getElementById('Sometext')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Sometext, {}), document.getElementById('Sometext'));
-}
 
 /***/ }),
 

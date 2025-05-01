@@ -12,7 +12,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Sometext');
+
+require('./components/ReviewaddTodo');
 
 //Reactrouting.blade.php
 require('./components/AdovanceTodo4');
