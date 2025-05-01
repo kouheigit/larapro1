@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import ReviewaddTodo from "./ReviewaddTodo";
 
 function ReviewaddTodo1(){
     const todos = [
