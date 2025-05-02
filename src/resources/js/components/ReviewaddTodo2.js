@@ -7,9 +7,14 @@ function ReviewaddTodo2(){
 const [todos,setTodos] = useState([]);
 const [inputs,setInputs] = useState('');
 
-
+const addTodo = () =>{
+    if(inputs.trim==="") return;
+    setInputs(...todos,{ text:inputs });
+    setInputs('');
+    }
     return(
         <div>
+            <input type=""
             <h1>TODO2</h1>
         </div>
     );
