@@ -3447,7 +3447,7 @@ function ReviewaddTodo2() {
     setInputs = _useState4[1];
   var addTodo = function addTodo() {
     if (inputs.trim() === "") return;
-    setTodos.apply(void 0, _toConsumableArray(todos).concat([{
+    setTodos([].concat(_toConsumableArray(todos), [{
       text: inputs
     }]));
     setInputs('');
@@ -3462,12 +3462,14 @@ function ReviewaddTodo2() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addTodo,
       children: "\u8FFD\u52A0\u3059\u308B"
-    }), todos.map(function (todo, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-          children: todo.text
-        })
-      });
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+      children: todos.map(function (todo, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            children: todo.text
+          })
+        }, index);
+      })
     })]
   });
 }

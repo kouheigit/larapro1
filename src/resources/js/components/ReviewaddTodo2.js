@@ -9,19 +9,20 @@ const [inputs,setInputs] = useState('');
 
 const addTodo = () =>{
     if(inputs.trim()==="") return;
-    setTodos(...todos,{ text:inputs });
+    setTodos([...todos, { text: inputs }]);
     setInputs('');
     }
     return(
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
             <button onClick={addTodo}>追加する</button>
+            <ul>
             {todos.map((todo,index)=>(
-                <li>
+                <li key={index}>
                     <p>{todo.text}</p>
                 </li>
-
             ))}
+            </ul>
         </div>
     );
 }
