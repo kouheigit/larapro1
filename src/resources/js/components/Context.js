@@ -1,27 +1,16 @@
 import ReactDOM from 'react-dom';
-//import { useContext } from '../hooks/useContext';
-import React, { useState } from 'react';
+import { useContext } from '../hooks/useContext';
+import React,{ useState } from 'react';
 
-function Context(){
-    const { todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck  } = useContext();
+function Context() {
+    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useContext();
     const[filter,setFilter] = useState('all');
 
     const filteredTodos = todos.filter((todo)=>{
-        if(filter ==='done') return todo.done;
-        if (filter ==='undone') return !todo.done;
+        if(filter === 'done') return todo.done;
+        if(filter === 'undone') return !todo.done;
         return true;
     });
-    return(
-        <div class="todo">
-            <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
-            <p>入力された値:{inputs}</p>
-            <button onClick={addTodo}>追加</button>
-            <button onClick={()=>setFilter('all')}>すべて</button>
-        </div>
-    );
-
-}
-/*
 
     return (
         <div className="todo">
@@ -42,8 +31,8 @@ function Context(){
     );
 }
 
-export default AdvanceTodo4;
+export default Context;
 
-if (document.getElementById('AdvanceTodo4')) {
-    ReactDOM.render(<AdvanceTodo4 />, document.getElementById('AdvanceTodo4'));
-}*/
+if (document.getElementById('Context')) {
+    ReactDOM.render(<Context />, document.getElementById('Context'));
+}
