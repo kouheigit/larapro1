@@ -10,14 +10,12 @@ export function useContext() {
         if(stored){
             setTodos(JSON.parse(stored));
         }
-
     },[])
 
     //ストレージに保存する処理
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
-
 
 
     //値を追加するメソット
