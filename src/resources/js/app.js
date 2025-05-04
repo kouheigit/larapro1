@@ -20,6 +20,7 @@ require('./components/ReviewaddTodo2');
 //Reactrouting.blade.php
 require('./components/AdovanceTodo4');
 require('./components/App');
+require('./components/App1');
 require('./components/AddPage');
 require('./components/ListPage');
 
