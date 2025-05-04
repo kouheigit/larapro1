@@ -16,6 +16,7 @@ function Context(){
             <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>
             <p>入力された値:{inputs}</p>
             <button onClick={addTodo}>追加</button>
+            <button onClick={()=>setFilter('all')}>すべて</button>
         </div>
     );
 
