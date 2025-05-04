@@ -3,7 +3,20 @@ import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 
 function Context(){
-    
+    const { todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck  } = useContext();
+    const[filter,setFilter] = useState('all');
+
+    const filteredTodos = todos.filter((todo)=>{
+        if(filter ==='done') return todo.done;
+        if (filter ==='undone') return !todo.done;
+        return true;
+    });
+    return(
+        <div>
+            
+        </div>
+    );
+
 }
 /*
 import ReactDOM from 'react-dom';
