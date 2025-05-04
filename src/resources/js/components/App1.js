@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import ListPage from './ListPage';
-import AddPage from './AddPage';
+import ListPage from '../imports/ListPage';
+import AddPage from '../imports/AddPage';
 
 export default function App1(){
     return (
