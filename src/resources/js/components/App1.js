@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import ListPage from '../imports/ListPage';
 import AddPage from '../imports/AddPage';
+import { TodoProvider } from '../contexts/TodoContext';
 
 export default function App1(){
     return (
+        <TodoProvider>
         <Router>
             <nav>
                 <Link to="/list">リスト</Link>
@@ -20,7 +22,7 @@ export default function App1(){
                 </Route>
             </Switch>
         </Router>
-
+        </TodoProvider>
     );
 }
 

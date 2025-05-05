@@ -20,7 +20,6 @@ export function TodoProvider ({ children }){
     },[todos])
 
 
-
     //値を追加するメソット
     const addTodo = () => {
         if (inputs.trim() === '') return;
@@ -44,6 +43,14 @@ export function TodoProvider ({ children }){
                 }
             })
         );
-    }
+    };
+    return(
+      <TodoContext.Provider value={{ todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck}}>
+          {children}
+      </TodoContext.Provider>
+    );
 
+    export function useTodos() {
+        return useContext(TodoContext);
+    }
 }
