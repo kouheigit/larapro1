@@ -1,4 +1,12 @@
-import ReactDOM from 'react-dom';
-import { useCounter3 } from '../hooks/useCounter3';
-import React,{ useState } from 'react';
+import { useTodos } from '../contexts/TodoContext';
+
+export default function TodoFrom(){
+    const { inputs,setInputs,addTodo } = useTodos();
+    return(
+        <div>
+            <input type="text"value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
+             <button onClick={addTodo}>追加する</>
+        </div>
+    );
+}
 
