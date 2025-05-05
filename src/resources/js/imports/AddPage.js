@@ -1,11 +1,9 @@
 import ReactDOM from 'react-dom';
 import React,{ useState } from 'react';
-import { useCounter3 } from '../hooks/useCounter3';
-
-
+import { useTodos } from '../contexts/TodoContext';
 
 function AddPage(){
-    const {inputs,setInput, addTodo} = useCounter3();
+    const {inputs,setInput, addTodo} = useTodos();
     return(
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInput(e.target.value)}/>

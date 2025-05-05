@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom';
 import React,{ useState } from 'react';
-import {useCounter3} from "../hooks/useCounter3";
+import { useTodos } from '../contexts/TodoContext';
+
 
 
 function ListPage(){
-    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useCounter3();
+    const { todos,setTodos,inputs,setInput, addTodo, deleteTodo, toggleCheck } = useTodos();
     const[filter,setFilter] = useState('all');
 
     const filteredTodos = todos.filter((todo)=>{
