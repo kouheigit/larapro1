@@ -46,6 +46,10 @@ class ReactController extends Controller
     {
         return view('react.component');
     }
+    public function reactdivision(Request $request)
+    {
+        return view('react.division');
+    }
     public function reactrouting(Request $request)
     {
         return view('react.reactrouting');

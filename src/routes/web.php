@@ -36,6 +36,7 @@ Route::namespace('React')->prefix('react')->name('react.')->group(function(){
     Route::get('componentpage',[App\Http\Controllers\ReactController::class,'componentpage'])->name('componentpage');
     Route::get('blog',[App\Http\Controllers\ReactController::class,'blog'])->name('blog');
     Route::get('blogabout',[App\Http\Controllers\ReactController::class,'blogabout'])->name('blogabout');
+    Route::get('division',[App\Http\Controllers\ReactController::class,'reactdivision'])->name('division');
     Route::get('reactrouting',[App\Http\Controllers\ReactController::class,'reactrouting'])->name('reactrouting');
 });
 
