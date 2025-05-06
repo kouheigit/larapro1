@@ -6,8 +6,13 @@ export default function TodoList(){
     return(
        <ul>
                {todos.map((todo,index)=>(
-                   <TodoItem>
-                   </TodoItem>
+                   <TodoItem
+                       key={index}
+                       todo={todo}
+                       index={index}
+                       toggleCheck={toggleCheck}
+                       deleteTodo={deleteTodo}
+                   />
                ))}
        </ul>
     );
