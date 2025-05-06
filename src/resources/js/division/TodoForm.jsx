@@ -5,7 +5,7 @@ export default function TodoFrom(){
     return(
         <div>
             <input type="text"value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
-             <button onClick={addTodo}>追加する</>
+             <button onClick={addTodo}>追加する</button>
         </div>
     );
 }

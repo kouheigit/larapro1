@@ -6,6 +6,7 @@ import AddPage from './AddPage';
 
 export default function App(){
     return (
+        <TodoProvider>
         <Router>
             <nav>
                 <Link to="/list">リスト</Link>
@@ -20,7 +21,7 @@ export default function App(){
                 </Route>
             </Switch>
         </Router>
-
+        </TodoProvider>
     );
 }
 
