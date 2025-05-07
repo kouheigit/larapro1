@@ -16,6 +16,9 @@ require('./bootstrap');
 require('./components/ReviewaddTodo');
 require('./components/ReviewaddTodo1');
 require('./components/ReviewaddTodo2');
+require('./practice/AppPractice');
+
+
 
 //Reactrouting.blade.php
 require('./components/AdovanceTodo4');
