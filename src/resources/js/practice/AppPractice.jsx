@@ -6,9 +6,9 @@ function AppPractice(){
     const[inputs,setInputs] =('');
 
     const addTodo =()=>{
-        
-    }
-
+        if (inputs.trim() !== "")return;
+        setTodos([...todos,{text:inputs,done:false}]);
+        setInputs('');
     return (
         <div>
 
