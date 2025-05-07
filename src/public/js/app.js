@@ -4070,7 +4070,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ListPages)
 /* harmony export */ });
-/* harmony import */ var _TodoItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TodoItem */ "./resources/js/division/TodoItem.jsx");
+/* harmony import */ var _TodoList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TodoList */ "./resources/js/division/TodoList.jsx");
 /* harmony import */ var _TodoForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TodoForm */ "./resources/js/division/TodoForm.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -4079,7 +4079,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ListPages() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TodoItem__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TodoForm__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TodoList__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TodoForm__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
   });
 }
 
@@ -4160,6 +4160,42 @@ function TodoItem(_ref) {
       children: "\u524A\u9664\u3059\u308B"
     })]
   }, "index");
+}
+
+/***/ }),
+
+/***/ "./resources/js/division/TodoList.jsx":
+/*!********************************************!*\
+  !*** ./resources/js/division/TodoList.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TodoList)
+/* harmony export */ });
+/* harmony import */ var _contexts_TodoContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../contexts/TodoContext */ "./resources/js/contexts/TodoContext.js");
+/* harmony import */ var _TodoItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TodoItem */ "./resources/js/division/TodoItem.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function TodoList() {
+  var _useTodos = (0,_contexts_TodoContext__WEBPACK_IMPORTED_MODULE_0__.useTodos)(),
+    todos = _useTodos.todos,
+    toggleCheck = _useTodos.toggleCheck,
+    deleteTodo = _useTodos.deleteTodo;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+    children: todos.map(function (todo, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TodoItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        todo: todo,
+        index: index,
+        toggleCheck: toggleCheck,
+        deleteTodo: deleteTodo
+      }, index);
+    })
+  });
 }
 
 /***/ }),

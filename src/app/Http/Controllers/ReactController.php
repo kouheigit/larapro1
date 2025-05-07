@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class ReactController extends Controller
@@ -48,6 +49,7 @@ class ReactController extends Controller
     }
     public function reactdivision(Request $request)
     {
+       // Log::error('テストエラーログ');
         return view('react.division');
     }
     public function reactrouting(Request $request)
