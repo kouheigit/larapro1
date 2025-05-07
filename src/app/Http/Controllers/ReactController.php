@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ReactController extends Controller
 {
-    public function pokemon(Request $reqeust)
+    public function pokemon(Request $request)
     {
         return view('react.pokemon');
     }
