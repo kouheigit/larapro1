@@ -5,7 +5,10 @@ function AppPractice(){
     const[todos,setTodos] =([]);
     const[inputs,setInputs] =('');
 
-    
+    const addTodo =()=>{
+        
+    }
+
     return (
         <div>
 
