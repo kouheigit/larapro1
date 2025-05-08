@@ -4653,6 +4653,13 @@ function AppPractice() {
     }]));
     setInputs('');
   };
+  var deleteTodo = function deleteTodo(deletevalue) {
+    setTodos(todos.filter(function (todo, index) {
+      return index !== deleteIndex;
+    }));
+    // setTodos(todos.filter(todo,index) => index !==deletevalue));
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
       type: "text",
@@ -4667,8 +4674,13 @@ function AppPractice() {
       children: "\u8FFD\u52A0\u3059\u308B"
     }), todos.map(function (todo, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          children: todo.text
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+          children: [todo.text, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onclick: function onclick() {
+              return deleteTodo(index);
+            },
+            children: "\u524A\u9664\u3059\u308B"
+          })]
         }, index)
       });
     })]

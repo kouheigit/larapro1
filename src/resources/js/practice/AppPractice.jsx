@@ -11,6 +11,10 @@ function AppPractice() {
         setTodos([...todos, {text: inputs, done: false}]);
         setInputs('');
     }
+    const deleteTodo = (deletevalue)=>{
+        setTodos(todos.filter((todo, index) => index !== deleteIndex));
+       // setTodos(todos.filter(todo,index) => index !==deletevalue));
+    }
         return (
             <div>
                 <input type="text" value={inputs} onChange={(e) => (e.target.value)}/>
@@ -20,12 +24,13 @@ function AppPractice() {
                     <div>
                         <li key={index}>
                             {todo.text}
+                            <button onclick={()=>deleteTodo(index)}>削除する</button>
                         </li>
                     </div>
                 )}
             </div>
         );
-    
+
 }
 
 export default AppPractice;
