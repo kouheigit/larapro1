@@ -23,7 +23,7 @@ function AppPractice() {
                     <div>
                         <li key={index}>
                             {todo.text}
-                            <button onclick={()=>deleteTodo(index)}>削除する</button>
+                            <button onClick={()=>deleteTodo(index)}>削除する</button>
                         </li>
                     </div>
                 )}

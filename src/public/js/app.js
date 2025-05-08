@@ -4655,17 +4655,15 @@ function AppPractice() {
   };
   var deleteTodo = function deleteTodo(deletevalue) {
     setTodos(todos.filter(function (todo, index) {
-      return index !== deleteIndex;
+      return index !== deletevalue;
     }));
-    // setTodos(todos.filter(todo,index) => index !==deletevalue));
   };
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
       type: "text",
       value: inputs,
       onChange: function onChange(e) {
-        return e.target.value;
+        return setInputs(e.target.value);
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
       children: inputs
@@ -4676,7 +4674,7 @@ function AppPractice() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
           children: [todo.text, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            onclick: function onclick() {
+            onClick: function onClick() {
               return deleteTodo(index);
             },
             children: "\u524A\u9664\u3059\u308B"
