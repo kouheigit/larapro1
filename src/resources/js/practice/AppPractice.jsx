@@ -12,12 +12,11 @@ function AppPractice() {
         setInputs('');
     }
     const deleteTodo = (deletevalue)=>{
-        setTodos(todos.filter((todo, index) => index !== deleteIndex));
-       // setTodos(todos.filter(todo,index) => index !==deletevalue));
+        setTodos(todos.filter((todo, index) => index !== deletevalue));
     }
         return (
             <div>
-                <input type="text" value={inputs} onChange={(e) => (e.target.value)}/>
+                <input type="text" value={inputs} onChange={(e) => setInputs(e.target.value)}/>
                 <p>{inputs}</p>
                 <button onClick={addTodo}>追加する</button>
                 {todos.map((todo,index)=>
