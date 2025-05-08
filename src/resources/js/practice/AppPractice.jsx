@@ -7,18 +7,25 @@ function AppPractice() {
     const [inputs, setInputs] = useState('');
 
     const addTodo = () => {
-        if (inputs.trim() !== "") return;
+        if (inputs.trim() == "") return;
         setTodos([...todos, {text: inputs, done: false}]);
         setInputs('');
+    }
         return (
             <div>
                 <input type="text" value={inputs} onChange={(e) => (e.target.value)}/>
                 <p>{inputs}</p>
                 <button onClick={addTodo}>追加する</button>
-                
+                {todos.map((todo,index)=>
+                    <div>
+                        <li key={index}>
+                            {todo.text}
+                        </li>
+                    </div>
+                )}
             </div>
         );
-    }
+    
 }
 
 export default AppPractice;

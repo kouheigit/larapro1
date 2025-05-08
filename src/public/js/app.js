@@ -4646,27 +4646,33 @@ function AppPractice() {
     inputs = _useState4[0],
     setInputs = _useState4[1];
   var addTodo = function addTodo() {
-    if (inputs.trim() !== "") return;
+    if (inputs.trim() == "") return;
     setTodos([].concat(_toConsumableArray(todos), [{
       text: inputs,
       done: false
     }]));
     setInputs('');
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-        type: "text",
-        value: inputs,
-        onChange: function onChange(e) {
-          return e.target.value;
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: inputs
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-        onClick: addTodo,
-        children: "\u8FFD\u52A0\u3059\u308B"
-      })]
-    });
   };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      type: "text",
+      value: inputs,
+      onChange: function onChange(e) {
+        return e.target.value;
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      children: inputs
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: addTodo,
+      children: "\u8FFD\u52A0\u3059\u308B"
+    }), todos.map(function (todo, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: todo.text
+        }, index)
+      });
+    })]
+  });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppPractice);
 if (document.getElementById('AppPractice')) {
