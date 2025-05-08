@@ -15,6 +15,7 @@ function AppPractice() {
                 <input type="text" value={inputs} onChange={(e) => (e.target.value)}/>
                 <p>{inputs}</p>
                 <button onClick={addTodo}>追加する</button>
+                
             </div>
         );
     }
