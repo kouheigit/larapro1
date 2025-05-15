@@ -28,7 +28,8 @@ export function TodoProvider ({ children }){
 
     //値を削除するメソット
     const deleteTodo = (deleteIndex) => {
-        setTodos(todos.filter((_, index) => index !== deleteIndex));
+        dispatch({ type: 'DELETE',index: index });
+       // setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
 
     const toggleCheck = (index) => {
@@ -46,6 +47,8 @@ export function TodoProvider ({ children }){
         switch(action.type){
             case 'ADD':
                 return([...state, {text: action.text, done: false}]);
+            case 'DELETE':
+                return state.filter((_,index) => index !== action.index);
             default:
                 return state;
         }
