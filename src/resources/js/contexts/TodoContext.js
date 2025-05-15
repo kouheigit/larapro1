@@ -1,9 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useReducer,useEffect } from 'react';
 const TodoContext = createContext();
 
 export function TodoProvider ({ children }){
-
-    const [todos, setTodos] = useState([]);
+    const [todos, dispatch] = useReducer(todoReducer, []);
     const [inputs, setInput] = useState('');
 
     //ローカルストレージを出力している
@@ -44,10 +43,19 @@ export function TodoProvider ({ children }){
             })
         );
     };
+    function todoReducer(state,action){
+        switch(action.type){
+            case 'ADD':
+
+            default:
+                return state;
+        }
+    }
+
     return(
-      <TodoContext.Provider value={{ todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck}}>
-          {children}
-      </TodoContext.Provider>
+        <TodoContext.Provider value={{ todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck}}>
+            {children}
+        </TodoContext.Provider>
     );
 }
 export function useTodos() {
