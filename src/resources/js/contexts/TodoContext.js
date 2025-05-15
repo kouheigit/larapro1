@@ -6,12 +6,15 @@ export function TodoProvider ({ children }){
     const [inputs, setInput] = useState('');
 
     //ローカルストレージを出力している
-    useEffect(() =>{
+    useEffect(() => {
         const stored = localStorage.getItem('todos');
-        if(stored){
-            setTodos(JSON.parse(stored));
+        if (stored) {
+            const loaded = JSON.parse(stored);
+            loaded.forEach(todo => {
+                dispatch({ type: 'ADD', text: todo.text });
+            });
         }
-    },[])
+    }, []);
 
     //ストレージに保存する処理
     useEffect(()=>{
@@ -28,22 +31,12 @@ export function TodoProvider ({ children }){
 
     //値を削除するメソット
     const deleteTodo = (deleteIndex) => {
-        dispatch({ type: 'DELETE',index: deleteindex });
+        dispatch({ type: 'DELETE',index:deleteindex });
        // setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
 
     const toggleCheck = (index) => {
         dispatch({ type: 'TOGGLE',index:index });
-        /*
-        setTodos(
-            todos.map((todo, i) => {
-                if (i === index) {
-                    return {...todo, done: !todo.done};
-                } else {
-                    return todo;
-                }
-            })
-        );*/
     };
     function todoReducer(state,action){
         switch(action.type){
