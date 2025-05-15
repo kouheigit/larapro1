@@ -31,7 +31,7 @@ export function TodoProvider ({ children }){
 
     //値を削除するメソット
     const deleteTodo = (deleteIndex) => {
-        dispatch({ type: 'DELETE',index:deleteindex });
+        dispatch({ type: 'DELETE',index:deleteIndex });
        // setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
 
