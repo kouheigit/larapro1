@@ -33,6 +33,7 @@ export function TodoProvider ({ children }){
     };
 
     const toggleCheck = (index) => {
+        dispatch({ type: 'TOGGLE',index:index });
         /*
         setTodos(
             todos.map((todo, i) => {
@@ -51,9 +52,15 @@ export function TodoProvider ({ children }){
             case 'DELETE':
                 return state.filter((_,index) => index !== action.index);
             case 'TOGGLE':
-                　return
+                return state.map((todo,i)=>{
+                    if (i == action.index) {
+                        return {...todo, done: !todo.done};
+                    } else {
+                        return todo;
+                    }
+                });
             default:
-                return state.map((todo,i))
+                return state;
         }
     }
 
