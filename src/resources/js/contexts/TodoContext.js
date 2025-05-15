@@ -22,8 +22,7 @@ export function TodoProvider ({ children }){
     //値を追加するメソット
     const addTodo = () => {
         if (inputs.trim() === '') return;
-        setTodos([...todos, {text: inputs, done: false}]);
-        //setTodos([...todos,inputs]);
+        dispatch({ type: 'ADD',text: inputs });
         setInput('');
     };
 
@@ -46,7 +45,7 @@ export function TodoProvider ({ children }){
     function todoReducer(state,action){
         switch(action.type){
             case 'ADD':
-
+                return([...state, {text: action.text, done: false}]);
             default:
                 return state;
         }
