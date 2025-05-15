@@ -51,9 +51,9 @@ export function TodoProvider ({ children }){
             case 'DELETE':
                 return state.filter((_,index) => index !== action.index);
             case 'TOGGLE':
-
+                　return
             default:
-                return state;
+                return state.map((todo,i))
         }
     }
 
