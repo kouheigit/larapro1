@@ -65,7 +65,7 @@ export function TodoProvider ({ children }){
     }
 
     return(
-        <TodoContext.Provider value={{ todos,setTodos,inputs,setInput,addTodo,deleteTodo,toggleCheck}}>
+        <TodoContext.Provider value={{ todos,inputs,setInput,addTodo,deleteTodo,toggleCheck}}>
             {children}
         </TodoContext.Provider>
     );
