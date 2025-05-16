@@ -4,8 +4,15 @@ import ReactDOM from "react-dom";
 import AdvanceTodo from "../components/AdovanceTodo";
 
 function Todo(){
+    const[todo,setTodo] = useState([]);
+    const[input,setInput] = useStat('');
+    const addTodo = () =>{
+
+    }
+
     return(
         <div>
+            
             <h1>テスト</h1>
         </div>
     );
