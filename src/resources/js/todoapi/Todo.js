@@ -9,16 +9,16 @@ function Todo(){
     const addTodo = () =>{
         if (input.trim() !== "") {
             return;
-            setInput([...todo,{text:inputs,done:false}]);
-
+            setTodo([...todo,{text:inputs,done:false}]);
+            setInput('');
         }
 
     }
 
     return(
         <div>
+            <h1>APIテスト</h1>
             <button onClick={addTodo}></button>
-            <h1>テスト</h1>
         </div>
     );
 }
