@@ -12,7 +12,7 @@ function Todo(){
 
     return(
         <div>
-
+            <button onClick={addTodo}></button>
             <h1>テスト</h1>
         </div>
     );
