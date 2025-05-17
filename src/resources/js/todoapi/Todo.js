@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 
 function Todo(){
     const[todo,setTodo] = useState([]);
-    const[input,setInput] = useStat('');
+    const[input,setInput] = useState('');
     const addTodo = () =>{
         if (input.trim() !== "") {
             return;
@@ -18,13 +18,13 @@ function Todo(){
     return(
         <div>
             <h1>APIテスト</h1>
-            <button onClick={addTodo}></button>
+            <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
+            <button onClick={addTodo}>追加する</button>
         </div>
     );
 }
 
 export default Todo;
-
 if (document.getElementById('Todo')) {
     ReactDOM.render(<Todo />, document.getElementById('Todo'));
 }

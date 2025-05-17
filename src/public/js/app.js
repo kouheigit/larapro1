@@ -4753,10 +4753,10 @@ function Todo() {
     _useState2 = _slicedToArray(_useState, 2),
     todo = _useState2[0],
     setTodo = _useState2[1];
-  var _useStat = useStat(''),
-    _useStat2 = _slicedToArray(_useStat, 2),
-    input = _useStat2[0],
-    setInput = _useStat2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    input = _useState4[0],
+    setInput = _useState4[1];
   var addTodo = function addTodo() {
     if (input.trim() !== "") {
       return;
@@ -4768,10 +4768,17 @@ function Todo() {
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      onClick: addTodo
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "\u30C6\u30B9\u30C8"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      children: "API\u30C6\u30B9\u30C8"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      type: "text",
+      value: input,
+      onChange: function onChange(e) {
+        return setInput(e.target.value);
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      onClick: addTodo,
+      children: "\u8FFD\u52A0\u3059\u308B"
     })]
   });
 }
