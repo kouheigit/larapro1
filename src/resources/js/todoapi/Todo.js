@@ -9,8 +9,9 @@ function Todo(){
     const addTodo = () =>{
         if (input.trim() !== "") {
             return;
+            setTodo([...todo()]);
         }
-        
+
     }
 
     return(
