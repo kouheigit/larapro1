@@ -7,12 +7,11 @@ function Todo(){
     const[todo,setTodo] = useState([]);
     const[input,setInput] = useState('');
     const addTodo = () =>{
-        if (input.trim() !== "") {
+        if (input.trim() === ""){
             return;
-            setTodo([...todo,{text:inputs,done:false}]);
-            setInput('');
         }
-
+            setTodo([...todo,{ text: input, done: false}]);
+            setInput('');
     }
 
     return(
@@ -21,6 +20,13 @@ function Todo(){
             <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
             <button onClick={addTodo}>追加する</button>
             <p>入力された文字{input}</p>
+            {todo.map((todos,index)=>(
+                    <div>
+                        <li key={index}>
+                            <p>{todos.text}</p>
+                        </li>
+                    </div>
+            ))}
         </div>
     );
 }

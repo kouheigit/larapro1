@@ -4758,14 +4758,14 @@ function Todo() {
     input = _useState4[0],
     setInput = _useState4[1];
   var addTodo = function addTodo() {
-    if (input.trim() !== "") {
+    if (input.trim() === "") {
       return;
-      setTodo([].concat(_toConsumableArray(todo), [{
-        text: inputs,
-        done: false
-      }]));
-      setInput('');
     }
+    setTodo([].concat(_toConsumableArray(todo), [{
+      text: input,
+      done: false
+    }]));
+    setInput('');
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
@@ -4781,6 +4781,14 @@ function Todo() {
       children: "\u8FFD\u52A0\u3059\u308B"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
       children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
+    }), todo.map(function (todos, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            children: todos.text
+          })
+        }, index)
+      });
     })]
   });
 }
