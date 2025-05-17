@@ -20,6 +20,7 @@ function Todo(){
             <h1>APIテスト</h1>
             <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
             <button onClick={addTodo}>追加する</button>
+            <p>入力された文字{input}</p>
         </div>
     );
 }

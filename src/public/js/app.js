@@ -4779,6 +4779,8 @@ function Todo() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: addTodo,
       children: "\u8FFD\u52A0\u3059\u308B"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+      children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
     })]
   });
 }
