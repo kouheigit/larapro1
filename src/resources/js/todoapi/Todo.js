@@ -2,12 +2,12 @@ import ReactDom from 'react-dom';
 import React,{ useState,useEffect } from 'react';
 import ReactDOM from "react-dom";
 import AdvanceTodo from "../components/AdovanceTodo";
-
+/*Todo*/
 function Todo(){
     const[todo,setTodo] = useState([]);
     const[input,setInput] = useStat('');
     const addTodo = () =>{
-        
+
     }
 
     return(
