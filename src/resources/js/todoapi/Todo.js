@@ -7,7 +7,10 @@ function Todo(){
     const[todo,setTodo] = useState([]);
     const[input,setInput] = useStat('');
     const addTodo = () =>{
-
+        if (input.trim() !== "") {
+            return;
+        }
+        
     }
 
     return(
