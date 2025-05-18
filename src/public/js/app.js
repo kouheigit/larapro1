@@ -4767,6 +4767,11 @@ function Todo() {
     }]));
     setInput('');
   };
+  var deleteTodo = function deleteTodo(deleteindex) {
+    setTodo(todo.filter(function (todos, index) {
+      return index !== deleteindex;
+    }));
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
       children: "API\u30C6\u30B9\u30C8"
@@ -4783,10 +4788,15 @@ function Todo() {
       children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
     }), todo.map(function (todos, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             children: todos.text
-          })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            onClick: function onClick() {
+              return deleteTodo(index);
+            },
+            children: "\u524A\u9664\u3059\u308B"
+          })]
         }, index)
       });
     })]
