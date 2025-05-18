@@ -14,7 +14,7 @@ function Todo() {
         setInput('');
     }
     const deleteTodo = (deleteindex) =>{
-        setTodo()
+        setTodo(todo.filter((todos,index)=>index!==deleteindex));
     }
 
     return(
