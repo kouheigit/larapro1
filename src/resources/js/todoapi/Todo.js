@@ -3,17 +3,19 @@ import React,{ useState,useEffect } from 'react';
 import ReactDOM from "react-dom";
 
 
-function Todo(){
-    const[todo,setTodo] = useState([]);
-    const[input,setInput] = useState('');
-    const addTodo = () =>{
-        if (input.trim() === ""){
+function Todo() {
+    const [todo, setTodo] = useState([]);
+    const [input, setInput] = useState('');
+    const addTodo = () => {
+        if (input.trim() === "") {
             return;
         }
-            setTodo([...todo,{ text: input, done: false}]);
-            setInput('');
+        setTodo([...todo, {text: input, done: false}]);
+        setInput('');
     }
-
+    const deleteTodo = (deleteindex) =>{
+        setTodo()
+    }
 
     return(
         <div>
@@ -25,6 +27,7 @@ function Todo(){
                     <div>
                         <li key={index}>
                             <p>{todos.text}</p>
+                            <button onClick ={()=>deleteTodo(index)}>削除する</button>
                         </li>
                     </div>
             ))}
