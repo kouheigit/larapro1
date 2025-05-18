@@ -13,6 +13,7 @@ function Todo() {
         setTodo([...todo, {text: input, done: false}]);
         setInput('');
     }
+
     const deleteTodo = (deleteindex) =>{
         setTodo(todo.filter((todos,index)=>index!==deleteindex));
     }
