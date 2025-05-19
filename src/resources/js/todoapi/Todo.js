@@ -17,8 +17,17 @@ function Todo() {
     const deleteTodo = (deleteindex) =>{
         setTodo(todo.filter((todos,index)=>index!==deleteindex));
     }
-    const toggleCheck = (toggleindex) =>{
-      
+    const toggleCheck = (index) =>{
+        setTodo(
+            todo.map((todo,i)=>{
+                if(i === index){
+                    return {...todo,done:　!todo.done };
+                }else{
+                    return todo;
+                }
+            }
+            )
+        )
     }
 
     return(
@@ -30,7 +39,7 @@ function Todo() {
             {todo.map((todos,index)=>(
                     <div>
                         <li key={index}>
-                            <inupt type="checkbox" value={todo.done} onChange={()=>toggleCheck(index)}/>
+                            <input type="checkbox" value={todo.done} onChange={()=>toggleCheck(index)}/>
                             <p>{todos.text}</p>
                             <button onClick ={()=>deleteTodo(index)}>削除する</button>
                         </li>
