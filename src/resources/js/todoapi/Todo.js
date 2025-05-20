@@ -22,23 +22,23 @@ function Todo() {
     }
     const toggleCheck = (index) =>{
         setTodo(
-            todo.map((todo,i)=>{
+            todo.map((todos,i)=>{
                 if(i === index){
-                    return {...todo,done:　!todo.done };
+                    return {...todos,done:　!todos.done };
                 }else{
-                    return todo;
+                    return todos;
                 }
             }
             )
         )
     }
 
-   const filterTodo = todo.filter((todos)=>{
-       if(filter=='done') return todo.done;
-       if(filter=='undone') return !todo.done;
-       return true;
-   });
 
+    const filterTodo = todo.filter((todos)=>{
+        if(filter === 'done') return todos.done;
+        if(filter === 'undone') return !todos.done;
+        return true;
+    });
 
     return(
         <div>
@@ -52,8 +52,9 @@ function Todo() {
             {filterTodo.map((todos,index)=>(
                     <div>
                         <li key={index}>
-                            <input type="checkbox" value={todo.done} onChange={()=>toggleCheck(index)}/>
-                            <p>{todos.text}</p>
+                            <input type="checkbox" value={todos.done} onChange={()=>toggleCheck(index)}/>
+                            <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                                <p>{todos.text}</p></span>
                             <button onClick ={()=>deleteTodo(index)}>削除する</button>
                         </li>
                     </div>

@@ -4783,19 +4783,19 @@ function Todo() {
     }));
   };
   var toggleCheck = function toggleCheck(index) {
-    setTodo(todo.map(function (todo, i) {
+    setTodo(todo.map(function (todos, i) {
       if (i === index) {
-        return _objectSpread(_objectSpread({}, todo), {}, {
-          done: !todo.done
+        return _objectSpread(_objectSpread({}, todos), {}, {
+          done: !todos.done
         });
       } else {
-        return todo;
+        return todos;
       }
     }));
   };
   var filterTodo = todo.filter(function (todos) {
-    if (filter == 'done') return todo.done;
-    if (filter == 'undone') return !todo.done;
+    if (filter === 'done') return todos.done;
+    if (filter === 'undone') return !todos.done;
     return true;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -4832,12 +4832,17 @@ function Todo() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "checkbox",
-            value: todo.done,
+            value: todos.done,
             onChange: function onChange() {
               return toggleCheck(index);
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            children: todos.text
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            style: {
+              textDecoration: todo.done ? 'line-through' : 'none'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+              children: todos.text
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             onClick: function onClick() {
               return deleteTodo(index);
