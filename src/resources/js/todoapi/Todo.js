@@ -6,6 +6,9 @@ import ReactDOM from "react-dom";
 function Todo() {
     const [todo, setTodo] = useState([]);
     const [input, setInput] = useState('');
+
+    const [filter,setFilter] = useState('all');
+
     const addTodo = () => {
         if (input.trim() === "") {
             return;
@@ -29,6 +32,10 @@ function Todo() {
             )
         )
     }
+   const filterTodo = setTodo.filter(()=>{
+
+   });
+
 
     return(
         <div>
