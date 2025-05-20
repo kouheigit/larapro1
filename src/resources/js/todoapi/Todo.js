@@ -53,7 +53,7 @@ function Todo() {
                     <div>
                         <li key={index}>
                             <input type="checkbox" value={todos.done} onChange={()=>toggleCheck(index)}/>
-                            <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                            <span style={{ textDecoration: todos.done ? 'line-through' : 'none' }}>
                                 <p>{todos.text}</p></span>
                             <button onClick ={()=>deleteTodo(index)}>削除する</button>
                         </li>
