@@ -4838,7 +4838,7 @@ function Todo() {
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
             style: {
-              textDecoration: todo.done ? 'line-through' : 'none'
+              textDecoration: todos.done ? 'line-through' : 'none'
             },
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
               children: todos.text
