@@ -32,8 +32,10 @@ function Todo() {
             )
         )
     }
-   const filterTodo = setTodo.filter(()=>{
-
+   const filterTodo = setTodo.filter((todos)=>{
+       if(todos=='done') return todo.done;
+       if(todos=='undone') return !todo.done;
+       return true;
    });
 
 
@@ -42,8 +44,11 @@ function Todo() {
             <h1>APIテスト</h1>
             <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
             <button onClick={addTodo}>追加する</button>
+            <button onClick={()=>setTodo('all')}>すべて</button>
+            <button onClick={()=>setTodo('done')}>完了</button>
+            <button onClick={()=>setTodo('undone')}>未完了</button>
             <p>入力された文字{input}</p>
-            {todo.map((todos,index)=>(
+            {filterTodo.map((todos,index)=>(
                     <div>
                         <li key={index}>
                             <input type="checkbox" value={todo.done} onChange={()=>toggleCheck(index)}/>
