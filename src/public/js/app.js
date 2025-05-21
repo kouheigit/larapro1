@@ -4827,31 +4827,33 @@ function Todo() {
       children: "\u672A\u5B8C\u4E86"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
       children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
-    }), filterTodo.map(function (todos, index) {
-      var OriginalIndex = indexOf(todo);
-      retur( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "checkbox",
-            value: todos.done,
-            onChange: function onChange() {
-              return toggleCheck(OriginalIndex);
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            style: {
-              textDecoration: todos.done ? 'line-through' : 'none'
-            },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: todos.text
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            onClick: function onClick() {
-              return deleteTodo(OriginalIndex);
-            },
-            children: "\u524A\u9664\u3059\u308B"
-          })]
-        }, index)
-      }));
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+      children: filterTodo.map(function (todos, index) {
+        var originalIndex = todo.indexOf(todos);
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "checkbox",
+              checked: todos.done,
+              onChange: function onChange() {
+                return toggleCheck(originalIndex);
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              style: {
+                textDecoration: todos.done ? 'line-through' : 'none'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+                children: todos.text
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              onClick: function onClick() {
+                return deleteTodo(originalIndex);
+              },
+              children: "\u524A\u9664\u3059\u308B"
+            })]
+          }, index)
+        });
+      })
     })]
   });
 }

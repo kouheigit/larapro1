@@ -49,19 +49,21 @@ function Todo() {
             <button onClick={()=>setFilter('done')}>完了</button>
             <button onClick={()=>setFilter('undone')}>未完了</button>
             <p>入力された文字{input}</p>
+            <ul>
             {filterTodo.map((todos,index)=> {
-                const OriginalIndex = todo.indexOf(todos);
-                retur (
+                const originalIndex = todo.indexOf(todos);
+                return (
                     <div>
                         <li key={index}>
-                            <input type="checkbox" checked={todos.done} onChange={() => toggleCheck(OriginalIndex)}/>
+                            <input type="checkbox" checked={todos.done} onChange={() => toggleCheck(originalIndex)}/>
                             <span style={{textDecoration: todos.done ? 'line-through' : 'none'}}>
                                 <p>{todos.text}</p></span>
-                            <button onClick={() => deleteTodo(OriginalIndex)}>削除する</button>
+                            <button onClick={() => deleteTodo(originalIndex)}>削除する</button>
                         </li>
                     </div>
                 );
             })}
+            </ul>
         </div>
     );
 }
