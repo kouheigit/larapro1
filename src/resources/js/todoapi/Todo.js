@@ -49,6 +49,7 @@ function Todo() {
             <button onClick={()=>setFilter('done')}>完了</button>
             <button onClick={()=>setFilter('undone')}>未完了</button>
             <p>入力された文字{input}</p>
+            {/*<ul>をつけないとチェックボックスが正しく作動しない*/}
             <ul>
             {filterTodo.map((todos,index)=> {
                 //追加した
