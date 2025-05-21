@@ -4828,13 +4828,14 @@ function Todo() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
       children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
     }), filterTodo.map(function (todos, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      var OriginalIndex = indexOf(todo);
+      retur( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "checkbox",
             value: todos.done,
             onChange: function onChange() {
-              return toggleCheck(index);
+              return toggleCheck(OriginalIndex);
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
             style: {
@@ -4845,12 +4846,12 @@ function Todo() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             onClick: function onClick() {
-              return deleteTodo(index);
+              return deleteTodo(OriginalIndex);
             },
             children: "\u524A\u9664\u3059\u308B"
           })]
         }, index)
-      });
+      }));
     })]
   });
 }

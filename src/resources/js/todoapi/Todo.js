@@ -51,7 +51,7 @@ function Todo() {
             <p>入力された文字{input}</p>
             {filterTodo.map((todos,index)=> {
                 const OriginalIndex = indexOf(todo);
-                return
+                retur (
                     <div>
                         <li key={index}>
                             <input type="checkbox" value={todos.done} onChange={() => toggleCheck(OriginalIndex)}/>
