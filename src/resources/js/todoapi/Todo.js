@@ -6,7 +6,6 @@ import ReactDOM from "react-dom";
 function Todo() {
     const [todo, setTodo] = useState([]);
     const [input, setInput] = useState('');
-
     const [filter,setFilter] = useState('all');
 
     const addTodo = () => {
