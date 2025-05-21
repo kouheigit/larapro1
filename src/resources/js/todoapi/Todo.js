@@ -9,6 +9,7 @@ function Todo() {
     const [input, setInput] = useState('');
     const [filter,setFilter] = useState('all');
 
+    //addTodo
     const addTodo = () => {
         if (input.trim() === "") {
             return;
@@ -16,10 +17,11 @@ function Todo() {
         setTodo([...todo, {text: input, done: false}]);
         setInput('');
     }
-
+    //deleteTodo
     const deleteTodo = (deleteindex) =>{
         setTodo(todo.filter((todos,index)=>index!==deleteindex));
     }
+    //toggleCheck
     const toggleCheck = (index) =>{
         setTodo(
             todo.map((todos,i)=>{
