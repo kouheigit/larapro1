@@ -50,11 +50,11 @@ function Todo() {
             <button onClick={()=>setFilter('undone')}>未完了</button>
             <p>入力された文字{input}</p>
             {filterTodo.map((todos,index)=> {
-                const OriginalIndex = indexOf(todo);
+                const OriginalIndex = todo.indexOf(todos);
                 retur (
                     <div>
                         <li key={index}>
-                            <input type="checkbox" value={todos.done} onChange={() => toggleCheck(OriginalIndex)}/>
+                            <input type="checkbox" checked={todos.done} onChange={() => toggleCheck(OriginalIndex)}/>
                             <span style={{textDecoration: todos.done ? 'line-through' : 'none'}}>
                                 <p>{todos.text}</p></span>
                             <button onClick={() => deleteTodo(OriginalIndex)}>削除する</button>
