@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 
 
 function Todo() {
+    //state一覧
     const [todo, setTodo] = useState([]);
     const [input, setInput] = useState('');
     const [filter,setFilter] = useState('all');
