@@ -51,6 +51,7 @@ function Todo() {
             <p>入力された文字{input}</p>
             <ul>
             {filterTodo.map((todos,index)=> {
+                //追加した
                 const originalIndex = todo.indexOf(todos);
                 return (
                     <div>
