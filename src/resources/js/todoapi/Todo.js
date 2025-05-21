@@ -53,7 +53,7 @@ function Todo() {
             {filterTodo.map((todos,index)=> {
                 //追加した
                 const originalIndex = todo.indexOf(todos);
-                //returnをもう一度追加した
+                //returnをもうひとつ追加した
                 return (
                     <div>
                         <li key={index}>
