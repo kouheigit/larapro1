@@ -18,6 +18,8 @@ export function useTodo(){
     }
     //toggleCheck
     const toggleCheck = (index) =>{
+        dispatch({type:'TOGGLE',index:index})
+        /*
         setTodo(
             todo.map((todos,i)=>{
                     if(i === index){
@@ -27,7 +29,7 @@ export function useTodo(){
                     }
                 }
             )
-        )
+        )*/
     }
     function todoReducer(state,action){
         switch(action.type){
@@ -35,6 +37,8 @@ export function useTodo(){
                 return([...state,{text:action.input,done:false}]);
             case'DELETE':
                 return(state.filter((_,index)=>index!==action.index));
+            case'TOGGLE':
+
             default:
                 return state;
         }
