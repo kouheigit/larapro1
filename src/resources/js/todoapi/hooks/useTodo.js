@@ -9,7 +9,8 @@ export function useTodo(){
         if (input.trim() === "") {
             return;
         }
-        setTodo([...todo, {text: input, done: false}]);
+        dispatch({ type: 'ADD',text: inputs });
+        //setTodo([...todo, {text: input, done: false}]);
         setInput('');
     }
     //deleteTodo
@@ -30,7 +31,12 @@ export function useTodo(){
         )
     }
     function todoReducer(state,action){
-
+        switch(action.type){
+            case'ADD':
+                return([...state,{text:action.input,done:false}]);
+            default:
+                return state;
+        }
     }
     return { todo,setTodo,input,setInput,addTodo,deleteTodo,toggleCheck };
 };
