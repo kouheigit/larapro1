@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 
-
 export function useTodo(){
     const [todo, setTodo] = useState([]);
     const [input, setInput] = useState('');
@@ -30,5 +29,5 @@ export function useTodo(){
             )
         )
     }
-
+    return { todo,setTodo,input,setInput,addTodo,deleteTodo,toggleCheck };
 };
