@@ -39,7 +39,7 @@ export function useTodo(){
                 return(state.filter((_,index)=>index!==action.index));
             case'TOGGLE':
                 return state.map((todo,i)=>{
-                    if(i === active.index){
+                    if(i === action.index){
                         return {todo,done: !todo.done};
                     }else{
                         return todo;
