@@ -32,6 +32,7 @@ Route::namespace('React')->prefix('react')->name('react.')->group(function(){
     Route::get('blogtest',[App\Http\Controllers\ReactController::class,'blogtest'])->name('blogtest');
     Route::get('test',[App\Http\Controllers\ReactController::class,'test'])->name('test');
     Route::get('test1',[App\Http\Controllers\ReactController::class,'test1'])->name('test1');
+    Route::get('/todos', [TodoController::class, 'index']);
     Route::get('component',[App\Http\Controllers\ReactController::class,'component'])->name('component');
     Route::get('componentpage',[App\Http\Controllers\ReactController::class,'componentpage'])->name('componentpage');
     Route::get('blog',[App\Http\Controllers\ReactController::class,'blog'])->name('blog');
