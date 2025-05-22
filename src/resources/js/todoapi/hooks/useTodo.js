@@ -15,7 +15,6 @@ export function useTodo(){
     //deleteTodo
     const deleteTodo = (deleteindex) =>{
         dispatch({type:'DELETE',index:index});
-        //setTodo(todo.filter((todos,index)=>index!==deleteindex));
     }
     //toggleCheck
     const toggleCheck = (index) =>{
@@ -34,6 +33,8 @@ export function useTodo(){
         switch(action.type){
             case'ADD':
                 return([...state,{text:action.input,done:false}]);
+            case'DELETE':
+                return(state.filter((_,index)=>index!==action.index));
             default:
                 return state;
         }
