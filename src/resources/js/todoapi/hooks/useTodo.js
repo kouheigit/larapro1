@@ -38,7 +38,13 @@ export function useTodo(){
             case'DELETE':
                 return(state.filter((_,index)=>index!==action.index));
             case'TOGGLE':
-
+                return state.map((todo,i)=>{
+                    if(i === active.index){
+                        return {todo,done: !todo.done};
+                    }else{
+                        return todo;
+                    }
+                })
             default:
                 return state;
         }
