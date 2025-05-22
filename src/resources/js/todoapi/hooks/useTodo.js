@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useReducer } from 'react';
+import React, { useState,useEffect } from 'react';
 
 export function useTodo(){
     const [todo, setTodo] = useState([]);
