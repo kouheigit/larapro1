@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useReducer } from 'react';
 
 export function useTodo(){
-    const [todo, setTodo] = useState([]);
+    const [todo, dispatch] = useReducer(todoReducer, []);
     const [input, setInput] = useState('');
 
     //addTodo
@@ -28,6 +28,9 @@ export function useTodo(){
                 }
             )
         )
+    }
+    function todoReducer(state,action){
+
     }
     return { todo,setTodo,input,setInput,addTodo,deleteTodo,toggleCheck };
 };

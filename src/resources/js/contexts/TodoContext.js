@@ -38,6 +38,7 @@ export function TodoProvider ({ children }){
     const toggleCheck = (index) => {
         dispatch({ type: 'TOGGLE',index:index });
     };
+
     function todoReducer(state,action){
         switch(action.type){
             case 'ADD':
