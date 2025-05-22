@@ -14,7 +14,8 @@ export function useTodo(){
     }
     //deleteTodo
     const deleteTodo = (deleteindex) =>{
-        setTodo(todo.filter((todos,index)=>index!==deleteindex));
+        dispatch({type:'DELETE',index:index});
+        //setTodo(todo.filter((todos,index)=>index!==deleteindex));
     }
     //toggleCheck
     const toggleCheck = (index) =>{
