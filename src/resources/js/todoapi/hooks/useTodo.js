@@ -1,6 +1,7 @@
 import React, { useState,useEffect,useReducer } from 'react';
 
 export function useTodo(){
+    //const [todo, dispatch] = useReducer(todoReducer, []);
     const [todo, setTodo] = useState([]);
     const [input, setInput] = useState('');
 
