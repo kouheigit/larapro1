@@ -10,7 +10,6 @@ export function useTodo(){
             return;
         }
         dispatch({ type: 'ADD',text: inputs });
-        //setTodo([...todo, {text: input, done: false}]);
         setInput('');
     }
     //deleteTodo
