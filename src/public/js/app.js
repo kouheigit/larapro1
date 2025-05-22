@@ -4732,7 +4732,119 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _hooks_useTodo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useTodo */ "./resources/js/todoapi/hooks/useTodo.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function Todo() {
+  //state一覧
+  var _useTodo = (0,_hooks_useTodo__WEBPACK_IMPORTED_MODULE_2__.useTodo)(),
+    todo = _useTodo.todo,
+    setTodo = _useTodo.setTodo,
+    input = _useTodo.input,
+    setInput = _useTodo.setInput,
+    addTodo = _useTodo.addTodo,
+    deleteTodo = _useTodo.deleteTodo,
+    toggleCheck = _useTodo.toggleCheck;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('all'),
+    _useState2 = _slicedToArray(_useState, 2),
+    filter = _useState2[0],
+    setFilter = _useState2[1];
+  var filterTodo = todo.filter(function (todos) {
+    if (filter === 'done') return todos.done;
+    if (filter === 'undone') return !todos.done;
+    return true;
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+      children: "API\u30C6\u30B9\u30C8"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      type: "text",
+      value: input,
+      onChange: function onChange(e) {
+        return setInput(e.target.value);
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: addTodo,
+      children: "\u8FFD\u52A0\u3059\u308B"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('all');
+      },
+      children: "\u3059\u3079\u3066"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('done');
+      },
+      children: "\u5B8C\u4E86"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: function onClick() {
+        return setFilter('undone');
+      },
+      children: "\u672A\u5B8C\u4E86"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+      children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+      children: filterTodo.map(function (todos, index) {
+        //追加した
+        var originalIndex = todo.indexOf(todos);
+        //returnをもうひとつ追加した
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "checkbox",
+              checked: todos.done,
+              onChange: function onChange() {
+                return toggleCheck(originalIndex);
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              style: {
+                textDecoration: todos.done ? 'line-through' : 'none'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                children: todos.text
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              onClick: function onClick() {
+                return deleteTodo(originalIndex);
+              },
+              children: "\u524A\u9664\u3059\u308B"
+            })]
+          }, index)
+        });
+      })
+    })]
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Todo);
+if (document.getElementById('Todo')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Todo, {}), document.getElementById('Todo'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/todoapi/hooks/useTodo.js":
+/*!***********************************************!*\
+  !*** ./resources/js/todoapi/hooks/useTodo.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useTodo: () => (/* binding */ useTodo)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -4750,117 +4862,77 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-
-
-
-
-function Todo() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+function useTodo() {
+  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(todoReducer, []),
+    _useReducer2 = _slicedToArray(_useReducer, 2),
+    todo = _useReducer2[0],
+    dispatch = _useReducer2[1];
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
-    todo = _useState2[0],
-    setTodo = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-    _useState4 = _slicedToArray(_useState3, 2),
-    input = _useState4[0],
-    setInput = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('all'),
-    _useState6 = _slicedToArray(_useState5, 2),
-    filter = _useState6[0],
-    setFilter = _useState6[1];
+    input = _useState2[0],
+    setInput = _useState2[1];
+
+  //addTodo
   var addTodo = function addTodo() {
     if (input.trim() === "") {
       return;
     }
-    setTodo([].concat(_toConsumableArray(todo), [{
-      text: input,
-      done: false
-    }]));
+    dispatch({
+      type: 'ADD',
+      text: input
+    });
     setInput('');
   };
+  //deleteTodo
   var deleteTodo = function deleteTodo(deleteindex) {
-    setTodo(todo.filter(function (todos, index) {
-      return index !== deleteindex;
-    }));
+    dispatch({
+      type: 'DELETE',
+      index: deleteindex
+    });
   };
+  //toggleCheck
   var toggleCheck = function toggleCheck(index) {
-    setTodo(todo.map(function (todos, i) {
-      if (i === index) {
-        return _objectSpread(_objectSpread({}, todos), {}, {
-          done: !todos.done
-        });
-      } else {
-        return todos;
-      }
-    }));
+    dispatch({
+      type: 'TOGGLE',
+      index: index
+    });
   };
-  var filterTodo = todo.filter(function (todos) {
-    if (filter === 'done') return todos.done;
-    if (filter === 'undone') return !todos.done;
-    return true;
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "API\u30C6\u30B9\u30C8"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-      type: "text",
-      value: input,
-      onChange: function onChange(e) {
-        return setInput(e.target.value);
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      onClick: addTodo,
-      children: "\u8FFD\u52A0\u3059\u308B"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      onClick: function onClick() {
-        return setFilter('all');
-      },
-      children: "\u3059\u3079\u3066"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      onClick: function onClick() {
-        return setFilter('done');
-      },
-      children: "\u5B8C\u4E86"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      onClick: function onClick() {
-        return setFilter('undone');
-      },
-      children: "\u672A\u5B8C\u4E86"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-      children: ["\u5165\u529B\u3055\u308C\u305F\u6587\u5B57", input]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-      children: filterTodo.map(function (todos, index) {
-        var originalIndex = todo.indexOf(todos);
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "checkbox",
-              checked: todos.done,
-              onChange: function onChange() {
-                return toggleCheck(originalIndex);
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              style: {
-                textDecoration: todos.done ? 'line-through' : 'none'
-              },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                children: todos.text
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-              onClick: function onClick() {
-                return deleteTodo(originalIndex);
-              },
-              children: "\u524A\u9664\u3059\u308B"
-            })]
-          }, index)
+  function todoReducer(state, action) {
+    switch (action.type) {
+      case 'ADD':
+        return [].concat(_toConsumableArray(state), [{
+          text: action.text,
+          done: false
+        }]);
+      case 'DELETE':
+        return state.filter(function (_, index) {
+          return index !== action.index;
         });
-      })
-    })]
-  });
+      case 'TOGGLE':
+        return state.map(function (todo, i) {
+          if (i === action.index) {
+            return _objectSpread(_objectSpread({}, todo), {}, {
+              done: !todo.done
+            });
+          } else {
+            return todo;
+          }
+        });
+      default:
+        return state;
+    }
+  }
+  return {
+    todo: todo,
+    input: input,
+    setInput: setInput,
+    addTodo: addTodo,
+    deleteTodo: deleteTodo,
+    toggleCheck: toggleCheck,
+    dispatch: dispatch
+  };
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Todo);
-if (document.getElementById('Todo')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Todo, {}), document.getElementById('Todo'));
-}
+;
 
 /***/ }),
 

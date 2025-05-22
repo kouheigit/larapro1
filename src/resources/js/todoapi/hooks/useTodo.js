@@ -9,38 +9,27 @@ export function useTodo(){
         if (input.trim() === "") {
             return;
         }
-        dispatch({ type: 'ADD',text: inputs });
+        dispatch({ type: 'ADD',text: input });
         setInput('');
     }
     //deleteTodo
     const deleteTodo = (deleteindex) =>{
-        dispatch({type:'DELETE',index:index});
+        dispatch({type:'DELETE',index:deleteindex});
     }
     //toggleCheck
     const toggleCheck = (index) =>{
         dispatch({type:'TOGGLE',index:index})
-        /*
-        setTodo(
-            todo.map((todos,i)=>{
-                    if(i === index){
-                        return {...todos,done:　!todos.done };
-                    }else{
-                        return todos;
-                    }
-                }
-            )
-        )*/
     }
     function todoReducer(state,action){
         switch(action.type){
             case'ADD':
-                return([...state,{text:action.input,done:false}]);
+                return([...state,{text:action.text,done:false}]);
             case'DELETE':
                 return(state.filter((_,index)=>index!==action.index));
             case'TOGGLE':
                 return state.map((todo,i)=>{
                     if(i === action.index){
-                        return {todo,done: !todo.done};
+                        return {...todo,done: !todo.done};
                     }else{
                         return todo;
                     }
@@ -49,5 +38,5 @@ export function useTodo(){
                 return state;
         }
     }
-    return { todo,setTodo,input,setInput,addTodo,deleteTodo,toggleCheck };
+    return { todo,input,setInput,addTodo,deleteTodo,toggleCheck,dispatch };
 };
