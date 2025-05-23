@@ -14,11 +14,11 @@ export function useTodo(){
             })
             .catch(err => console.error('GET /api/todos 失敗:', err));
     }, []);
-    /*
+    /*【PHPに換算すると】
     　$response = Http::get('http://localhost:8000/api/todos');← fetch('http://localhost:8000/api/todos')
     　$data = $response->json(); //　← .then(res => res.json())
 
-　　　handleData($data); // ← then(data => { ... })
+　　　handleData($data); // ← 関数呼び出しの部分がここになるthen(data => { ... })
 
 　　　function handleData($data) {　　　
    　　　foreach ($data as $item) {
@@ -26,6 +26,10 @@ export function useTodo(){
      　　 　　  echo "ID: {$item['id']} - Text: {$item['text']} - Done: {$item['done']}\n";
     　　}
 　　　}
+      ↑(関数の部分に当たる)
+       data.forEach(item => {
+                    dispatch({ type: 'ADD', id: item.id, text: item.text, done: item.done });
+                });
      */
 
     //addTodo
