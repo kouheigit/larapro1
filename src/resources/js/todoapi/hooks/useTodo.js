@@ -14,7 +14,20 @@ export function useTodo(){
             })
             .catch(err => console.error('GET /api/todos 失敗:', err));
     }, []);
-        
+    /*
+    　$response = Http::get('http://localhost:8000/api/todos');← fetch('http://localhost:8000/api/todos')
+    　$data = $response->json(); //　← .then(res => res.json())
+
+　　　handleData($data); // ← then(data => { ... })
+
+　　　function handleData($data) {　　　
+   　　　foreach ($data as $item) {
+        　// dispatch 相当の処理
+     　　 　　  echo "ID: {$item['id']} - Text: {$item['text']} - Done: {$item['done']}\n";
+    　　}
+　　　}
+     */
+
     //addTodo
     const addTodo = () => {
         if (input.trim() === '') return;
