@@ -14,21 +14,7 @@ export function useTodo(){
             })
             .catch(err => console.error('GET /api/todos 失敗:', err));
     }, []);
-          /*
-             function handleData($data) {
-                 foreach ($data as $item) {
-                 // Reactの dispatch に相当する処理（例えばログ出力）
-                 // ここでは仮に表示してみる
-                 echo "ID: {$item['id']}, Text: {$item['text']}, Done: " . ($item['done'] ? 'yes' : 'no') . "\n";
-                  }
-             }
-
-             // fetch に相当（LaravelのHTTPクライアントを使用）
-　　　　　　　　　　use Illuminate\Support\Facades\Http;
-　　　　　　　　　　$response = Http::get('http://localhost:8000/api/todos');
-　　　　　　　　　　$data = $response->json(); // ← JavaScriptの res.json() の結果に相当
-　　　　　　　　　　handleData($data); // ← JavaScriptの .then(data => { ... }) に相当
-              */
+        
     //addTodo
     const addTodo = () => {
         if (input.trim() === '') return;
