@@ -4,14 +4,6 @@ export function useTodo(){
     const [todo, dispatch] = useReducer(todoReducer, []);
     const [input, setInput] = useState('');
     
-    //useEffect
-    useEffect(() =>{
-        fetch('http://localhost:8000/api/todos')
-            .then(res => res.json())
-            .then(data => settodos(data))
-            .catch(err=>console.error('API取得エラー:',err));
-    },[]);
-
     //addTodo
     const addTodo = () => {
         if (input.trim() === "") {
