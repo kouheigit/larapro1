@@ -63,10 +63,6 @@ export function useTodo(){
             })
             .catch(err => console.error('DELETE /api/todos 失敗:', err));
     };
-    /*
-    const deleteTodo = (deleteindex) =>{
-        dispatch({ type:'DELETE',index:deleteindex });
-    }*/
     //toggleCheck
     const toggleCheck = (index) =>{
         dispatch({type:'TOGGLE',index:index})
