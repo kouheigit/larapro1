@@ -54,9 +54,19 @@ export function useTodo(){
 
     //ここから下のdeleteTodoから下はまだ未修正
 
+    const deleteTodo = (deleteindex)=>{
+        fetch('http://localhost:8000/api/todos/${id}',{
+            method:'DELETE'
+        })
+            .then(()=>{
+                dispatch({ type:'DELETE',index:deleteindex })
+            })
+            .catch(err => console.error('DELETE /api/todos 失敗:', err));
+    };
+    /*
     const deleteTodo = (deleteindex) =>{
         dispatch({ type:'DELETE',index:deleteindex });
-    }
+    }*/
     //toggleCheck
     const toggleCheck = (index) =>{
         dispatch({type:'TOGGLE',index:index})
