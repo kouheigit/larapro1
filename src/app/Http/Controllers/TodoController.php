@@ -14,7 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        return Todo::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = Todo::creat([
+            'text'=>$request->input('text'),
+            'done'=>false,
+        ]);
+        return response->json($todo);
     }
 
     /**
