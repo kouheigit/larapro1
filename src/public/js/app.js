@@ -4767,7 +4767,7 @@ function Todo() {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-      children: "API\u30C6\u30B9\u30C8"
+      children: "API\u2716\uFE0FLaravel\u63D0\u643A"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       type: "text",
       value: input,
@@ -4871,46 +4871,113 @@ function useTodo() {
     _useState2 = _slicedToArray(_useState, 2),
     input = _useState2[0],
     setInput = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetch('http://localhost:8000/api/todos').then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      data.forEach(function (item) {
+        dispatch({
+          type: 'ADD',
+          id: item.id,
+          text: item.text,
+          done: item.done
+        });
+      });
+    })["catch"](function (err) {
+      return console.error('GET /api/todos 失敗:', err);
+    });
+  }, []);
+  /*【PHPに換算すると】
+  　$response = Http::get('http://localhost:8000/api/todos');← fetch('http://localhost:8000/api/todos')
+  　$data = $response->json(); //　← .then(res => res.json())
+  handleData($data); // ← 関数呼び出しの部分がここになるthen(data => { ... })
+  function handleData($data) {　　　
+  　　foreach ($data as $item) {
+      　// dispatch 相当の処理
+   　　 　　  echo "ID: {$item['id']} - Text: {$item['text']} - Done: {$item['done']}\n";
+  　　}
+  }
+    ↑(関数の部分に当たる)
+     data.forEach(item => {
+                  dispatch({ type: 'ADD', id: item.id, text: item.text, done: item.done });
+              });
+   */
 
   //addTodo
   var addTodo = function addTodo() {
-    if (input.trim() === "") {
-      return;
-    }
-    dispatch({
-      type: 'ADD',
-      text: input
+    if (input.trim() === '') return;
+    fetch('http://localhost:8000/api/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        text: input
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function (newTodo) {
+      dispatch({
+        type: 'ADD',
+        id: newTodo.id,
+        text: newTodo.text,
+        done: newTodo.done
+      });
+      setInput('');
+    })["catch"](function (err) {
+      return console.error('POST /api/todos 失敗:', err);
     });
-    setInput('');
   };
-  //deleteTodo
-  var deleteTodo = function deleteTodo(deleteindex) {
-    dispatch({
-      type: 'DELETE',
-      index: deleteindex
+
+  //ここから下のdeleteTodoから下はまだ未修正
+
+  var deleteTodo = function deleteTodo(id) {
+    fetch("http://localhost:8000/api/todos/".concat(id), {
+      method: 'DELETE'
+    }).then(function () {
+      dispatch({
+        type: 'DELETE',
+        id: id
+      });
+    })["catch"](function (err) {
+      return console.error('DELETE /api/todos 失敗:', err);
     });
   };
-  //toggleCheck
-  var toggleCheck = function toggleCheck(index) {
-    dispatch({
-      type: 'TOGGLE',
-      index: index
+  var toggleCheck = function toggleCheck(id, currentDone) {
+    fetch("http://localhost:8000/api/todos/".concat(id), {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        done: !currentDone
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function () {
+      dispatch({
+        type: 'TOGGLE',
+        id: id
+      });
+    })["catch"](function (err) {
+      return console.error('PATCH /api/todos 失敗:', err);
     });
   };
   function todoReducer(state, action) {
     switch (action.type) {
       case 'ADD':
         return [].concat(_toConsumableArray(state), [{
+          id: action.id,
           text: action.text,
           done: false
         }]);
       case 'DELETE':
-        return state.filter(function (_, index) {
-          return index !== action.index;
+        return state.filter(function (todo) {
+          return todo.id !== action.id;
         });
       case 'TOGGLE':
-        return state.map(function (todo, i) {
-          if (i === action.index) {
+        return state.map(function (todo) {
+          if (todo.id === action.id) {
             return _objectSpread(_objectSpread({}, todo), {}, {
               done: !todo.done
             });

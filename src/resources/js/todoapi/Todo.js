@@ -17,7 +17,7 @@ function Todo() {
 
     return(
         <div>
-            <h1>APIテスト</h1>
+            <h1>API✖️Laravel提携</h1>
             <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
             <button onClick={addTodo}>追加する</button>
             <button onClick={()=>setFilter('all')}>すべて</button>
