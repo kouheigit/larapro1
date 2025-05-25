@@ -54,19 +54,28 @@ export function useTodo(){
 
     //ここから下のdeleteTodoから下はまだ未修正
 
-    const deleteTodo = (deleteindex)=>{
+    const deleteTodo = (id)=>{
         fetch('http://localhost:8000/api/todos/${id}',{
             method:'DELETE'
         })
             .then(()=>{
-                dispatch({ type:'DELETE',index:deleteindex })
+                dispatch({ type:'DELETE',id })
             })
             .catch(err => console.error('DELETE /api/todos 失敗:', err));
     };
-    //toggleCheck
-    const toggleCheck = (index) =>{
-        dispatch({type:'TOGGLE',index:index})
-    }
+    const toggleCheck = (id,currentDone)=>{
+        fetch(`http://localhost:8000/api/todos/${id}`,{
+            method:'PATCH',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({done:!currentDone})
+        })
+            .then(res=>res.json())
+            .then(()=>{
+                dispatch({type:'TOGGLE',id});
+            })
+            .catch(err=>console.error('PATCH /api/todos 失敗:', err))
+    };
+    
     function todoReducer(state,action){
         switch(action.type){
             case'ADD':
