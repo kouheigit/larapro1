@@ -79,12 +79,12 @@ export function useTodo(){
     function todoReducer(state,action){
         switch(action.type){
             case'ADD':
-                return([...state,{text:action.text,done:false}]);
+                return([...state,{id:action.id,text:action.text,done:false}]);
             case'DELETE':
-                return(state.filter((_,index)=>index!==action.index));
+                return state.filter(todo=>todo.id !== action.id);
             case'TOGGLE':
-                return state.map((todo,i)=>{
-                    if(i === action.index){
+                return state.map((todo)=>{
+                    if(todo.id === action.id){
                         return {...todo,done: !todo.done};
                     }else{
                         return todo;
