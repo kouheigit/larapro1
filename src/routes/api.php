@@ -24,12 +24,11 @@ Route::group(['middleware' => 'api'], function () {
     Route::match(['post', 'get'], 'Reactapi', [ReactapiController::class, 'insert']);
 });
 
-
-
-/*
- * Route::get('/todos', [TodoController::class, 'index']);
+Route::get('/todos',[TodoController::class,'index']);
 Route::post('/todos', [TodoController::class, 'store']);
 Route::delete('/todos/{id}', [TodoController::class, 'destroy']);
 Route::patch('/todos/{id}', [TodoController::class, 'update']);
- */
+
+
+
 
