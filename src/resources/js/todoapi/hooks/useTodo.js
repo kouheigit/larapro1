@@ -55,7 +55,7 @@ export function useTodo(){
     //ここから下のdeleteTodoから下はまだ未修正
 
     const deleteTodo = (id)=>{
-        fetch('http://localhost:8000/api/todos/${id}',{
+        fetch(`http://localhost:8000/api/todos/${id}`,{
             method:'DELETE'
         })
             .then(()=>{
@@ -75,7 +75,7 @@ export function useTodo(){
             })
             .catch(err=>console.error('PATCH /api/todos 失敗:', err))
     };
-    
+
     function todoReducer(state,action){
         switch(action.type){
             case'ADD':
