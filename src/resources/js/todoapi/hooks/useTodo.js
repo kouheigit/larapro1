@@ -52,8 +52,7 @@ export function useTodo(){
     };
 
 
-    //ここから下のdeleteTodoから下はまだ未修正
-
+    //deleteTodo
     const deleteTodo = (id)=>{
         fetch(`http://localhost:8000/api/todos/${id}`,{
             method:'DELETE'
