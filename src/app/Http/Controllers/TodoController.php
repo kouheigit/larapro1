@@ -35,11 +35,11 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo = Todo::creat([
+        $todo = Todo::create([
             'text'=>$request->input('text'),
             'done'=>false,
         ]);
-        return response->json($todo);
+        return response()->json($todo);
     }
 
     /**
