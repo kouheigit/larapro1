@@ -4929,8 +4929,7 @@ function useTodo() {
     });
   };
 
-  //ここから下のdeleteTodoから下はまだ未修正
-
+  //deleteTodo
   var deleteTodo = function deleteTodo(id) {
     fetch("http://localhost:8000/api/todos/".concat(id), {
       method: 'DELETE'
