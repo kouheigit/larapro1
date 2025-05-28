@@ -5,7 +5,7 @@ export function useTodo(){
     const [input, setInput] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/todos')
+        fetch('http://localhost:8888/api/todos')
             .then(res => res.json())
             .then(data => {
                 data.forEach(item => {
@@ -36,7 +36,7 @@ export function useTodo(){
     const addTodo = () => {
         if (input.trim() === '') return;
 
-        fetch('http://localhost:8000/api/todos', {
+        fetch('http://localhost:8888/api/todos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export function useTodo(){
 
     //deleteTodo
     const deleteTodo = (id)=>{
-        fetch(`http://localhost:8000/api/todos/${id}`,{
+        fetch(`http://localhost:8888/api/todos/${id}`,{
             method:'DELETE'
         })
             .then(()=>{
@@ -63,7 +63,7 @@ export function useTodo(){
             .catch(err => console.error('DELETE /api/todos 失敗:', err));
     };
     const toggleCheck = (id,currentDone)=>{
-        fetch(`http://localhost:8000/api/todos/${id}`,{
+        fetch(`http://localhost:8888/api/todos/${id}`,{
             method:'PATCH',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({done:!currentDone})
