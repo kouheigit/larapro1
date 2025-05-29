@@ -45,7 +45,12 @@ export function useTodo(){
         })
             .then(res => res.json())
             .then(newTodo => {
-                dispatch({ type: 'ADD', id: newTodo.id, text: newTodo.text, done: newTodo.done });
+                dispatch({
+                    type: 'ADD',
+                    id: newTodo.id,
+                    text: newTodo.text,
+                    done: newTodo.done
+                });
                 setInput('');
             })
             .catch(err => console.error('POST /api/todos 失敗:', err));
@@ -78,7 +83,7 @@ export function useTodo(){
     function todoReducer(state,action){
         switch(action.type){
             case'ADD':
-                return([...state,{id:action.id,text:action.text,done:false}]);
+                return([...state,{id:action.id,text:action.text,done:action.done ?? false}]);
             case'DELETE':
                 return state.filter(todo=>todo.id !== action.id);
             case'TOGGLE':
