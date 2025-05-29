@@ -71,10 +71,9 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $id)
+    public function update(Request $request, $id)
     {
         $todo = Todo::findOrFail($id);
-        //todos テーブルから $id に一致するレコードを探す。もし存在しなければ、自動的に404 Not Foundエラーを返す
         $todo->done = $request->input('done');
         $todo->save();
 
