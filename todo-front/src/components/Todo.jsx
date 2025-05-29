@@ -25,17 +25,17 @@ function Todo() {
             <p>入力された文字{input}</p>
             {/*<ul>をつけないとチェックボックスが正しく作動しない*/}
             <ul>
-            {filterTodo.map((todos,index)=> {
+            {filterTodo.map((todos)=> {
                 //追加した
                 const originalIndex = todo.indexOf(todos);
                 //returnをもうひとつ追加した
                 return (
                     <div>
-                        <li key={index}>
-                            <input type="checkbox" checked={todos.done} onChange={() => toggleCheck(originalIndex)}/>
+                        <li key={todos.id}>
+                            <input type="checkbox" checked={todos.done} onChange={() => toggleCheck(todos.id,todos.done)}/>
                             <span style={{textDecoration: todos.done ? 'line-through' : 'none'}}>
                                 <p>{todos.text}</p></span>
-                            <button onClick={() => deleteTodo(originalIndex)}>削除する</button>
+                            <button onClick={() => deleteTodo(todos.id)}>削除する</button>
                         </li>
                     </div>
                 );
