@@ -14,6 +14,7 @@ export function useTodo(){
             })
             .catch(err => console.error('GET /api/todos 失敗:', err));
     }, []);
+
     /*【PHPに換算すると】
     　$response = Http::get('http://localhost:8000/api/todos');← fetch('http://localhost:8000/api/todos')
     　$data = $response->json(); //　← .then(res => res.json())
