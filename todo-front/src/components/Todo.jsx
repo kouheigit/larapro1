@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react';
+import React,{ useState,useEffect,useMemo } from 'react';
 import { useTodo } from '../hooks/useTodo';
 import TodoItem from './TodoItem';
 
@@ -10,7 +10,7 @@ function Todo() {
     const [filter,setFilter] = useState('all');
 
     const filterTodo = useMemo(() => {
-        todo.filter((todos)=>{
+        return todo.filter((todos)=>{
             if(filter === 'done') return todos.done;
             if(filter === 'undone') return !todos.done;
             return true;
@@ -28,17 +28,20 @@ function Todo() {
             {/*<ul>をつけないとチェックボックスが正しく作動しない*/}
             <ul>
             {filterTodo.map((item)=> {
-                <TodoItem
-                    key={item.key}
-                    id={item.id}
-                    text={item.text}
-                    done={item.done}
-                    onToggle={toggleCheck}
-                    onDelete={deleteTodo}
-                />
+                return (
+                    <TodoItem
+                        key={item.id}
+                        id={item.id}
+                        text={item.text}
+                        done={item.done}
+                        onToggle={toggleCheck}
+                        onDelete={deleteTodo}
+                    />
+                );
             })}
             </ul>
         </div>
     );
 }
+export default Todo;
 
