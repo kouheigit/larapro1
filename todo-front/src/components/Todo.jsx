@@ -7,7 +7,7 @@ function Todo() {
     //state一覧
     const { todo,setTodo,input,setInput, addTodo, deleteTodo, toggleCheck } = useTodo();
     const [filter,setFilter] = useState('all');
-    
+
     const filterTodo = useMemo(() => {
         todo.filter((todos)=>{
             if(filter === 'done') return todos.done;
