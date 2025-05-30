@@ -1,5 +1,6 @@
 import React,{ useState,useEffect } from 'react';
 import { useTodo } from '../hooks/useTodo';
+import TodoItem from './TodoItem';
 
 
 
@@ -26,20 +27,15 @@ function Todo() {
             <p>入力された文字{input}</p>
             {/*<ul>をつけないとチェックボックスが正しく作動しない*/}
             <ul>
-            {filterTodo.map((todos)=> {
-                //追加した
-                const originalIndex = todo.indexOf(todos);
-                //returnをもうひとつ追加した
-                return (
-                    <div>
-                        <li key={todos.id}>
-                            <input type="checkbox" checked={todos.done} onChange={() => toggleCheck(todos.id,todos.done)}/>
-                            <span style={{textDecoration: todos.done ? 'line-through' : 'none'}}>
-                                <p>{todos.text}</p></span>
-                            <button onClick={() => deleteTodo(todos.id)}>削除する</button>
-                        </li>
-                    </div>
-                );
+            {filterTodo.map((item)=> {
+                <TodoItem
+                    key={item.key}
+                    id={item.id}
+                    text={item.text}
+                    done={item.done}
+                    onToggle={toggleCheck}
+                    onDelete={deleteTodo}
+                />
             })}
             </ul>
         </div>
