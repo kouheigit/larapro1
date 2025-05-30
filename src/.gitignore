@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
+/src/todo-front_copy
 /vendor
 .env
 .env.backup

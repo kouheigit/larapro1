@@ -1998,7 +1998,7 @@ function merge(/* obj1, obj2, obj3, ... */) {
  * Extends object a by mutably adding to it the properties of object b.
  *
  * @param {Object} a The object to be extended
- * @param {Object} b The object to copy properties from
+ * @param {Object} b The object to todo-front_copy properties from
  * @param {Object} thisArg The object to bind function to
  * @return {Object} The resulting value of object a
  */
@@ -10585,7 +10585,7 @@ var version = "3.7.1",
 
 	rhtmlSuffix = /HTML$/i,
 
-	// Define a local copy of jQuery
+	// Define a local todo-front_copy of jQuery
 	jQuery = function( selector, context ) {
 
 		// The jQuery object is actually just the init constructor 'enhanced'
@@ -10693,7 +10693,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 		length = arguments.length,
 		deep = false;
 
-	// Handle a deep copy situation
+	// Handle a deep todo-front_copy situation
 	if ( typeof target === "boolean" ) {
 		deep = target;
 
@@ -10702,7 +10702,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 		i++;
 	}
 
-	// Handle case when target is a string or something (possible in deep copy)
+	// Handle case when target is a string or something (possible in deep todo-front_copy)
 	if ( typeof target !== "object" && !isFunction( target ) ) {
 		target = {};
 	}
@@ -10760,7 +10760,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 jQuery.extend( {
 
-	// Unique for each copy of jQuery on the page
+	// Unique for each todo-front_copy of jQuery on the page
 	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
 
 	// Assume jQuery is ready without the ready module
@@ -18076,7 +18076,7 @@ jQuery.fn.extend( {
 			optall = jQuery.speed( speed, easing, callback ),
 			doAnimation = function() {
 
-				// Operate on a copy of prop so per-property easing won't be lost
+				// Operate on a todo-front_copy of prop so per-property easing won't be lost
 				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
 
 				// Empty animations, or finishing resolves immediately
@@ -19454,7 +19454,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 	var conv2, current, conv, tmp, prev,
 		converters = {},
 
-		// Work with a copy of dataTypes in case we need to modify it for conversion
+		// Work with a todo-front_copy of dataTypes in case we need to modify it for conversion
 		dataTypes = s.dataTypes.slice();
 
 	// Create converters map with lowercased keys
@@ -25956,8 +25956,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * Copies the values of `source` to `array`.
      *
      * @private
-     * @param {Array} source The array to copy values from.
-     * @param {Array} [array=[]] The array to copy values to.
+     * @param {Array} source The array to todo-front_copy values from.
+     * @param {Array} [array=[]] The array to todo-front_copy values to.
      * @returns {Array} Returns `array`.
      */
     function copyArray(source, array) {
@@ -25975,9 +25975,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * Copies properties of `source` to `object`.
      *
      * @private
-     * @param {Object} source The object to copy properties from.
-     * @param {Array} props The property identifiers to copy.
-     * @param {Object} [object={}] The object to copy properties to.
+     * @param {Object} source The object to todo-front_copy properties from.
+     * @param {Array} props The property identifiers to todo-front_copy.
+     * @param {Object} [object={}] The object to todo-front_copy properties to.
      * @param {Function} [customizer] The function to customize copied values.
      * @returns {Object} Returns `object`.
      */
@@ -26011,8 +26011,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * Copies own symbols of `source` to `object`.
      *
      * @private
-     * @param {Object} source The object to copy symbols from.
-     * @param {Object} [object={}] The object to copy symbols to.
+     * @param {Object} source The object to todo-front_copy symbols from.
+     * @param {Object} [object={}] The object to todo-front_copy symbols to.
      * @returns {Object} Returns `object`.
      */
     function copySymbols(source, object) {
@@ -26023,8 +26023,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * Copies own and inherited symbols of `source` to `object`.
      *
      * @private
-     * @param {Object} source The object to copy symbols from.
-     * @param {Object} [object={}] The object to copy symbols to.
+     * @param {Object} source The object to todo-front_copy symbols from.
+     * @param {Object} [object={}] The object to todo-front_copy symbols to.
      * @returns {Object} Returns `object`.
      */
     function copySymbolsIn(source, object) {
@@ -38496,10 +38496,10 @@ __webpack_require__.r(__webpack_exports__);
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * Permission is hereby granted, free of charge, to any person obtaining a todo-front_copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * to use, todo-front_copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
@@ -42715,7 +42715,7 @@ var possibleRegistrationNames =  {} ; // Trust the developer to only use possibl
 function injectEventPluginOrder(injectedEventPluginOrder) {
   if (!!eventPluginOrder) {
     {
-      throw Error( "EventPluginRegistry: Cannot inject event plugin ordering more than once. You are likely trying to load more than one copy of React." );
+      throw Error( "EventPluginRegistry: Cannot inject event plugin ordering more than once. You are likely trying to load more than one todo-front_copy of React." );
     }
   } // Clone the ordering so it cannot be dynamically mutated.
 
@@ -50784,7 +50784,7 @@ var hasSpaceKeypress = false;
 /**
  * Return whether a native keypress event is assumed to be a command.
  * This is required because Firefox fires `keypress` events for key commands
- * (cut, copy, select-all, etc.) even though no character is inserted.
+ * (cut, todo-front_copy, select-all, etc.) even though no character is inserted.
  */
 
 function isKeypressCommand(nativeEvent) {
@@ -54689,7 +54689,7 @@ var didWarnAboutInvalidateContextType;
     value: function () {
       {
         {
-          throw Error( "_processChildContext is not available in React 16+. This likely means you have multiple copies of React and are attempting to nest a React 15 tree inside a React 16 tree using unstable_renderSubtreeIntoContainer, which isn't supported. Try to make sure you have only one copy of React (and ideally, switch to ReactDOM.createPortal)." );
+          throw Error( "_processChildContext is not available in React 16+. This likely means you have multiple copies of React and are attempting to nest a React 15 tree inside a React 16 tree using unstable_renderSubtreeIntoContainer, which isn't supported. Try to make sure you have only one todo-front_copy of React (and ideally, switch to ReactDOM.createPortal)." );
         }
       }
     }
@@ -55925,7 +55925,7 @@ function ChildReconciler(shouldTrackSideEffects) {
     // forward-only mode and only go for the Map once we notice that we need
     // lots of look ahead. This doesn't handle reversal as well as two ended
     // search but that's unusual. Besides, for the two ended optimization to
-    // work on Iterables, we'd need to copy the whole set.
+    // work on Iterables, we'd need to todo-front_copy the whole set.
     // In this first iteration, we'll just live with hitting the bad case
     // (adding everything to a Map) in for every insert/move.
     // If you change this code, also update reconcileChildrenIterator() which
@@ -56828,7 +56828,7 @@ function warnOnHookMismatchInDev(currentHookName) {
 function throwInvalidHookError() {
   {
     {
-      throw Error( "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem." );
+      throw Error( "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one todo-front_copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem." );
     }
   }
 }
@@ -58870,7 +58870,7 @@ function reconcileChildren(current, workInProgress, nextChildren, renderExpirati
   } else {
     // If the current child is the same as the work in progress, it means that
     // we haven't yet started any work on these children. Therefore, we use
-    // the clone algorithm to create a copy of all the current children.
+    // the clone algorithm to create a todo-front_copy of all the current children.
     // If we had any progressed work already, that is invalid at this point so
     // let's throw it out.
     workInProgress.child = reconcileChildFibers(workInProgress, current.child, nextChildren, renderExpirationTime);
@@ -65278,7 +65278,7 @@ var beginWork$1;
     // If a component throws an error, we replay it again in a synchronously
     // dispatched event, so that the debugger will treat it as an uncaught
     // error See ReactErrorUtils for more information.
-    // Before entering the begin phase, copy the work-in-progress onto a dummy
+    // Before entering the begin phase, todo-front_copy the work-in-progress onto a dummy
     // fiber. If beginWork throws, we'll use this to reset the state.
     var originalWorkInProgressCopy = assignFiberPropertiesInDEV(dummyFiber, unitOfWork);
 
@@ -65835,7 +65835,7 @@ function createWorkInProgress(current, pendingProps) {
     workInProgress.lastEffect = null;
 
     {
-      // We intentionally reset, rather than copy, actualDuration & actualStartTime.
+      // We intentionally reset, rather than todo-front_copy, actualDuration & actualStartTime.
       // This prevents time from endlessly accumulating in new commits.
       // This has the downside of resetting values for different priority renders,
       // But works for yielding (the common case) and should support resuming.
@@ -66982,7 +66982,7 @@ function unmountComponentAtNode(container) {
       var renderedByDifferentReact = rootEl && !getInstanceFromNode$1(rootEl);
 
       if (renderedByDifferentReact) {
-        error("unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.');
+        error("unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another todo-front_copy of React.');
       }
     } // Unmount should not be batched.
 
@@ -71579,7 +71579,7 @@ function resolveDispatcher() {
 
   if (!(dispatcher !== null)) {
     {
-      throw Error( "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem." );
+      throw Error( "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one todo-front_copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem." );
     }
   }
 
@@ -73641,7 +73641,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -73655,20 +73655,20 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -73701,7 +73701,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -73713,7 +73713,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -73725,7 +73725,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -73737,12 +73737,12 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -73753,7 +73753,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -73762,11 +73762,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -73774,19 +73774,19 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -73811,20 +73811,20 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
+/******/
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/
 /******/ })()
 ;

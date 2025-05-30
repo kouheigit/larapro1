@@ -209,7 +209,7 @@ function createDOMPurify() {
   var KEEP_CONTENT = true;
 
   /* If a `Node` is passed to sanitize(), then performs sanitization in-place instead
-   * of importing it into a new Document and returning a sanitized copy */
+   * of importing it into a new Document and returning a sanitized todo-front_copy */
   var IN_PLACE = false;
 
   /* Allow usage of profiles like html, svg and mathMl */
