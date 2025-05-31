@@ -29,11 +29,10 @@ describe('TodoItem', () => {
     });
 
 
-    test('削除ボタンをクリックすると onDelete が呼ばれる', () => {
-        const deleteBtn = screen.getByText('削除する');
-        fireEvent.click(deleteBtn);
-        expect(mockDelete).toHaveBeenCalledWith(1);
+    test('削除ボタンをクリックするとonDelete が呼ばれる',()=>{
+       const deleteBtn = screen.getBytext('削除する');
+       fireEvent.click(deleteBtn);
+       expect(mockDelete).toHaveBeenCalledWith(1);
     });
-    
 
 });
