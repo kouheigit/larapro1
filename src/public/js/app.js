@@ -4153,7 +4153,7 @@ function TodoFrom() {
 
 /***/ "./resources/js/division/TodoItem.jsx":
 /*!********************************************!*\
-  !*** ./resources/js/division/TodoItem.jsx ***!
+  !*** ./resources/js/division/TodoItem.tsx ***!
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 

@@ -1,5 +1,5 @@
 import{ render, screen, fireEvent } from '@testing-library/react';
-import TodoItem from 　'../TodoItem';
+import TodoItem from '../TodoItem.js';
 import { describe, test, expect, vi } from 'vitest';
 
 describe('TodoItem', () => {

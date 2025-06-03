@@ -1,6 +1,6 @@
 import React,{ useState,useEffect,useMemo } from 'react';
 import { useTodo } from '../hooks/useTodo';
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem.js';
 
 
 
