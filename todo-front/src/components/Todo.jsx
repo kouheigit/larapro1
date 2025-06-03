@@ -1,5 +1,5 @@
 import React,{ useState,useEffect,useMemo } from 'react';
-import { useTodo } from '../hooks/useTodo.js';
+import { useTodo } from '../hooks/useTodo.ts';
 import TodoItem from './TodoItem.js';
 
 
