@@ -2,6 +2,7 @@ import React from 'react';
 
 type Props = {
     id:number;
+    //id:number
     text:string;
     done: boolean;
     onToggle: (id: number, done: boolean) => void;
