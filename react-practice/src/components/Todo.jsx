@@ -3,7 +3,7 @@ import React,{ useState } from 'react';
 
 function Todo(){
     const[todos,setTodos] =useState([]);
-    const[inputs,setInputs] =useState();
+    const[inputs,setInputs] =useState('');
 
     const addTodo = () => {
         if(inputs.trim()=='') return;
@@ -15,17 +15,16 @@ function Todo(){
 
     return(
         <div>
-            <li>
-                <input type="text" value={input} onChange={(e)=>setInputs(e.target.value)} placeholder="タスクを入力"/>
+            <ul>
+             <li>
+                <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder="タスクを入力"/>
                 <p>入力された値:{inputs}</p>
                 <button onClick={addTodo}>追加</button>
-                <ul>
-                    {todos.map((todo,index)=>{
+                    {todos.map((index,todo)=>{
                         <p>{todo.text}</p>
                     })}
-                </ul>
-
-            </li>
+             </li>
+            </ul>
         </div>
     );
 
