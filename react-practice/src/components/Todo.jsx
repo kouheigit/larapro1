@@ -11,7 +11,7 @@ function Todo(){
         setInputs('');
     };
 
- 
+
 
     return(
         <div>
@@ -19,6 +19,12 @@ function Todo(){
                 <input type="text" value={input} onChange={(e)=>setInputs(e.target.value)}/>
                 <p>入力された値:{inputs}</p>
                 <button onClick={addTodo}>追加</button>
+                <ul>
+                    {todos.map((todo,index)=>{
+                        <p>{todo.text}</p>
+                    })}
+                </ul>
+
             </li>
         </div>
     );
