@@ -17,11 +17,11 @@ function Todo(){
     }
     const filterTodos = useMemo(()=> {
         todos.filter((todo)=>{
-            if(filter==='done')return todo.done;
-            if(filter==='undone')return !todo.done;
+            if(filter==='done') return todo.done;
+            if(filter==='undone') return !todo.done;
             return true;
-        })
-    },[todos,filter])
+        });
+    },[todos,filter]);
 
     /*
 
@@ -61,7 +61,7 @@ function Todo(){
                             <li key="index">
                                 <input type="checkbox" checked={todo.done} onChange={()=>setToggle(index)} />
                                 <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
-                                    <p>{todo.text}</p>
+                                    {todo.text}
                                 </span>
                                 <button onClick={()=>deleteTodo(index)}>削除</button>
                             </li>
