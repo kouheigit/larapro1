@@ -38,6 +38,7 @@ function Todo(){
                     {todos.map((todo,index)=>{
                         return(
                             <li key="index">
+                                    <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                                 <p>{todo.text}</p>
                                 <button onClick={()=>deleteTodo(index)}>削除</button>
                             </li>
