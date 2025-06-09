@@ -15,7 +15,13 @@ function Todo(){
     }
     const setToggle = (index) =>{
         setTodos(
-          todos()
+          todos.map((todo,i)=>{
+              if(i === index){
+                  return{...todo,done:!todo.done}
+              }else{
+                  return todo;
+              }
+          })
         );
     };
 
