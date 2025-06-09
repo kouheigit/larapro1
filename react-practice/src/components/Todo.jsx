@@ -10,6 +10,14 @@ function Todo(){
         setTodos([...todos,{ text: inputs, done:false }]);
         setInputs('');
     };
+    const deleteTodo = (deleteindex) =>{
+        setTodos(todos.filter((_,index)=>!index == deleteindex));
+        /*
+        const filter_include_a = members.filter((output, index) => {
+        return output.includes("a");
+});
+         */
+    }
 
 
 
@@ -24,6 +32,7 @@ function Todo(){
                         return(
                             <li key="index">
                                 <p>{todo.text}</p>
+                                <button onClick={()=>deleteTodo(index)}>削除</button>
                             </li>
                         );
                     })}
