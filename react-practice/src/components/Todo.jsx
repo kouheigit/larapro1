@@ -38,8 +38,7 @@ function Todo(){
                     {todos.map((todo,index)=>{
                         return(
                             <li key="index">
-                                
-                                <input type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)} />
+                                <input type="checkbox" checked={todo.done} onChange={()=>setToggle(index)} />
                                 <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                                     <p>{todo.text}</p>
                                 </span>
