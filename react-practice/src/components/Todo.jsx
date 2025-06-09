@@ -6,12 +6,12 @@ function Todo(){
     const[inputs,setInputs] =useState('');
 
     const addTodo = () => {
-        if(inputs.trim()=='') return;
+        if(inputs.trim()==='') return;
         setTodos([...todos,{ text: inputs, done:false }]);
         setInputs('');
     };
-    const deleteTodo = (deleteindex) =>{
-        setTodos(todos.filter((_,index)=>!index == deleteindex));
+    const deleteTodo = (deleteIndex) =>{
+        setTodos(todos.filter((_, index) => index !== deleteIndex));
     }
     const setToggle = (index) =>{
         setTodos(
