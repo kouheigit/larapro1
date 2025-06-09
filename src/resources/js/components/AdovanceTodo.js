@@ -18,6 +18,8 @@ function AdvanceTodo(){
     const deleteTodo = (deleteIndex) => {
         setTodos(todos.filter((_, index) => index !== deleteIndex));
     };
+
+
     const toggleCheck = (index) => {
         setTodos(
             todos.map((todo, i) => {
