@@ -1,5 +1,5 @@
 import ReactDOM from'react-dom';
-import React,{ useState } from 'react';
+import React,{ useState,useMemo } from 'react';
 
 function Todo(){
     const[todos,setTodos] =useState([]);
@@ -16,7 +16,7 @@ function Todo(){
         setTodos(todos.filter((_, index) => index !== deleteIndex));
     }
     const filterTodos = useMemo(()=> {
-        todos.filter((todo)=>{
+        return todos.filter((todo)=>{
             if(filter==='done') return todo.done;
             if(filter==='undone') return !todo.done;
             return true;
