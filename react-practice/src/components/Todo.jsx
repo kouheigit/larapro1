@@ -12,12 +12,13 @@ function Todo(){
     };
     const deleteTodo = (deleteindex) =>{
         setTodos(todos.filter((_,index)=>!index == deleteindex));
-        /*
-        const filter_include_a = members.filter((output, index) => {
-        return output.includes("a");
-});
-         */
     }
+    const setToggle = (index) =>{
+        setTodos(
+          todos()
+        );
+    };
+
 
 
 
