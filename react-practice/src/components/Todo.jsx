@@ -15,11 +15,12 @@ function Todo(){
     const deleteTodo = (deleteIndex) =>{
         setTodos(todos.filter((_, index) => index !== deleteIndex));
     }
+    /*
     const filterTodos = todos.filter((todo)=>{
         if(filter==='done') return todo.done;
         if(filter==='undone') return !todo.done;
         return true;
-    })
+    })*/
 
     const setToggle = (index) =>{
         setTodos(
