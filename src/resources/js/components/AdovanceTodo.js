@@ -48,7 +48,7 @@ function AdvanceTodo(){
             <button onClick={addTodo}>追加</button>
             {todos.map((todo, index) => (
                 <li key={index}>
-                    <input type="checkbox" checked={todo.done} onChange={() =>toggleCheck(index)} />
+                    <input type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)} />
                     <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                     {/* <input type="checkbox" checked={checks} onChange={handleChange} />*/}
                     {/*<input type="checkbox" checked={checks} onChange={(e)=> setCheck(e.target.checked)}/>*/}
