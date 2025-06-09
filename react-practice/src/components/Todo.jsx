@@ -45,7 +45,7 @@ function Todo(){
                 <button onClick={addTodo}>追加</button>
                 <button onClick={()=>setFilter('all')}>すべて</button>
                 <button onClick={()=>setFilter('done')}>完了</button>
-                <button onClick{()=>setFilter('undone')}>未完了</button>
+                <button onClick={()=>setFilter('undone')}>未完了</button>
                     {filterTodos.map((todo,index)=>{
                         return(
                             <li key="index">
