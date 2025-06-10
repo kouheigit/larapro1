@@ -8,7 +8,11 @@ function MemoTest(){
         { id:2,text:'勉強',done:true },
         { id:3,text:'運動',done:false}
     ]);
-
+    const filteredTodos = todos.filter((todo)=>{
+        if(filter ==='done') return todo.done;
+        if(filter==='undone') return !todo.done;
+        return true;
+    })
     /*
     const filteredTodos = todos.filter((todo) => {
         if (filter === 'done') return todo.done;
