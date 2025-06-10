@@ -7,16 +7,16 @@ function MemoTest(){
         { id:1,text:'買い物',done:false },
         { id:2,text:'勉強',done:true },
         { id:3,text:'運動',done:false}
+
     ]);
-    return (
-        <div>
-            <ul>
-                {todos.map((todo) => (
-                    <li key={todo.id}>{todo.text}</li>
-                ))}
-            </ul>
-        </div>
-    );
+   return(
+       <div>
+           <ul>{todos.map((todo)=>(
+               <li key={todo.id}>{todo.text}</li>
+           ))}
+           </ul>
+       </div>
+   );
 }
 export default MemoTest;
 /*
