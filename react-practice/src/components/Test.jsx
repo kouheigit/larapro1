@@ -18,6 +18,9 @@ function Test(){
             <input ref={inputRef} type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}placeholder="タスクを入力"/>
             <button onClick={addTodo}>追加</button>
             <p>{inputs}</p>
+            <button onClick={() => inputRef.current.focus()}>
+                フォーカスを当てる
+            </button>
             <h1>Test.JSX View Test</h1>
         </div>
     );
