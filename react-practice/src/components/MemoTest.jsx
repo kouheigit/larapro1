@@ -1,5 +1,6 @@
 import React,{ useState }  from'react';
 
+
 function MemoTest(){
     const[filter,setFilter] = useState('all');
     const[todos,setTodos] =useState([
@@ -15,7 +16,7 @@ function MemoTest(){
         </div>
     );
 }
-
+export default MemoTest;
 /*
 import React, { useState } from 'react';
 
