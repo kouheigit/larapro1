@@ -7,9 +7,9 @@ function Test(){
 
     const addTodo = () =>{
         if(inputs.trim()==='')return;
-        inputRef.current.focus()
-        setTodos(...todos,{text:inputs,done:false});
+        setTodos([...todos,{text:inputs,done:false}]);
         setInputs('');
+        inputRef.current.focus();
     }
 
 
