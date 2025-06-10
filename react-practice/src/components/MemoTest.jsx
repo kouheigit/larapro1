@@ -6,7 +6,7 @@ function MemoTest(){
         { id:1,text:'買い物',done:false },
         { id:2,text:'勉強',done:true },
         { id:3,text:'運動',done:false}
-    ])
+    ]);
 }
 
 /*
