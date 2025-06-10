@@ -7,6 +7,13 @@ function MemoTest(){
         { id:2,text:'勉強',done:true },
         { id:3,text:'運動',done:false}
     ]);
+    return(
+        <div>
+            {todos.map((todo)=>{
+                <li key={todo.index}>{todo.text}</li>
+            })}
+        </div>
+    );
 }
 
 /*
