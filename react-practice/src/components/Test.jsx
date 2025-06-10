@@ -13,7 +13,8 @@ function Test(){
 
     return(
         <div>
-            
+            <button onClick={addTodo}>追加</button>
+            <p>{inputs}</p>
             <h1>Test.JSX View Test</h1>
         </div>
     );
