@@ -8,11 +8,13 @@ function MemoTest(){
         { id:2,text:'勉強',done:true },
         { id:3,text:'運動',done:false}
     ]);
-    return(
+    return (
         <div>
-            {todos.map((todo)=>{
-                <li key={todo.index}>{todo.text}</li>
-            })}
+            <ul>
+                {todos.map((todo) => (
+                    <li key={todo.id}>{todo.text}</li>
+                ))}
+            </ul>
         </div>
     );
 }
