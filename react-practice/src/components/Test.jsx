@@ -4,6 +4,10 @@ function Test(){
     const[todos,setTodos] = useState([]);
     const[inputs,setInputs] = useState('');
     const inputRef = useRef(null);
+
+    useEffect(()=>{
+        
+    },[])
     /*
       //ローカルストレージを出力している
     useEffect(() =>{
