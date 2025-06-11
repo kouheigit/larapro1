@@ -6,7 +6,7 @@ function Test(){
     const inputRef = useRef(null);
 
     useEffect(()=>{
-        const stored = localStorage.getItem(todos);
+        const stored = localStorage.getItem('todos');
         if(stored){
             setTodos(JSON.parse(stored));
         }
