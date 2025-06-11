@@ -9,7 +9,7 @@ function MemoTest(){
         { id:3,text:'運動',done:false}
     ]);
     const filteredTodos = useMemo(()=> {
-        todos.filter((todo) => {
+        return todos.filter((todo) => {
             if (filter === 'done') return todo.done;
             if (filter === 'undone') return !todo.done;
             return true;
