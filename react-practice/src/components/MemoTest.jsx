@@ -8,6 +8,8 @@ function MemoTest(){
         { id:2,text:'勉強',done:true },
         { id:3,text:'運動',done:false}
     ]);
+
+
     const filteredTodos = useMemo(()=> {
         return todos.filter((todo) => {
             if (filter === 'done') return todo.done;
