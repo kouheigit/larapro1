@@ -1,5 +1,5 @@
 import ReactDOM from'react-dom';
-import React,{ useState,useRef } from 'react';
+import React,{ useState,useRef,useEffect } from 'react';
 function Test(){
     const[todos,setTodos] = useState([]);
     const[inputs,setInputs] = useState('');
@@ -14,7 +14,7 @@ function Test(){
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
-    
+
 
     const addTodo = () =>{
         if(inputs.trim()==='')return;
