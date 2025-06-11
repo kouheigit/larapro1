@@ -6,23 +6,15 @@ function Test(){
     const inputRef = useRef(null);
 
     useEffect(()=>{
-        
-    },[])
-    /*
-      //ローカルストレージを出力している
-    useEffect(() =>{
-        const stored = localStorage.getItem('todos');
+        const stored = localStorage.getItem(todos);
         if(stored){
             setTodos(JSON.parse(stored));
         }
-
     },[])
-
-    //ストレージに保存する処理
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
-     */
+    
 
     const addTodo = () =>{
         if(inputs.trim()==='')return;
