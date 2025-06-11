@@ -11,6 +11,7 @@ function Test(){
             setTodos(JSON.parse(stored));
         }
     },[])
+
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todos));
     },[todos])
@@ -32,7 +33,11 @@ function Test(){
             <button onClick={() => inputRef.current.focus()}>
                 フォーカスを当てる
             </button>
-            <h1>Test.JSX View Test</h1>
+            {todos.map((todo,index)=>(
+                <li key="index">
+                    {todo.text}
+                </li>
+            ))}
         </div>
     );
 }
