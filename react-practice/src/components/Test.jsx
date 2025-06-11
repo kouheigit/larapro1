@@ -34,7 +34,7 @@ function Test(){
                 フォーカスを当てる
             </button>
             {todos.map((todo,index)=>(
-                <li key="index">
+                <li key={index}>
                     {todo.text}
                 </li>
             ))}
