@@ -21,6 +21,7 @@ function Test(){
         if(inputs.trim()==='')return;
         setTodos([...todos,{text:inputs,done:false}]);
         setInputs('');
+        /*test*/
         inputRef.current.focus();
     }
 
