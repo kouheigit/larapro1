@@ -24,7 +24,12 @@ function Test(){
         /*test*/
         inputRef.current.focus();
     }
+    return(
+        <Test
+            
+        />
 
+    );
 /*
     return(
         <div>
