@@ -2,6 +2,7 @@ import { useState,useRef,useEffect } from 'react';
 import Todo from './components/Todo';
 import Test from "./components/Test";
 import MemoTest from "./components/MemoTest";
+import Test1 from "./components/Test1";
 
 
 
@@ -36,6 +37,13 @@ function App() {
         <MemoTest/>
         <Todo/>
         <Test/>
+        <Test1
+            inputs={inputs}
+            setInputs={setInputs}
+            todos={todos}
+            inputRef={inputRef}
+            addTodo={addTodo}
+        />
     </div>
   );
 }
