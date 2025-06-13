@@ -25,7 +25,7 @@ function Test(){
         inputRef.current.focus();
     }
 
-
+/*
     return(
         <div>
             <input ref={inputRef} type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}placeholder="タスクを入力"/>
@@ -40,6 +40,6 @@ function Test(){
                 </li>
             ))}
         </div>
-    );
+    );*/
 }
 export default Test;
