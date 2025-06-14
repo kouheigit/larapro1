@@ -12,8 +12,8 @@ function Count(){
     return(
         <div>
             <p>{count}</p>
-            <button onClick={addClick}></button>
-            <button onClick={subtractClick}></button>
+            <button onClick={addClick}>➕</button>
+            <button onClick={subtractClick}>➖</button>
             <h1>Count処理</h1>
         </div>
     );
