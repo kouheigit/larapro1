@@ -5,8 +5,6 @@ import MemoTest from "./components/MemoTest";
 import Test1 from "./components/Test1";
 
 
-
-
 function App() {
     const[todos,setTodos] = useState([]);
     const[inputs,setInputs] = useState('');
