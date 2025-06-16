@@ -15,7 +15,9 @@ function Todo(){
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
             <button onClick={addTodo}></button>
-            
+            {todo.map((todos,index)=>{
+                {todos.text}
+            })}
         </div>
     );
 }
