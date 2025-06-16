@@ -13,7 +13,7 @@ function Todo(){
     const doneTodos = todos.filter((todo) => todo.done === true);
 
     const deleteTodo = (deleteIndex) =>{
-        todos.filter((_,index) => index !== deleteIndex));
+        setTodos(todos.filter((_,index)=>index!==deleteIndex));
     }
 
 
