@@ -1,6 +1,6 @@
 import Todo from "../components/Todo";
 
-function HelloPage(){
+function TodoPage(){
     return(
         <div>
             <Todo />

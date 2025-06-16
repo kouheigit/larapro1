@@ -9,13 +9,13 @@ function App() {
   return (
         <BrowserRouter>
             <nav>
-                <Link to="/hello">課題1Hello</Link> | <Link to="/count">課題2Count</Link>
+                <Link to="/hello">課題1Hello</Link> | <Link to="/count">課題2Count</Link>| <Link to="/todo">課題3Todo</Link>
             </nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
                 <Route path="/count" element={<CountPages />} />
-                <Route path="/count" element={<TodoPage />} />
+                <Route path="/todo" element={<TodoPage />} />
             </Routes>
         </BrowserRouter>
 
