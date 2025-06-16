@@ -11,9 +11,7 @@ function Todo(){
     setInputs('');
     }
 
-    const deleteTodo = (deleteIndex) =>{
-
-    }
+   
 
 
     return(
