@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import HelloPage from "./pages/HelloPage";
 import CountPages from "./pages/CountPages";
+import TodoPage from "./pages/TodoPage";
 
 function App() {
 
@@ -13,6 +14,8 @@ function App() {
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
+                <Route path="/count" element={<CountPages />} />
+                <Route path="/count" element={<TodoPage />} />
             </Routes>
         </BrowserRouter>
 
