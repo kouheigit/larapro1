@@ -10,7 +10,6 @@ function Todo(){
         setTodos([...todos,{text:inputs,done:false}]);
         setInputs('');
     }
-    const doneTodos = todos.filter((todo) => todo.done === true);
 
     const deleteTodo = (deleteIndex) =>{
         setTodos(todos.filter((_,index)=>index!==deleteIndex));
