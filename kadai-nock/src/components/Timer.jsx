@@ -10,7 +10,11 @@ function Timer() {
         pause,
         resume,
         restart,
-    }=useTimer({autoStart:true});
+    }=useTimer({
+        expiryTimestamp:time,
+        autoStart:true,
+        onExpire:()=>console.log('時間切れ'),
+    });
 
     return(
         <div>
