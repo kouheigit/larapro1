@@ -6,6 +6,7 @@ function Timer() {
     const dummyTime = new Date();
     dummyTime.setSeconds(dummyTime.getSeconds() + 1);
 
+
     const {
         seconds,
         minutes,
