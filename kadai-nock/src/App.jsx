@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import HelloPage from "./pages/HelloPage";
 import CountPages from "./pages/CountPages";
 import TodoPage from "./pages/TodoPage";
+import Timerpage from "./pages/Timerpage";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
                 <Route path="/todo" element={<TodoPage />} />
+                <Route path="/todo" element={<Timerpage />} />
             </Routes>
         </BrowserRouter>
 
