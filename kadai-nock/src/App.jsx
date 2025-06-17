@@ -14,7 +14,6 @@ function App() {
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
-                <Route path="/count" element={<CountPages />} />
                 <Route path="/todo" element={<TodoPage />} />
             </Routes>
         </BrowserRouter>

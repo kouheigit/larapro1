@@ -20,7 +20,7 @@ function Todo(){
     return(
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
-            <button onClick={addTodo}></button>
+            <button onClick={addTodo}>追加</button>
             {todo.map((todos,index)=>{
                 {todos.text}
                 <button onClick ={()=>deleteTodo(index)}></button>
