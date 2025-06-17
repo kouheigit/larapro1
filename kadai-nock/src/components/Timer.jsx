@@ -1,10 +1,12 @@
 import { useTimer } from 'react-timer-hook';
+import React, { useState } from 'react';
 
 
 function Timer() {
+    const [times, setTimer] = useState(new Date());
 
-    const dummyTime = new Date();
-    dummyTime.setSeconds(dummyTime.getSeconds() + 1);
+//    const dummyTime = new Date();
+//    dummyTime.setSeconds(dummyTime.getSeconds() + 1);
 
 
     const {
@@ -18,15 +20,22 @@ function Timer() {
         reset,
         expiryTimestamp,
     }=useTimer({
-        expiryTimestamp:dummyTime,
+        expiryTimestamp:times,
         autoStart:true,
         onExpire:()=>console.log('時間切れ'),
     });
 
-
-    const addminutes = () => {
-        const times = new Date(expiryTimestamp);
+    const addminutes = (expiryTimestamp) => {
+      //  const times = new Date();
         times.setMinutes(times.getMinutes()+ 10);
+        setTimer(times);
+        restart(times);
+    }
+    const resetTime = (expiryTimestamp) => {
+        times.setSeconds(0);
+        times.setMinutes(0);
+        times.setHours(0);
+        setTimer(times);
         restart(times);
     }
 
@@ -39,6 +48,7 @@ function Timer() {
             <button onClick={start}>スタート</button>
             <button onClick={pause}>一時停止</button>
             <button onClick={resume}>再スタート</button>
+            <button onClick={resetTime}>リセット</button>
         </div>
     );
 }
