@@ -3,10 +3,14 @@ import { useTimer } from 'react-timer-hook';
 
 function Timer() {
 
-    const time = new Date();
-    time.setSeconds(time.getSeconds() + 60);
-    //time.setSeconds(time.getSeconds() + 60);
+    const dummyTime = new Date();
 
+
+    const addminutes = () => {
+        const minutes = new Date();
+        minutes.setMinutes(time.getMinutes()+ 10);
+        restart(minutes);
+    }
     const {
         seconds,
         minutes,
@@ -26,6 +30,7 @@ function Timer() {
             <div>
                 <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
             </div>
+            <button onClick={addminutes}>10分</button>
             <button onClick={start}>スタート</button>
             <button onClick={pause}>一時停止</button>
             <button onClick={resume}>再スタート</button>
