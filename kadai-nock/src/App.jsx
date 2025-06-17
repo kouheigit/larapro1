@@ -12,11 +12,14 @@ function App() {
             <nav>
                 <Link to="/hello">課題1Hello</Link> | <Link to="/count">課題2Count</Link>| <Link to="/todo">課題3Todo</Link>
             </nav>
+            <nav>
+                <Link to="/timer">課題4タイマー</Link>
+            </nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
                 <Route path="/todo" element={<TodoPage />} />
-                <Route path="/todo" element={<Timerpage />} />
+                <Route path="/timer" element={<Timerpage />} />
             </Routes>
         </BrowserRouter>
 
