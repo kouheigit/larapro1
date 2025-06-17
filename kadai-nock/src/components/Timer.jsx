@@ -2,6 +2,10 @@ import React from 'react';
 import { useTimer } from 'react-timer-hook';
 
 function Timer() {
+
+    const time = new Date();
+    time.setTime(time.getTime() + 60);
+
     const {
         seconds,
         minutes,
