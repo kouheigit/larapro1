@@ -4,7 +4,8 @@ import { useTimer } from 'react-timer-hook';
 function Timer() {
 
     const time = new Date();
-    time.setTime(time.getTime() + 60);
+    time.setSeconds(time.getSeconds() + 60);
+    //time.setSeconds(time.getSeconds() + 60);
 
     const {
         seconds,
