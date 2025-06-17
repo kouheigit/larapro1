@@ -3,7 +3,7 @@ import { useTimer } from 'react-timer-hook';
 
 function Timer() {
     const {
-        second,
+        seconds,
         minutes,
         hours,
         start,
