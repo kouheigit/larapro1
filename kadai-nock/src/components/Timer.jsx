@@ -1,16 +1,11 @@
-import React from 'react';
 import { useTimer } from 'react-timer-hook';
+
 
 function Timer() {
 
     const dummyTime = new Date();
+    dummyTime.setSeconds(dummyTime.getSeconds() + 1);
 
-
-    const addminutes = () => {
-        const minutes = new Date();
-        minutes.setMinutes(time.getMinutes()+ 10);
-        restart(minutes);
-    }
     const {
         seconds,
         minutes,
@@ -19,11 +14,20 @@ function Timer() {
         pause,
         resume,
         restart,
+        reset,
+        expiryTimestamp,
     }=useTimer({
-        expiryTimestamp:time,
+        expiryTimestamp:dummyTime,
         autoStart:true,
         onExpire:()=>console.log('時間切れ'),
     });
+
+
+    const addminutes = () => {
+        const times = new Date(expiryTimestamp);
+        times.setMinutes(times.getMinutes()+ 10);
+        restart(times);
+    }
 
     return(
         <div>
