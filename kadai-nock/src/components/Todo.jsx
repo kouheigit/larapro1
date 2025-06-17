@@ -1,13 +1,12 @@
-import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
-import Hello from "./Hello.jsx";
+
 
 function Todo(){
     const[todos,setTodos] = useState([]);
     const[inputs,setInputs] = useState('');
 
     const addTodo = () =>{
-        if(inputs.trim()==='')return;
+        if(inputs.trim()==='') return;
         setTodos([...todos,{text:inputs,done:false}]);
         setInputs('');
     }
@@ -21,10 +20,12 @@ function Todo(){
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
             <button onClick={addTodo}>追加</button>
-            {todo.map((todos,index)=>{
-                {todos.text}
-                <button onClick ={()=>deleteTodo(index)}></button>
-            })}
+            {todos.map((todo, index) => (
+                <div key={index}>
+                    {todo.text}
+                    <button onClick={() => deleteTodo(index)}>削除</button>
+                </div>
+            ))}
         </div>
     );
 }
