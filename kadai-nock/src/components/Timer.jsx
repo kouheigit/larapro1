@@ -1,9 +1,11 @@
 import { useTimer } from 'react-timer-hook';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Timer() {
     const [times, setTimer] = useState(new Date());
+    const navigate = useNavigate();
 
 //    const dummyTime = new Date();
 //    dummyTime.setSeconds(dummyTime.getSeconds() + 1);
@@ -32,12 +34,14 @@ function Timer() {
         restart(times);
     }
     const resetTime = (expiryTimestamp) => {
+        navigate('/timer');
+        /*
         times.setSeconds(0);
         times.setMinutes(0);
         times.setHours(0);
         times.setSeconds(times.getSeconds() + 1);
         setTimer(times);
-        restart(times);
+        restart(times);*/
     }
 
     return(
