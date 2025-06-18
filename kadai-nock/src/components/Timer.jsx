@@ -34,11 +34,16 @@ function Timer() {
       //  const times = new Date();
         times.setMinutes(times.getMinutes()+ 10);
         setTimer(times);
-        restart(times);
+        restart(times,false);
     }
     const addhour = (expiryTimestamp) => {
 
         times.setHours(times.getHours()+ 1);
+        setTimer(times);
+        restart(times);
+    }
+    const addsecond = (expiryTimestamp) => {
+        times.setSeconds(times.getSeconds()+ 10);
         setTimer(times);
         restart(times);
     }
@@ -49,13 +54,15 @@ function Timer() {
         restart(reset);
     }
 
+
     return(
         <div>
             <div>
                 <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
             </div>
-            <button onClick={addminutes}>10分</button>
             <button onClick={addhour}>1時間</button>
+            <button onClick={addminutes}>10分</button>
+            <button onClick={addsecond}>10秒</button>
             <button onClick={start}>スタート</button>
             <button onClick={pause}>一時停止</button>
             <button onClick={resume}>再スタート</button>
