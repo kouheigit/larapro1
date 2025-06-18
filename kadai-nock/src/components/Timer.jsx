@@ -36,6 +36,12 @@ function Timer() {
         setTimer(times);
         restart(times);
     }
+    const addhour = (expiryTimestamp) => {
+
+        times.setHours(times.getHours()+ 1);
+        setTimer(times);
+        restart(times);
+    }
     const resetTime = (expiryTimestamp) => {
         const reset = new Date();
         reset.setSeconds(reset.getSeconds() + 1); // 1秒後にする
@@ -49,6 +55,7 @@ function Timer() {
                 <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
             </div>
             <button onClick={addminutes}>10分</button>
+            <button onClick={addhour}>1時間</button>
             <button onClick={start}>スタート</button>
             <button onClick={pause}>一時停止</button>
             <button onClick={resume}>再スタート</button>
