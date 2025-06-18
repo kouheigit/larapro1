@@ -34,14 +34,13 @@ function Timer() {
         restart(times);
     }
     const resetTime = (expiryTimestamp) => {
-        navigate('/timer');
-        /*
+
         times.setSeconds(0);
         times.setMinutes(0);
         times.setHours(0);
         times.setSeconds(times.getSeconds() + 1);
         setTimer(times);
-        restart(times);*/
+        restart(times);
     }
 
     return(
