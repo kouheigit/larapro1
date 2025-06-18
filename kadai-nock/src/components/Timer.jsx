@@ -1,11 +1,14 @@
 import { useTimer } from 'react-timer-hook';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 
 function Timer() {
-    const [times, setTimer] = useState(new Date());
-    const navigate = useNavigate();
+    const [times, setTimer] = useState(() => {
+        const t = new Date();
+        t.setSeconds(t.getSeconds() + 1);
+        return t;
+    });
 
 //    const dummyTime = new Date();
 //    dummyTime.setSeconds(dummyTime.getSeconds() + 1);
@@ -34,13 +37,10 @@ function Timer() {
         restart(times);
     }
     const resetTime = (expiryTimestamp) => {
-
-        times.setSeconds(0);
-        times.setMinutes(0);
-        times.setHours(0);
-        times.setSeconds(times.getSeconds() + 1);
-        setTimer(times);
-        restart(times);
+        const reset = new Date();
+        reset.setSeconds(reset.getSeconds() + 1); // 1秒後にする
+        setTimer(reset);       // 状態も更新（使ってるなら）
+        restart(reset);
     }
 
     return(
