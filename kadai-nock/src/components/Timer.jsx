@@ -9,7 +9,7 @@ function Timer() {
         t.setSeconds(t.getSeconds() + 1);
         return t;
     });
-
+// explain
 //    const dummyTime = new Date();
 //    dummyTime.setSeconds(dummyTime.getSeconds() + 1);
 
