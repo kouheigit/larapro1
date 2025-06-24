@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Timer = () => {
     const [count, setCount] = useState(0);
+    //const [isRunning, setIsRunning] = useState(false);
 
     useEffect(() => {
         // カウントが0以下なら何もしない（止める）
