@@ -18,9 +18,16 @@ const Timer = () => {
         return () => clearTimeout(timer);
     }, [count,isRunning]); // ← count が変わるたびに動く
 
+    const addHour = () => {
+        setCount(prev => prev + 3600);
+    };
+
+    const addMinutes = () => {
+        setCount(prev => prev + 60);
+    };
+
     const addSeconds = () => {
         setCount(prev => prev + 10);
-        //isRunning(false);
     };
     const timerStart = () => {
         if(count > 0){
@@ -30,14 +37,21 @@ const Timer = () => {
     const timerStop = () =>{
         setIsRunning(false);
     }
+    const timerReset = () =>{
+        setCount(0);
+    }
 
 
 
     return (
         <div>
+            <button onClick={addHour}>1時間</button>
+            <button onClick={addMinutes}>1分</button>
             <button onClick={addSeconds}>10秒</button>
             <button onClick={timerStart}>スタート</button>
             <button onClick={timerStop}>ストップ</button>
+            <button onClick={timerReset}>リセット</button>
+
             <h1>タイマー: {count} 秒</h1>
         </div>
     );
