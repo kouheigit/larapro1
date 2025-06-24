@@ -16,13 +16,13 @@ const Timer = () => {
         return () => clearTimeout(timer);
     }, [count]); // ← count が変わるたびに動く
 
-    const add10Seconds = () => {
+    const addSeconds = () => {
         setCount(prev => prev + 10);
     };
 
     return (
         <div>
-            <button onClick={add10Seconds}>10秒</button>
+            <button onClick={addSeconds}>10秒</button>
             <h1>タイマー: {count} 秒</h1>
         </div>
     );
