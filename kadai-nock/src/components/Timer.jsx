@@ -41,7 +41,16 @@ const Timer = () => {
         setCount(0);
     }
 
-
+    const formatTime = (seconds) => {
+        const date = new Date(seconds * 1000);
+        return new Intl.DateTimeFormat('ja-JP', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+            timeZone: 'UTC'
+        }).format(date);
+    };
 
     return (
         <div>
@@ -51,8 +60,7 @@ const Timer = () => {
             <button onClick={timerStart}>スタート</button>
             <button onClick={timerStop}>ストップ</button>
             <button onClick={timerReset}>リセット</button>
-
-            <h1>タイマー: {count} 秒</h1>
+            <h1>タイマー: {formatTime(count)}</h1>
         </div>
     );
 };
