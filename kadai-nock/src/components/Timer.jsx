@@ -31,7 +31,13 @@ function Timer() {
     });
 
     const addminutes = (expiryTimestamp) => {
-      //  const times = new Date();
+
+        /*
+        const newTime = new Date(expiryTimestamp.getTime() + 10 * 60 * 1000); // ✅ expiryTimestampベースで加算
+        setTimer(newTime);                                                   // ✅ 新しい状態をセット
+        restart(newTime, false);
+         */
+
         times.setMinutes(times.getMinutes()+ 10);
         setTimer(times);
         restart(times,false);
