@@ -68,6 +68,7 @@ const Timer = () => {
         setCount(count + num);
         console.log(num);
         setText("");
+        /*仮追加*/
     }
     
     return (
