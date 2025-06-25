@@ -8,7 +8,6 @@ const Timer = () => {
         // カウントが0以下なら何もしない（止める）
         if (count <= 0||!isRunning) return;
 
-
         // 1秒後に -1 するタイマーをセット
         const timer = setTimeout(() => {
             setCount(prev => prev - 1);
@@ -51,9 +50,16 @@ const Timer = () => {
             timeZone: 'UTC'
         }).format(date);
     };
+    /*
+    const timerReset = () =>{
+        setCount(0);
+    }*/
 
     return (
         <div>
+            <input type="text" value={setCount} onChange={(e)=>setInputs(e.target.value)}/>
+            <button onClick={addSetcount}>文字列で追加</button>
+
             <button onClick={addHour}>1時間</button>
             <button onClick={addMinutes}>1分</button>
             <button onClick={addSeconds}>10秒</button>
