@@ -4,6 +4,11 @@ const Timer = () => {
     const [count, setCount] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
+    //仮追加
+    const [text, setText] = useState("");
+    const [addText, setAddText] = useState("");
+
+
 
     useEffect(() => {
         // カウントが0以下なら何もしない（止める）
@@ -52,10 +57,28 @@ const Timer = () => {
         }).format(date);
     };
 
-
-
+    const onClickAddText = () => {
+        setAddText(text);
+        const str = text;
+        const num = Number(str);
+        if (isNaN(num)) {
+            alert("数値を入力してください");
+            return;
+        }
+        setCount(count + num);
+        console.log(num);
+        setText("");
+    }
+    
     return (
         <div>
+            <p>仮追加</p>
+            <input value={text} onChange={(event) => setText(event.target.value)}/>
+            <button onClick={onClickAddText}>追加</button>
+
+            <p>リアルタイム：{text}</p>
+            <p>ボタンクリック：{addText}</p>
+            <p>仮追加終了</p>
             <button onClick={addHour}>1時間</button>
             <button onClick={addMinutes}>1分</button>
             <button onClick={addSeconds}>10秒</button>
