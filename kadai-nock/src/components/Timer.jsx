@@ -6,7 +6,8 @@ const Timer = () => {
 
     //仮追加
     const [text, setText] = useState("");
-    const [addText, setAddText] = useState("");
+    const [addText,addMinute, setAddText,setAddMinutes] = useState("");
+
 
 
 
