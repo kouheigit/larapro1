@@ -87,16 +87,10 @@ const Timer = () => {
     
     return (
         <div>
-            <p>仮追加</p>
             <input value={text} onChange={(event) => setText(event.target.value)}/>
             <button onClick={onClickAddText}>秒追加</button>
-
             <input value={addMinute} onChange={(event) => setAddMinute(event.target.value)}/>
             <button onClick={onClickAddMinute}>分追加</button>
-
-            <p>リアルタイム：{text}</p>
-            <p>ボタンクリック：{addText}</p>
-            <p>仮追加終了</p>
             <button onClick={addHour}>1時間</button>
             <button onClick={addMinutes}>1分</button>
             <button onClick={addSeconds}>10秒</button>
