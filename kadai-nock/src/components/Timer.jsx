@@ -4,7 +4,7 @@ const Timer = () => {
     const [count, setCount] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
-    //仮追加
+    
     const [text, setText] = useState("");
     const [addText, setAddText] = useState("");
     const [addMinute, setAddMinute] = useState("");
