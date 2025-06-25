@@ -6,7 +6,8 @@ const Timer = () => {
 
     //仮追加
     const [text, setText] = useState("");
-    const [addText,addMinute, setAddText,setAddMinutes] = useState("");
+    const [addText, setAddText] = useState("");
+    const [addMinute, setAddMinute] = useState("");
 
 
 
@@ -70,12 +71,28 @@ const Timer = () => {
         console.log(num);
         setText("");
     }
+
+    const onClickAddMinute = () => {
+        setAddMinute(addMinute);
+        const str = addMinute;
+        const num = Number(str);
+        if (isNaN(num)) {
+            alert("数値を入力してください");
+            return;
+        }
+        setCount(count + num * 60);
+        console.log(num);
+        setAddMinute("");
+    }
     
     return (
         <div>
             <p>仮追加</p>
             <input value={text} onChange={(event) => setText(event.target.value)}/>
-            <button onClick={onClickAddText}>追加</button>
+            <button onClick={onClickAddText}>秒追加</button>
+
+            <input value={addMinute} onChange={(event) => setAddMinute(event.target.value)}/>
+            <button onClick={onClickAddMinute}>分追加</button>
 
             <p>リアルタイム：{text}</p>
             <p>ボタンクリック：{addText}</p>
