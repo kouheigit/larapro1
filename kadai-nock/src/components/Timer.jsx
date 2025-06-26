@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
 import alarm from './sounds/alarm.mp3';
 
+
 const Timer = () => {
     const [count, setCount] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
@@ -107,6 +108,7 @@ const Timer = () => {
             <button onClick={timerStop}>ストップ</button>
             <button onClick={timerReset}>リセット</button>
             <h1>タイマー: {formatTime(count)}</h1>
+
         </div>
     );
 };
