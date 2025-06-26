@@ -8,21 +8,16 @@ import {
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-
-
 const Timer = () => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0); // 残り時間（秒）
+    const [initialTime, setInitialTime] = useState(0); // 合計時間
     const [isRunning, setIsRunning] = useState(false);
-    //サウンド
-    const [play, { stop, pause }] = useSound(alarm);
+    const [play, { stop }] = useSound(alarm);
 
     const [text, setText] = useState("");
-    const [addText, setAddText] = useState("");
     const [addMinute, setAddMinute] = useState("");
 
-
-
-
+    // タイマー処理
     useEffect(() => {
         if (count <= 0 || !isRunning) return;
 
@@ -30,7 +25,7 @@ const Timer = () => {
             setCount(prev => {
                 if (prev <= 1) {
                     setIsRunning(false);
-                    play();  //音を鳴らす処理
+                    play(); // 音を鳴らす
                     return 0;
                 }
                 return prev - 1;
@@ -40,30 +35,75 @@ const Timer = () => {
         return () => clearTimeout(timer);
     }, [count, isRunning, play]);
 
+    // 秒追加（＋initialTime更新）
+    const onClickAddText = () => {
+        const num = Number(text);
+        if (isNaN(num)) {
+            alert("数値を入力してください");
+            return;
+        }
+        setCount(prev => {
+            const newCount = prev + num;
+            setInitialTime(newCount);
+            return newCount;
+        });
+        setText("");
+    };
+
+    // 分追加（＋initialTime更新）
+    const onClickAddMinute = () => {
+        const num = Number(addMinute);
+        if (isNaN(num)) {
+            alert("数値を入力してください");
+            return;
+        }
+        setCount(prev => {
+            const newCount = prev + num * 60;
+            setInitialTime(newCount);
+            return newCount;
+        });
+        setAddMinute("");
+    };
+
+    // 各種追加操作（初期時間も更新）
     const addHour = () => {
-        setCount(prev => prev + 3600);
+        setCount(prev => {
+            const newCount = prev + 3600;
+            setInitialTime(newCount);
+            return newCount;
+        });
     };
 
     const addMinutes = () => {
-        setCount(prev => prev + 60);
+        setCount(prev => {
+            const newCount = prev + 60;
+            setInitialTime(newCount);
+            return newCount;
+        });
     };
 
     const addSeconds = () => {
-        setCount(prev => prev + 10);
+        setCount(prev => {
+            const newCount = prev + 10;
+            setInitialTime(newCount);
+            return newCount;
+        });
     };
+
     const timerStart = () => {
-        if(count > 0){
-            setIsRunning(true);
-        }
+        if (count > 0) setIsRunning(true);
     };
-    const timerStop = () =>{
+
+    const timerStop = () => {
         setIsRunning(false);
         stop();
-    }
-    const timerReset = () =>{
+    };
+
+    const timerReset = () => {
         setCount(0);
+        setInitialTime(0);
         stop();
-    }
+    };
 
     const formatTime = (seconds) => {
         const date = new Date(seconds * 1000);
@@ -76,55 +116,56 @@ const Timer = () => {
         }).format(date);
     };
 
-    const onClickAddText = () => {
-        setAddText(text);
-        const str = text;
-        const num = Number(str);
-        if (isNaN(num)) {
-            alert("数値を入力してください");
-            return;
-        }
-        setCount(count + num);
-        console.log(num);
-        setText("");
-    }
-
-    const onClickAddMinute = () => {
-        setAddMinute(addMinute);
-        const str = addMinute;
-        const num = Number(str);
-        if (isNaN(num)) {
-            alert("数値を入力してください");
-            return;
-        }
-        setCount(count + num * 60);
-        console.log(num);
-        setAddMinute("");
-    }
-    
     return (
-        <div>
-            <input value={text} onChange={(event) => setText(event.target.value)}/>
-            <button onClick={onClickAddText}>秒追加</button>
-            <input value={addMinute} onChange={(event) => setAddMinute(event.target.value)}/>
-            <button onClick={onClickAddMinute}>分追加</button>
-            <button onClick={addHour}>1時間</button>
-            <button onClick={addMinutes}>1分</button>
-            <button onClick={addSeconds}>10秒</button>
-            <button onClick={timerStart}>スタート</button>
-            <button onClick={timerStop}>ストップ</button>
-            <button onClick={timerReset}>リセット</button>
-            <h1>タイマー: {formatTime(count)}</h1>
+        <div style={{ padding: '20px', maxWidth: '400px', margin: 'auto' }}>
+            <h2>⏳ タイマー</h2>
 
-            <CircularProgressbar
-                value={(count / initialTime) * 100}
-                text={formatTime(count)}
-                styles={buildStyles({
-                    textColor: "#333",
-                    pathColor: "#00bcd4",
-                    trailColor: "#eee"
-                })}/>
+            <div>
+                <input
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="秒を入力"
+                />
+                <button onClick={onClickAddText}>秒追加</button>
+            </div>
 
+            <div>
+                <input
+                    value={addMinute}
+                    onChange={(e) => setAddMinute(e.target.value)}
+                    placeholder="分を入力"
+                />
+                <button onClick={onClickAddMinute}>分追加</button>
+            </div>
+
+            <div style={{ marginTop: '10px' }}>
+                <button onClick={addHour}>1時間</button>
+                <button onClick={addMinutes}>1分</button>
+                <button onClick={addSeconds}>10秒</button>
+            </div>
+
+            <div style={{ marginTop: '10px' }}>
+                <button onClick={timerStart}>スタート</button>
+                <button onClick={timerStop}>ストップ</button>
+                <button onClick={timerReset}>リセット</button>
+            </div>
+
+            <h3 style={{ marginTop: '20px' }}>現在: {formatTime(count)}</h3>
+
+            {/* 円形プログレスバー */}
+            {initialTime > 0 && (
+                <div style={{ width: 200, height: 200, margin: '20px auto' }}>
+                    <CircularProgressbar
+                        value={(count / initialTime) * 100}
+                        text={formatTime(count)}
+                        styles={buildStyles({
+                            textColor: "#333",
+                            pathColor: "#00bcd4",
+                            trailColor: "#eee"
+                        })}
+                    />
+                </div>
+            )}
         </div>
     );
 };
