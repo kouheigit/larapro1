@@ -22,7 +22,7 @@ const Timer = () => {
             setCount(prev => {
                 if (prev <= 1) {
                     setIsRunning(false);
-                    play();  // ← 🔔 音を鳴らす
+                    play();  //音を鳴らす処理
                     return 0;
                 }
                 return prev - 1;
