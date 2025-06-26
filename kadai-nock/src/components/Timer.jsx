@@ -20,7 +20,7 @@ const Timer = () => {
     // タイマー処理
     useEffect(() => {
         if (count <= 0 || !isRunning) return;
-
+        //処理
         const timer = setTimeout(() => {
             setCount(prev => {
                 if (prev <= 1) {
