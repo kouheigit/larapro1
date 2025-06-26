@@ -6,7 +6,10 @@ const Timer = () => {
     const [count, setCount] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
-    
+    //sound関連
+    const [soundEnabled, setSoundEnabled] = useState(false);
+    const [play] = useSound(alarmSound, { soundEnabled });
+
     const [text, setText] = useState("");
     const [addText, setAddText] = useState("");
     const [addMinute, setAddMinute] = useState("");
@@ -17,6 +20,8 @@ const Timer = () => {
     useEffect(() => {
         // カウントが0以下なら何もしない（止める）
         if (count <= 0||!isRunning) return;
+
+
 
         // 1秒後に -1 するタイマーをセット
         const timer = setTimeout(() => {
