@@ -50,9 +50,11 @@ const Timer = () => {
     };
     const timerStop = () =>{
         setIsRunning(false);
+        stop();
     }
     const timerReset = () =>{
         setCount(0);
+        stop();
     }
 
     const formatTime = (seconds) => {
