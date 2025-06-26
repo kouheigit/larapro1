@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import useSound from 'use-sound';
+import alarm from './sounds/alarm.mp3';
 
 const Timer = () => {
     const [count, setCount] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-
+    //サウンド
+    const [play, { stop, pause }] = useSound(alarm);
 
     const [text, setText] = useState("");
     const [addText, setAddText] = useState("");
@@ -13,17 +16,21 @@ const Timer = () => {
 
 
     useEffect(() => {
-        // カウントが0以下なら何もしない（止める）
-        if (count <= 0||!isRunning) return;
+        if (count <= 0 || !isRunning) return;
 
-        // 1秒後に -1 するタイマーをセット
         const timer = setTimeout(() => {
-            setCount(prev => prev - 1);
+            setCount(prev => {
+                if (prev <= 1) {
+                    setIsRunning(false);
+                    play();  // ← 🔔 音を鳴らす
+                    return 0;
+                }
+                return prev - 1;
+            });
         }, 1000);
 
-        // 次にこの useEffect が動くとき、前のタイマーを止める
         return () => clearTimeout(timer);
-    }, [count,isRunning]); // ← count が変わるたびに動く
+    }, [count, isRunning, play]);
 
     const addHour = () => {
         setCount(prev => prev + 3600);
