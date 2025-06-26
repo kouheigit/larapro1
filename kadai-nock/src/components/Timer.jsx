@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
 import alarm from './sounds/alarm.mp3';
 
+import {
+    CircularProgressbar,
+    buildStyles
+} from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+
 
 const Timer = () => {
     const [count, setCount] = useState(0);
@@ -108,6 +115,15 @@ const Timer = () => {
             <button onClick={timerStop}>ストップ</button>
             <button onClick={timerReset}>リセット</button>
             <h1>タイマー: {formatTime(count)}</h1>
+
+            <CircularProgressbar
+                value={(count / initialTime) * 100}
+                text={formatTime(count)}
+                styles={buildStyles({
+                    textColor: "#333",
+                    pathColor: "#00bcd4",
+                    trailColor: "#eee"
+                })}/>
 
         </div>
     );
