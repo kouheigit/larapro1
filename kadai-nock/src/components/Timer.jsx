@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import useSound from 'use-sound';
+import alarmSound from './sounds/alarm.mp3';
 
 const Timer = () => {
     const [count, setCount] = useState(0);
