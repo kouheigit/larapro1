@@ -17,7 +17,7 @@ const Timer = () => {
     const [text, setText] = useState("");
     const [addMinute, setAddMinute] = useState("");
 
-    
+    //useEffect処理
     useEffect(() => {
         if (count <= 0 || !isRunning) return;
         //処理
