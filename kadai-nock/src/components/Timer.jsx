@@ -7,7 +7,7 @@ import {
     buildStyles
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
+//Timer
 const Timer = () => {
     const [count, setCount] = useState(0); // 残り時間（秒）
     const [initialTime, setInitialTime] = useState(0); // 合計時間
