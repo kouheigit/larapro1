@@ -36,6 +36,7 @@ const Timer = () => {
     }, [count, isRunning, play]);
 
     // 秒追加（＋initialTime更新）
+    //onClickAddtext
     const onClickAddText = () => {
         const num = Number(text);
         if (isNaN(num)) {
