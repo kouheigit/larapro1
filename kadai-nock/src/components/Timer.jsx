@@ -52,6 +52,7 @@ const Timer = () => {
     };
 
     // 分追加（＋initialTime更新）
+    //onClickAddMinute
     const onClickAddMinute = () => {
         const num = Number(addMinute);
         if (isNaN(num)) {
