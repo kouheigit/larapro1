@@ -75,7 +75,7 @@ const Timer = () => {
             return newCount;
         });
     };
-
+    //addMinutes
     const addMinutes = () => {
         setCount(prev => {
             const newCount = prev + 60;
