@@ -3,7 +3,7 @@ import HelloPage from "./pages/HelloPage";
 import CountPages from "./pages/CountPages";
 import TodoPage from "./pages/TodoPage";
 import Timerpage from "./pages/Timerpage";
-
+import Review from "./pages/review";
 
 function App() {
 
@@ -16,13 +16,16 @@ function App() {
             <nav>
                 <Link to="/timer">課題4タイマー</Link>
             </nav>
+            <nav><Link to="/review">復習課題1</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
                 <Route path="/todo" element={<TodoPage />} />
                 <Route path="/timer" element={<Timerpage />} />
+                <Route path="/Review" element={<Review />} />
             </Routes>
         </BrowserRouter>
+
 
   );
 }
