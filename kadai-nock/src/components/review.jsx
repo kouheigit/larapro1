@@ -24,20 +24,18 @@ return(
         <ul>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder="タスクを入力"/>
             <p>入力された値]{inputs}</p>
-            
 
-
-            {filterTodos.map((todo,index)=>{
+            {Todos.map((todo,index))=>{
                 return(
                     <li key="index">
-                        <input type="checkbox" checked={todo.done} onChange={()=>setToggle(index)} />
-                        <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
-                                    {todo.text}
-                                </span>
-                        <button onClick={()=>deleteTodo(index)}>削除</button>
+                        {todo.text}
                     </li>
                 );
-            })}
+            }}
+
+
+
+
         </ul>
     </div>
 );
