@@ -25,17 +25,6 @@ return(
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder="タスクを入力"/>
             <p>入力された値]{inputs}</p>
 
-            {Todos.map((todo,index))=>{
-                return(
-                    <li key="index">
-                        {todo.text}
-                    </li>
-                );
-            }}
-
-
-
-
         </ul>
     </div>
 );
