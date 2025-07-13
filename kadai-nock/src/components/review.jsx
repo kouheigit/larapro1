@@ -5,7 +5,10 @@ function Todo(){
     const[inputs,setInuputs] = useState('');
 
     const addTodo = () =>{
-        
+
+    }
+    const deleteTodo = () =>{
+
     }
 }
 return(
