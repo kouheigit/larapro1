@@ -12,10 +12,7 @@ function Todo() {
     const deleteTodo =(deleteIndex) =>{
         setTodos(todos.filter((_,index)=>index!==deleteIndex))
     }
-    /*
-    const deleteTodo = (deleteIndex) => {
-        setTodos(todos.filter((_, index) => index !== deleteIndex));
-    };*/
+    
     return (
         <div>
             <ul>
