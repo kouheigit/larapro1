@@ -5,6 +5,7 @@ function Profilecard(){
     const [name,setName] = useState('');
     const [hobby,setHobby] = useState('');
     const[comment,setComment] = useState('');
+    const [profiles, setProfiles] = useState([]);
     const[show,setShow] = useState(false);
 
     const addTodo = () => {
@@ -12,12 +13,6 @@ function Profilecard(){
         if(hobby.trim()==='') return;
         if(comment.trim()==='') return;
         setName([...name,])
-
-        /*
-        if (inputs.trim() === '') return;
-        setTodos([...todos, {text: inputs, done: false}]);
-        setTodos([...todos, inputs]);
-        setInuputs('');*/
     }
 
     return(
