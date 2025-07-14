@@ -6,7 +6,7 @@ function Profilecard(){
     const [hobby,setHobby] = useState('');
     const[comment,setComment] = useState('');
     const[show,setShow] = useState(false);
-    
+
     return(
         <div>
 
