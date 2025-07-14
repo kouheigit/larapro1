@@ -17,7 +17,7 @@ function Todo() {
         <div>
             <ul>
                 <input type="text" value={inputs} onChange={(e) => setInuputs(e.target.value)} placeholder="タスクを入力"/>
-                <p>入力された値]{inputs}</p>
+                <p>入力された値{inputs}</p>
                 <button onClick={addTodo}>追加</button>
                 {todos.map((todo, index) => (
                     <li key={index}>
