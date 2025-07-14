@@ -8,12 +8,6 @@ function Todo() {
         if (inputs.trim === '') return;
         setTodos([...todos, {text: input, done: false}]);
         setInuputs('');
-        /*
-         if(inputs.trim()==='') return;
-        setTodos([...todos,{ text: inputs, done:false }]);
-        setInputs('');
-         */
-
     }
     /*
     const deleteTodo = () =>{
