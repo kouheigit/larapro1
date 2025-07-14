@@ -5,8 +5,8 @@ function Todo() {
     const [inputs, setInuputs] = useState('');
 
     const addTodo = () => {
-        if (inputs.trim === '') return;
-        setTodos([...todos, {text: input, done: false}]);
+        if (inputs.trim() === '') return;
+        setTodos([...todos, {text: inputs, done: false}]);
         setInuputs('');
     }
     /*
