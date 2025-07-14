@@ -9,10 +9,11 @@ function Profilecard(){
     const[show,setShow] = useState(false);
 
     const addTodo = () => {
+        /*
         if(name.trim()==='') return;
         if(hobby.trim()==='') return;
         if(comment.trim()==='') return;
-        setName([...name,])
+        setName([...name,])*/
     }
 
     return(
