@@ -10,10 +10,9 @@ function Todo() {
         setInuputs('');
     }
     /*
-    const deleteTodo = () =>{
-
-    }*/
-
+    const deleteTodo = (deleteIndex) => {
+        setTodos(todos.filter((_, index) => index !== deleteIndex));
+    };*/
     return (
         <div>
             <ul>
@@ -23,6 +22,7 @@ function Todo() {
                 {todos.map((todo, index) => (
                     <li key={index}>
                         {todo.text}
+                        <button onClick={()=>deleteTodo(index)}>削除</button>
                     </li>
                 ))}
             </ul>
