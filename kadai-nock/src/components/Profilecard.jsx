@@ -11,8 +11,7 @@ function Profilecard(){
         <div>
             <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder="タスクを入力"/>
             <input type="text" value={hobby} onChange={(e)=>setHobby(e.target.value)} placeholder="タスクを入力"/>
-
-
+            <input type="text" value{comment} onChange={(e)=>setComment(e.target.value)} placeholder="タスクを入力"/>
         </div>
     );
 }
