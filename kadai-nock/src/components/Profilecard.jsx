@@ -7,6 +7,17 @@ function Profilecard(){
     const[comment,setComment] = useState('');
     const[show,setShow] = useState(false);
 
+    const addTodo = () => {
+        if(name.trim()==='') return;
+        if(hobby.trim()==='') return;
+        if(comment.trim()==='') return;
+        
+        /*
+        if (inputs.trim() === '') return;
+        setTodos([...todos, {text: inputs, done: false}]);
+        setInuputs('');*/
+    }
+
     return(
         <div>
             <h2>プロフィール登録</h2>
