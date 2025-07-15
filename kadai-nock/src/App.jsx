@@ -4,6 +4,8 @@ import CountPages from "./pages/CountPages";
 import TodoPage from "./pages/TodoPage";
 import Timerpage from "./pages/Timerpage";
 import Review from "./pages/review";
+import Profilecard from "./components/Profilecard";
+
 
 function App() {
 
@@ -14,7 +16,7 @@ function App() {
                 <Link to="/hello">課題1Hello</Link> | <Link to="/count">課題2Count</Link>| <Link to="/todo">課題3Todo</Link>
             </nav>
             <nav>
-                <Link to="/timer">課題4タイマー</Link>
+                <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
             </nav>
             <nav><Link to="/review">復習課題1</Link></nav>
             <Routes>
@@ -23,6 +25,7 @@ function App() {
                 <Route path="/todo" element={<TodoPage />} />
                 <Route path="/timer" element={<Timerpage />} />
                 <Route path="/Review" element={<Review />} />
+                <Route path="/Profilecard" element={<Profilecard />} />
             </Routes>
         </BrowserRouter>
 
