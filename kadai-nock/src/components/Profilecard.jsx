@@ -11,7 +11,6 @@ function Profilecard(){
         if(name.trim()===''||hobby.trim()===''||comment.trim()==='')return;
         const newProfile = { name,hobby,comment };
         setProfiles([...profiles,newProfile]);
-
         setName('');
         setHobby('');
         setComment('');
@@ -23,10 +22,11 @@ function Profilecard(){
             <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder="タスクを入力"/>
             <input type="text" value={hobby} onChange={(e)=>setHobby(e.target.value)} placeholder="タスクを入力"/>
             <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)} placeholder="タスクを入力"/>
+            <button onClick={addTodo}>追加</button>
             {profiles.map((profile,index)=>(
                 <li key={index}>
                     {profile.name}
-                    {profile.hoppy}
+                    {profile.hobby}
                     {profile.comment}
                 </li>
             ))}
