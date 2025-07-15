@@ -23,13 +23,22 @@ function Profilecard(){
             <input type="text" value={hobby} onChange={(e)=>setHobby(e.target.value)} placeholder="タスクを入力"/>
             <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)} placeholder="タスクを入力"/>
             <button onClick={addTodo}>追加</button>
+            {show && ( <div style={{
+                    marginTop: '20px',
+                    padding: '15px',
+                    border: '1px solid #ccc',
+                    borderRadius: '8px',
+                    boxShadow: '0 0 5px rgba(0,0,0,0.1)'
+                }}>
             {profiles.map((profile,index)=>(
-                <li key={index}>
+                <li>
                     {profile.name}
                     {profile.hobby}
                     {profile.comment}
                 </li>
+                </div>
             ))}
+            )}
         </div>
     );
 }
