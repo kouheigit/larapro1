@@ -23,6 +23,8 @@ function Profilecard(){
             <input type="text" value={hobby} onChange={(e)=>setHobby(e.target.value)} placeholder="タスクを入力"/>
             <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)} placeholder="タスクを入力"/>
             <button onClick={addTodo}>追加</button>
+            <button onClick={() => setShow(true)}>表示する</button>
+            <button onClick={() => setShow(false)}>表示をやめる</button>
             {show && (
                 <div style={{
                     marginTop: '20px',
