@@ -6,7 +6,7 @@ function Profilecard(){
     const[comment,setComment] = useState('');
     const [profiles, setProfiles] = useState([]);
     const[show,setShow] = useState(false);
-    /*test*/
+    
     const addTodo = () => {
         if(name.trim()===''||hobby.trim()===''||comment.trim()==='')return;
         const newProfile = { name,hobby,comment };
