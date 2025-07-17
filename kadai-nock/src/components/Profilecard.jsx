@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-
+/*Profilecard*/
 function Profilecard(){
     const [name,setName] = useState('');
     const [hobby,setHobby] = useState('');
