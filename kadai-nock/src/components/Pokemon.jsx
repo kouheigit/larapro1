@@ -30,6 +30,16 @@ function Pokemon(){
             <b>データ</b>
             <p>高さ{pokemon.height}</p>
             <p>重さ:{pokemon.weight}</p>
+            <p>タイプ: {pokemon.types.map(t => t.type.name).join(', ')}</p>
+            <p>特性: {pokemon.abilities.map(a => a.ability.name).join(', ')}</p>
+            <p>ステータス:</p>
+            <ul>
+                {pokemon.stats.map(s => (
+                    <li key={s.stat.name}>
+                        {s.stat.name}: {s.base_stat}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
