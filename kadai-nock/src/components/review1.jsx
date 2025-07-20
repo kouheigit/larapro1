@@ -9,6 +9,16 @@ function Todo(){
         setTodos([...todos,{text: inputs,done:false}]);
         setInputs('');
     }
+
+    const deleteTodo = (deleteIndex) =>{
+        setTodos(todos.filter((_,index)=>index!==deleteIndex))
+    }
+
+    
+    /*
+    const deleteTodo =(deleteIndex) =>{
+        setTodos(todos.filter((_,index)=>index!==deleteIndex))
+    }*/
     /*
        const addTodo = () => {
         if (inputs.trim() === '') return;
