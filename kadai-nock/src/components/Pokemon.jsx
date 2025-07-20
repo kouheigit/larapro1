@@ -3,7 +3,14 @@ import React, { useEffect, useState } from 'react';
 function Pokemon(){
     const[pokemon,setPokemon] = useState(null);
     useEffect(()=>{
-        
+        fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+            .then(response=>{
+                if(!response.ok){
+                    throw new Error('データの取得に失敗しました');
+                }
+                return response.json();
+            })
+           
     },[]);
     return view(
         <div>
