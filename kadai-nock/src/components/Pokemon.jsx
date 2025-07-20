@@ -19,7 +19,8 @@ function Pokemon(){
         }, []);
     return view(
         <div>
-
+            <h1>ポケモン情報</h1>
+           
         </div>
     );
 }
