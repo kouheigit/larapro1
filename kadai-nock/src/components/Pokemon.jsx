@@ -20,14 +20,14 @@ function Pokemon(){
     return (
         <div>
             <h1>ポケモン情報</h1>
-            {pokemon ? (
+            {pokemon ?(
                 <div>
-                    <p>名前: {pokemon.name}</p>
+                    <p>名前:{pokemon.name}</p>
                     <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                    <p>高さ: {pokemon.height}</p>
-                    <p>重さ: {pokemon.weight}</p>
+                    <p>高さ:{pokemon.height}</p>
+                    <p>重さ:{pokemon.weight}</p>
                 </div>
-            ) : (
+            ):(
                 <p>読み込み中...</p>
             )}
         </div>
