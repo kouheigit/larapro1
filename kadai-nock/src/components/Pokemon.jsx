@@ -19,7 +19,7 @@ function Pokemon(){
         }, []);
     return (
         <div>
-            <h1>ポケモン情報</h1>
+            <b>ポケモン情報</b>
             {pokemon ?(
                 <div>
                     <p>名前:{pokemon.name}</p>

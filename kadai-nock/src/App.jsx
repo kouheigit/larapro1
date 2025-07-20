@@ -6,6 +6,7 @@ import Timerpage from "./pages/Timerpage";
 import Review from "./pages/review";
 import Review1 from "./components/review1";
 import Profilecard from "./components/Profilecard";
+import Pokemon from "./components/Pokemon";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link></nav>
+            <nav><Link to="/Pokemon">ポケモン</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
@@ -28,6 +30,7 @@ function App() {
                 <Route path="/Review" element={<Review />} />
                 <Route path="/Review" element={<Review1 />} />
                 <Route path="/Profilecard" element={<Profilecard />} />
+                <Route path="/Pokemon" element={<Pokemon />} />
             </Routes>
         </BrowserRouter>
 
