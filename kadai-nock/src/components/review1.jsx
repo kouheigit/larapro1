@@ -6,24 +6,35 @@ function Todo(){
 
     const addTodo = () =>{
         if(inputs.trim()==='') return;
-        setTodos([...todos,{text: inputs,done:false}]);
+        setTodos([...todos, {text: inputs,done:false}]);
         setInputs('');
     }
 
     const deleteTodo = (deleteIndex) =>{
         setTodos(todos.filter((_,index)=>index!==deleteIndex))
     }
-
-
+    const toggleCheck = (index) =>{
+        setTodos(
+            todos.map((todo,i)=>{
+                if(i===index){
+                    return {...todo,done: !todo.done};
+                }else{
+                    return todo;
+                }
+            })
+        )
+    }
     /*
-    const deleteTodo =(deleteIndex) =>{
-        setTodos(todos.filter((_,index)=>index!==deleteIndex))
-    }*/
-    /*
-       const addTodo = () => {
-        if (inputs.trim() === '') return;
-        setTodos([...todos, {text: inputs, done: false}]);
-        setInuputs('');
+     const toggleCheck =(index) =>{
+        setTodos(
+            todos.map((todo,i)=>{
+                if(i === index){
+                    return {...todo,done: !todo.done};
+                }else{
+                    return todo;
+                }
+            })
+        )
     }
      */
     return (
@@ -32,6 +43,13 @@ function Todo(){
                 <input tyep="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder ="タスクを入力"/>
                 <p>入力された値{inputs}</p>
                 <button onClick={addTodo}>追加</button>
+                {todos.map((index,todo)=>{
+                    <input type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)}/>
+                    <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                        {todo.text}
+                    </span>
+                    <button onClick={()=>deleteTodo(index)}>削除</button>
+                })}
             </ul>
         </div>
     );

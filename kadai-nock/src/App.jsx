@@ -4,6 +4,7 @@ import CountPages from "./pages/CountPages";
 import TodoPage from "./pages/TodoPage";
 import Timerpage from "./pages/Timerpage";
 import Review from "./pages/review";
+import Review1 from "./pages/review1";
 import Profilecard from "./components/Profilecard";
 
 
