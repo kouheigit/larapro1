@@ -17,19 +17,19 @@ function Pokemon(){
                console.error('エラー',error);
             });
         }, []);
+
+    if (!pokemon) {
+        return <p>読み込み中...</p>;
+    }
+
     return (
         <div>
             <b>ポケモン情報</b>
-            {pokemon ?(
-                <div>
-                    <p>名前:{pokemon.name}</p>
-                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                    <p>高さ:{pokemon.height}</p>
-                    <p>重さ:{pokemon.weight}</p>
-                </div>
-            ):(
-                <p>読み込み中...</p>
-            )}
+            <p>{pokemon.name}</p>
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <b>データ</b>
+            <p>高さ{pokemon.height}</p>
+            <p>重さ:{pokemon.weight}</p>
         </div>
     );
 }
