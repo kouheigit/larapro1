@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Pokemon(){
-    return(
+    const[pokemon,setPokemon] = useState(null);
+    useEffect(()=>{
+        
+    },[]);
+    return view(
         <div>
-            
+
         </div>
     );
 }
