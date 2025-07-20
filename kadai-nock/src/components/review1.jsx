@@ -22,7 +22,8 @@ function Todo(){
 return (
     <div>
         <ul>
-
+            <input tyep="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder ="タスクを入力"/>
+            <p>入力された値{inputs}</p>
         </ul>
     </div>
 );
