@@ -19,7 +19,7 @@ function App() {
             <nav>
                 <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
             </nav>
-            <nav><Link to="/review">復習課題1</Link></nav>
+            <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />

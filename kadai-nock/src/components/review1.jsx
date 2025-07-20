@@ -40,16 +40,18 @@ function Todo(){
     return (
         <div>
             <ul>
-                <input tyep="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder ="タスクを入力"/>
+                <input type="text" value={inputs} onChange={(e) => setInuputs(e.target.value)} placeholder="タスクを入力"/>
                 <p>入力された値{inputs}</p>
                 <button onClick={addTodo}>追加</button>
-                {todos.map((index,todo)=>{
-                    <input type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)}/>
-                    <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
-                        {todo.text}
-                    </span>
-                    <button onClick={()=>deleteTodo(index)}>削除</button>
-                })}
+                {todos.map((todo, index) => (
+                    <li key={index}>
+                        <input type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)}/>
+                        <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                            {todo.text}
+                        </span>
+                        <button onClick={()=>deleteTodo(index)}>削除</button>
+                    </li>
+                ))}
             </ul>
         </div>
     );
