@@ -33,3 +33,4 @@ function Pokemon(){
         </div>
     );
 }
+export default Pokemon;
