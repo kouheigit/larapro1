@@ -16,14 +16,7 @@ function Pokemon(){
             .catch(error=>{
                console.error('エラー',error);
             });
-        /*
-        .then(data => {
-            setPokemon(data);  // 成功時にstateへ保存
-        })
-        .catch(error => {
-            console.error('エラー:', error);
-        });*/
-    },[]);
+        }, []);
     return view(
         <div>
 
