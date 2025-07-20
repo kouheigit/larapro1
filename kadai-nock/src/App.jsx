@@ -4,7 +4,7 @@ import CountPages from "./pages/CountPages";
 import TodoPage from "./pages/TodoPage";
 import Timerpage from "./pages/Timerpage";
 import Review from "./pages/review";
-import Review1 from "./pages/review1";
+import Review1 from "./components/review1";
 import Profilecard from "./components/Profilecard";
 
 
@@ -26,6 +26,7 @@ function App() {
                 <Route path="/todo" element={<TodoPage />} />
                 <Route path="/timer" element={<Timerpage />} />
                 <Route path="/Review" element={<Review />} />
+                <Route path="/Review" element={<Review1 />} />
                 <Route path="/Profilecard" element={<Profilecard />} />
             </Routes>
         </BrowserRouter>

@@ -35,8 +35,9 @@ function Todo() {
                     <li key={index}>
                         <input type="checkbox" checked={todo.done} onChange={()=>toggleCheck(index)}/>
                         <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
-                        {todo.text}
-                            <button onClick={()=>deleteTodo(index)}>削除</button></span>
+                            {todo.text}
+                        </span>
+                        <button onClick={()=>deleteTodo(index)}>削除</button>
                     </li>
                 ))}
             </ul>
