@@ -14,7 +14,7 @@ function Todo(){
         setTodos(todos.filter((_,index)=>index!==deleteIndex))
     }
 
-    
+
     /*
     const deleteTodo =(deleteIndex) =>{
         setTodos(todos.filter((_,index)=>index!==deleteIndex))
@@ -34,6 +34,7 @@ return (
         <ul>
             <input tyep="text" value={inputs} onChange={(e)=>setInputs(e.target.value)} placeholder ="タスクを入力"/>
             <p>入力された値{inputs}</p>
+            <button onClick={addTodo}>追加</button>
         </ul>
     </div>
 );
