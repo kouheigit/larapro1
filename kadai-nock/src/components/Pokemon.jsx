@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+//Pokemon
 function Pokemon(){
     const[pokemon,setPokemon] = useState(null);
     useEffect(()=>{
