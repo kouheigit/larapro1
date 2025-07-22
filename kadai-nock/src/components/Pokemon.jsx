@@ -28,6 +28,13 @@ function Pokemon(){
 
     return (
         <div>
+            <input type="text" placeholder="ポケモン名を英語で入力(例:pikachu)" value={name} onChange={(e)=>setName(e.target.value)} style={{ padding: '0.5rem', width: '200px' }}/>
+            <button onClick={serchPokemon} style={{ marginLeft: '1rem' }}>
+                検索
+            </button>
+
+
+
             <b>ポケモン情報</b>
             <p>{pokemon.name}</p>
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
