@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function Pokemon(){
     const[pokemon,setPokemon] = useState(null);
     const[name,setName] =useState('');
+    const[error,setError] = useState(null);
 
     //useEffectを別のconst形式にする
     useEffect(()=>{
