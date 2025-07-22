@@ -7,7 +7,7 @@ function Pokemon() {
 
     //useEffectを別のconst形式にする
     const searchPokemon = () => {
-        fetch('https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}')
+        fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('データの取得に失敗しました');
@@ -24,7 +24,6 @@ function Pokemon() {
             });
     }
 
-    {error && <p style={{ color: 'red' }}>{error}</p>}
 
     return (
         <div>
@@ -32,6 +31,7 @@ function Pokemon() {
             <button onClick={searchPokemon} style={{ marginLeft: '1rem' }}>
                 検索
             </button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             {pokemon && (
             <>
             <b>ポケモン情報</b>
@@ -56,7 +56,7 @@ function Pokemon() {
                 あなたのブラウザは audio タグをサポートしていません。
             </audio>
         </>
-                )};
+                )}
         </div>
     );
 }
