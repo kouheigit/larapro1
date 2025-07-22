@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 //Pokemon
 function Pokemon(){
     const[pokemon,setPokemon] = useState(null);
+    const[name,setName] =useState('');
+
     useEffect(()=>{
         fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
             .then(response=>{
