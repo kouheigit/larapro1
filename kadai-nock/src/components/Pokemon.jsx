@@ -35,7 +35,7 @@ function Pokemon() {
             {pokemon && (
             <>
             <b>ポケモン情報</b>
-            <p>{pokemon.name}</p>
+            <p>{pokemon.name.toUpperCase()}</p>
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             <b>データ</b>
             <p>高さ{pokemon.height}</p>
