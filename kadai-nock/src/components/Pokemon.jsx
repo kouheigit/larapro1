@@ -32,6 +32,8 @@ function Pokemon() {
             <button onClick={searchPokemon} style={{ marginLeft: '1rem' }}>
                 検索
             </button>
+            {pokemon && (
+            <>
             <b>ポケモン情報</b>
             <p>{pokemon.name}</p>
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
@@ -53,6 +55,8 @@ function Pokemon() {
                 <source src={pokemon.cries.latest} type="audio/ogg" />
                 あなたのブラウザは audio タグをサポートしていません。
             </audio>
+        </>
+                )};
         </div>
     );
 }
