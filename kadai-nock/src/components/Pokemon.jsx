@@ -4,6 +4,7 @@ function Pokemon(){
     const[pokemon,setPokemon] = useState(null);
     const[name,setName] =useState('');
 
+    //useEffectを別のconst形式にする
     useEffect(()=>{
         fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
             .then(response=>{
