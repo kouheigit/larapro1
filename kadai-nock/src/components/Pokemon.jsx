@@ -24,10 +24,6 @@ function Pokemon(){
 
     return (
         <div>
-
-            <input type="text" value={inputs} onChange={(e) => setInuputs(e.target.value)} placeholder="タスクを入力"/>
-            <p>入力された値{inputs}</p>
-            
             <b>ポケモン情報</b>
             <p>{pokemon.name}</p>
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
@@ -44,6 +40,11 @@ function Pokemon(){
                     </li>
                 ))}
             </ul>
+            <p>鳴き声</p>
+            <audio controls>
+                <source src={pokemon.cries.latest} type="audio/ogg" />
+                あなたのブラウザは audio タグをサポートしていません。
+            </audio>
         </div>
     );
 }
