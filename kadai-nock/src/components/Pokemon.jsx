@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from 'react';
 //Pokemon
-function Pokemon(){
-    const[pokemon,setPokemon] = useState(null);
-    const[name,setName] =useState('');
-    const[error,setError] = useState(null);
+function Pokemon() {
+    const [pokemon, setPokemon] = useState(null);
+    const [name, setName] = useState('');
+    const [error, setError] = useState(null);
 
     //useEffectを別のconst形式にする
-    useEffect(()=>{
-        fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-            .then(response=>{
-                if(!response.ok){
+    const searchPokemon = () => {
+        fetch('https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}')
+            .then(response => {
+                if (!response.ok) {
                     throw new Error('データの取得に失敗しました');
                 }
                 return response.json();
             })
-            .then(data=>{
+            .then(data => {
                 setPokemon(data);
-                })
-            .catch(error=>{
-               console.error('エラー',error);
+                setError(null);
+            })
+            .catch(error => {
+                setPokemon(null);
+                setError(error.message);
             });
-        }, []);
-
-    if (!pokemon) {
-        return <p>読み込み中...</p>;
     }
+
+    {error && <p style={{ color: 'red' }}>{error}</p>}
 
     return (
         <div>
             <input type="text" placeholder="ポケモン名を英語で入力(例:pikachu)" value={name} onChange={(e)=>setName(e.target.value)} style={{ padding: '0.5rem', width: '200px' }}/>
-            <button onClick={serchPokemon} style={{ marginLeft: '1rem' }}>
+            <button onClick={searchPokemon} style={{ marginLeft: '1rem' }}>
                 検索
             </button>
-
-
 
             <b>ポケモン情報</b>
             <p>{pokemon.name}</p>
