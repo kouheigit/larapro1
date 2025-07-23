@@ -5,6 +5,7 @@ function PokemonDex() {
     const [name, setName] = useState('');
     const [error, setError] = useState(null);
 
+    //serchPokemon
     const searchPokemon = () => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
             .then(response => {
