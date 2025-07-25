@@ -14,4 +14,3 @@ function Pokemon1(){
 export default Pokemon1;
 
 
- */
