@@ -7,6 +7,7 @@ import Review from "./pages/review";
 import Review1 from "./components/review1";
 import Profilecard from "./components/Profilecard";
 import Pokemon from "./components/Pokemon";
+import Pokemon1 from "./components/Pokemon1";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
                 <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link></nav>
-            <nav><Link to="/Pokemon">ポケモン</Link></nav>
+            <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/Review" element={<Review1 />} />
                 <Route path="/Profilecard" element={<Profilecard />} />
                 <Route path="/Pokemon" element={<Pokemon />} />
+                <Route path="/Pokemon1" element={<Pokemon1 />} />
             </Routes>
         </BrowserRouter>
 
