@@ -8,6 +8,10 @@ function Pokemon1(){
             .then(data => setPokemon(data))
             .catch(err => console.error('取得失敗',err));
     },[]);
+
+
+    if (!pokemon) return <p>読み込み中...</p>;
+
     return(
         <div style={{ padding: '20px' }}>
             <b>ポケモン情報</b>
