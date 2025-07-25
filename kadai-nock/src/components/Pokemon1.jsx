@@ -11,6 +11,15 @@ function Pokemon1(){
     return(
         <div style={{ padding: '20px' }}>
             <b>ポケモン情報</b>
+            {pokemon ? (
+                <div>
+                    <h2>{pokemon.name.toUpperCase()}（ID: {pokemon.id}）</h2>
+                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                    <p>タイプ: {pokemon.types.map(t => t.type.name).join(', ')}</p>
+                </div>
+            ) : (
+                <p>読み込み中...</p>
+            )}
         </div>
     );
 }
