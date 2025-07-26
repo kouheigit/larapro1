@@ -1,5 +1,6 @@
 import React,{ useEffect,useState }from 'react';
 
+//pokemon1
 function Pokemon1(){
     const[pokemon,setPokemon] = useState(null);
     useEffect(()=>{
