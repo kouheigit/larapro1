@@ -3,66 +3,34 @@ import React, { useState, useEffect } from 'react';
 const Osero = () => {
   const [board, setBoard] = useState([]);
   const [currentPlayer, setCurrentPlayer] = useState(1); // 1: 黒, -1: 白
-  const [gameOver, setGameOver] = useState(false);
+  const [gameStatus, setGameStatus] = useState('difficulty'); // 'difficulty', 'playing', 'finished'
+  const [difficulty, setDifficulty] = useState(null);
   const [winner, setWinner] = useState(null);
   const [blackCount, setBlackCount] = useState(0);
   const [whiteCount, setWhiteCount] = useState(0);
 
-  // 盤面の初期化
-  useEffect(() => {
-    initializeBoard();
-  }, []);
-
+  // 8x8のボードを初期化
   const initializeBoard = () => {
     const newBoard = Array(8).fill(null).map(() => Array(8).fill(0));
-    // 初期配置
     newBoard[3][3] = -1; // 白
     newBoard[3][4] = 1;  // 黒
     newBoard[4][3] = 1;  // 黒
     newBoard[4][4] = -1; // 白
-    setBoard(newBoard);
+    return newBoard;
+  };
+
+  // ゲーム開始
+  const startGame = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+    setBoard(initializeBoard());
     setCurrentPlayer(1);
-    setGameOver(false);
+    setGameStatus('playing');
     setWinner(null);
-    updateCounts(newBoard);
+    setBlackCount(2);
+    setWhiteCount(2);
   };
 
-  // 石の数をカウント
-  const updateCounts = (boardState) => {
-    let black = 0;
-    let white = 0;
-    for (let i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) {
-        if (boardState[i][j] === 1) black++;
-        else if (boardState[i][j] === -1) white++;
-      }
-    }
-    setBlackCount(black);
-    setWhiteCount(white);
-  };
-
-  // 指定方向にひっくり返せる石があるかチェック
-  const checkDirection = (board, row, col, player, deltaRow, deltaCol) => {
-    const opponent = -player;
-    let r = row + deltaRow;
-    let c = col + deltaCol;
-    let foundOpponent = false;
-
-    while (r >= 0 && r < 8 && c >= 0 && c < 8) {
-      if (board[r][c] === opponent) {
-        foundOpponent = true;
-      } else if (board[r][c] === player && foundOpponent) {
-        return true;
-      } else {
-        break;
-      }
-      r += deltaRow;
-      c += deltaCol;
-    }
-    return false;
-  };
-
-  // 石を置けるかチェック
+  // 石を置ける場所をチェック
   const isValidMove = (board, row, col, player) => {
     if (board[row][col] !== 0) return false;
 
@@ -72,9 +40,25 @@ const Osero = () => {
       [1, -1],  [1, 0],  [1, 1]
     ];
 
-    return directions.some(([deltaRow, deltaCol]) =>
-      checkDirection(board, row, col, player, deltaRow, deltaCol)
-    );
+    for (const [dx, dy] of directions) {
+      let r = row + dx;
+      let c = col + dy;
+      let foundOpponent = false;
+
+      while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+        if (board[r][c] === 0) break;
+        if (board[r][c] === -player) {
+          foundOpponent = true;
+        } else if (board[r][c] === player && foundOpponent) {
+          return true;
+        } else {
+          break;
+        }
+        r += dx;
+        c += dy;
+      }
+    }
+    return false;
   };
 
   // 石をひっくり返す
@@ -86,180 +70,301 @@ const Osero = () => {
       [1, -1],  [1, 0],  [1, 1]
     ];
 
-    directions.forEach(([deltaRow, deltaCol]) => {
-      if (checkDirection(board, row, col, player, deltaRow, deltaCol)) {
-        let r = row + deltaRow;
-        let c = col + deltaCol;
+    for (const [dx, dy] of directions) {
+      let r = row + dx;
+      let c = col + dy;
+      const stonesToFlip = [];
 
-        while (r >= 0 && r < 8 && c >= 0 && c < 8 && newBoard[r][c] === -player) {
-          newBoard[r][c] = player;
-          r += deltaRow;
-          c += deltaCol;
+      while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+        if (newBoard[r][c] === 0) break;
+        if (newBoard[r][c] === -player) {
+          stonesToFlip.push([r, c]);
+        } else if (newBoard[r][c] === player) {
+          stonesToFlip.forEach(([fr, fc]) => {
+            newBoard[fr][fc] = player;
+          });
+          break;
+        } else {
+          break;
         }
+        r += dx;
+        c += dy;
       }
-    });
+    }
 
     newBoard[row][col] = player;
     return newBoard;
   };
 
-  // 石を置く処理
-  const handleCellClick = (row, col) => {
-    if (gameOver || board[row][col] !== 0) return;
-
-    if (isValidMove(board, row, col, currentPlayer)) {
-      const newBoard = flipStones(board, row, col, currentPlayer);
-      setBoard(newBoard);
-      updateCounts(newBoard);
-
-      // 次のプレイヤーに交代
-      const nextPlayer = -currentPlayer;
-      
-      // 次のプレイヤーが置ける場所があるかチェック
-      let hasValidMove = false;
-      for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
-          if (isValidMove(newBoard, i, j, nextPlayer)) {
-            hasValidMove = true;
-            break;
-          }
-        }
-        if (hasValidMove) break;
-      }
-
-      if (hasValidMove) {
-        setCurrentPlayer(nextPlayer);
-      } else {
-        // 次のプレイヤーが置けない場合、現在のプレイヤーが続行
-        let currentPlayerHasMove = false;
-        for (let i = 0; i < 8; i++) {
-          for (let j = 0; j < 8; j++) {
-            if (isValidMove(newBoard, i, j, currentPlayer)) {
-              currentPlayerHasMove = true;
-              break;
-            }
-          }
-          if (currentPlayerHasMove) break;
-        }
-
-        if (!currentPlayerHasMove) {
-          // ゲーム終了
-          setGameOver(true);
-          if (blackCount > whiteCount) {
-            setWinner('黒');
-          } else if (whiteCount > blackCount) {
-            setWinner('白');
-          } else {
-            setWinner('引き分け');
-          }
+  // 有効な手を取得
+  const getValidMoves = (board, player) => {
+    const validMoves = [];
+    for (let row = 0; row < 8; row++) {
+      for (let col = 0; col < 8; col++) {
+        if (isValidMove(board, row, col, player)) {
+          validMoves.push([row, col]);
         }
       }
     }
+    return validMoves;
   };
 
-  // ゲーム終了判定
-  useEffect(() => {
-    if (blackCount + whiteCount === 64) {
-      setGameOver(true);
-      if (blackCount > whiteCount) {
-        setWinner('黒');
-      } else if (whiteCount > blackCount) {
-        setWinner('白');
-      } else {
-        setWinner('引き分け');
+  // 石の数をカウント
+  const countStones = (board) => {
+    let black = 0;
+    let white = 0;
+    for (let row = 0; row < 8; row++) {
+      for (let col = 0; col < 8; col++) {
+        if (board[row][col] === 1) black++;
+        else if (board[row][col] === -1) white++;
       }
     }
-  }, [blackCount, whiteCount]);
+    return { black, white };
+  };
+
+  // 人間の手
+  const handleCellClick = (row, col) => {
+    if (gameStatus !== 'playing' || currentPlayer !== 1) return;
+    if (!isValidMove(board, row, col, currentPlayer)) return;
+
+    const newBoard = flipStones(board, row, col, currentPlayer);
+    setBoard(newBoard);
+    
+    const { black, white } = countStones(newBoard);
+    setBlackCount(black);
+    setWhiteCount(white);
+
+    // 次のプレイヤーに切り替え
+    setCurrentPlayer(-1);
+    
+    // AIのターン
+    setTimeout(() => {
+      makeAIMove(newBoard);
+    }, 500);
+  };
+
+  // AIの手
+  const makeAIMove = (currentBoard) => {
+    const validMoves = getValidMoves(currentBoard, -1);
+    
+    if (validMoves.length === 0) {
+      // AIが置けない場合、人間のターンに戻る
+      const humanValidMoves = getValidMoves(currentBoard, 1);
+      if (humanValidMoves.length === 0) {
+        // 両方とも置けない場合、ゲーム終了
+        endGame(currentBoard);
+        return;
+      }
+      setCurrentPlayer(1);
+      return;
+    }
+
+    let bestMove;
+    if (difficulty === 'easy') {
+      // 簡単: ランダム
+      bestMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+    } else if (difficulty === 'medium') {
+      // 中級: 角を優先、次に端、最後にランダム
+      const corners = validMoves.filter(([r, c]) => 
+        (r === 0 || r === 7) && (c === 0 || c === 7)
+      );
+      const edges = validMoves.filter(([r, c]) => 
+        r === 0 || r === 7 || c === 0 || c === 7
+      );
+      
+      if (corners.length > 0) {
+        bestMove = corners[Math.floor(Math.random() * corners.length)];
+      } else if (edges.length > 0) {
+        bestMove = edges[Math.floor(Math.random() * edges.length)];
+      } else {
+        bestMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+      }
+    } else {
+      // 難しい: より多くの石を取る手を選ぶ
+      let maxFlips = -1;
+      for (const [row, col] of validMoves) {
+        const testBoard = flipStones(currentBoard, row, col, -1);
+        const { black: newBlack, white: newWhite } = countStones(testBoard);
+        const flips = newWhite - whiteCount;
+        if (flips > maxFlips) {
+          maxFlips = flips;
+          bestMove = [row, col];
+        }
+      }
+    }
+
+    const [row, col] = bestMove;
+    const newBoard = flipStones(currentBoard, row, col, -1);
+    setBoard(newBoard);
+    
+    const { black, white } = countStones(newBoard);
+    setBlackCount(black);
+    setWhiteCount(white);
+
+    // 人間のターンに戻る
+    setCurrentPlayer(1);
+
+    // 人間が置けるかチェック
+    setTimeout(() => {
+      const humanValidMoves = getValidMoves(newBoard, 1);
+      if (humanValidMoves.length === 0) {
+        const aiValidMoves = getValidMoves(newBoard, -1);
+        if (aiValidMoves.length === 0) {
+          endGame(newBoard);
+        } else {
+          setCurrentPlayer(-1);
+          makeAIMove(newBoard);
+        }
+      }
+    }, 100);
+  };
+
+  // ゲーム終了
+  const endGame = (finalBoard) => {
+    const { black, white } = countStones(finalBoard);
+    setBlackCount(black);
+    setWhiteCount(white);
+    
+    if (black > white) {
+      setWinner('黒');
+    } else if (white > black) {
+      setWinner('白');
+    } else {
+      setWinner('引き分け');
+    }
+    
+    setGameStatus('finished');
+  };
+
+  // ゲームリセット
+  const resetGame = () => {
+    setGameStatus('difficulty');
+    setBoard([]);
+    setCurrentPlayer(1);
+    setWinner(null);
+    setBlackCount(0);
+    setWhiteCount(0);
+  };
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>オセロゲーム</h1>
+    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>オセロゲーム</h1>
       
-      <div style={{ marginBottom: '20px' }}>
-        <div style={{ fontSize: '18px', marginBottom: '10px' }}>
-          現在のプレイヤー: {currentPlayer === 1 ? '黒' : '白'}
-        </div>
-        <div style={{ fontSize: '16px' }}>
-          黒: {blackCount} | 白: {whiteCount}
-        </div>
-      </div>
-
-      {gameOver && (
-        <div style={{ 
-          fontSize: '24px', 
-          fontWeight: 'bold', 
-          marginBottom: '20px',
-          color: winner === '引き分け' ? '#666' : winner === '黒' ? '#000' : '#fff',
-          backgroundColor: winner === '引き分け' ? '#f0f0f0' : winner === '黒' ? '#fff' : '#000',
-          padding: '10px',
-          borderRadius: '5px',
-          display: 'inline-block'
-        }}>
-          Winner: {winner}
+      {gameStatus === 'difficulty' && (
+        <div style={{ textAlign: 'center' }}>
+          <h2>難易度を選択してください</h2>
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
+            <button 
+              onClick={() => startGame('easy')}
+              style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+            >
+              簡単
+            </button>
+            <button 
+              onClick={() => startGame('medium')}
+              style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+            >
+              中級
+            </button>
+            <button 
+              onClick={() => startGame('hard')}
+              style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+            >
+              難しい
+            </button>
+          </div>
         </div>
       )}
 
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(8, 50px)', 
-        gap: '2px',
-        justifyContent: 'center',
-        marginBottom: '20px'
-      }}>
-        {board.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              onClick={() => handleCellClick(rowIndex, colIndex)}
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: '#228B22',
-                border: '1px solid #000',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: board[rowIndex][colIndex] === 0 ? 'pointer' : 'default',
-                borderRadius: '3px'
-              }}
-            >
-              {cell === 1 && (
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  backgroundColor: '#000',
-                  borderRadius: '50%',
-                  border: '2px solid #333'
-                }} />
-              )}
-              {cell === -1 && (
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  backgroundColor: '#fff',
-                  borderRadius: '50%',
-                  border: '2px solid #ccc'
-                }} />
-              )}
+      {gameStatus === 'playing' && (
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+            <div>
+              <strong>黒: {blackCount}</strong>
             </div>
-          ))
-        )}
-      </div>
+            <div>
+              <strong>現在のプレイヤー: {currentPlayer === 1 ? '黒' : '白'}</strong>
+            </div>
+            <div>
+              <strong>白: {whiteCount}</strong>
+            </div>
+          </div>
 
-      <button 
-        onClick={initializeBoard}
-        style={{
-          padding: '10px 20px',
-          fontSize: '16px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}
-      >
-        新しいゲーム
-      </button>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(8, 1fr)', 
+            gap: '2px', 
+            backgroundColor: '#228B22',
+            padding: '10px',
+            borderRadius: '5px'
+          }}>
+            {board.map((row, rowIndex) =>
+              row.map((cell, colIndex) => (
+                <div
+                  key={`${rowIndex}-${colIndex}`}
+                  onClick={() => handleCellClick(rowIndex, colIndex)}
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    backgroundColor: '#228B22',
+                    border: '1px solid #000',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: currentPlayer === 1 ? 'pointer' : 'default',
+                    borderRadius: '50%',
+                    opacity: isValidMove(board, rowIndex, colIndex, currentPlayer) ? 1 : 0.7
+                  }}
+                >
+                  {cell === 1 && (
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      backgroundColor: '#000',
+                      borderRadius: '50%'
+                    }} />
+                  )}
+                  {cell === -1 && (
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      backgroundColor: '#fff',
+                      borderRadius: '50%',
+                      border: '1px solid #000'
+                    }} />
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <button 
+              onClick={resetGame}
+              style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+            >
+              リセット
+            </button>
+          </div>
+        </div>
+      )}
+
+      {gameStatus === 'finished' && (
+        <div style={{ textAlign: 'center' }}>
+          <h2>ゲーム終了！</h2>
+          <h3>結果: {winner}</h3>
+          <div style={{ margin: '20px 0' }}>
+            <p>黒: {blackCount}個</p>
+            <p>白: {whiteCount}個</p>
+          </div>
+          <button 
+            onClick={resetGame}
+            style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+          >
+            もう一度プレイ
+          </button>
+        </div>
+      )}
     </div>
   );
 };
