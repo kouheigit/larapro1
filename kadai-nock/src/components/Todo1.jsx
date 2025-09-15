@@ -6,8 +6,8 @@ function Todo1(){
     const[inputs,setInputs] = useState('');
 
     const addTodo = () =>{
-        if(inputs.trim==='') return;
-        setTodos(...[todos,{text:inputs,done:false}]);
+        if(inputs.trim()==='') return;
+        setTodos([...todos,{text:inputs,done:false}]);
         setInputs('');
     }
     const deleteTodo = (deleteIndex) =>{
@@ -16,7 +16,7 @@ function Todo1(){
     return(
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
-            <button OnClick={addTodo}>追加</button>
+            <button onClick={addTodo}>追加</button>
             {todos.map((todo,index)=>(
                 <div key={index}>
                     {todo.text}
