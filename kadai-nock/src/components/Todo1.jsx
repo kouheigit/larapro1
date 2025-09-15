@@ -1,5 +1,6 @@
 import React,{ useState } from 'react';
 
+
 function Todo1(){
     const[todos,setTodos] = useState([]);
     const[inputs,setInputs] = useState('');
@@ -12,14 +13,17 @@ function Todo1(){
     const deleteTodo = (deleteIndex) =>{
         setTodos(todos.filter((_,index)=>index!==deleteIndex));
     }
-    /*
-    const deleteTodo = (deleteIndex) =>{
-        setTodos(todos.filter((_,index)=>index!==deleteIndex));
-    }*/
-
     return(
         <div>
-
+            <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
+            <button OnClick={addTodo}>追加</button>
+            {todos.map((todo,index)=>(
+                <div key={index}>
+                    {todo.text}
+                    <button onClick={()=>deleteTodo(index)}>削除</button>
+                </div>
+            ))}
         </div>
     );
 }
+export default Todo1;
