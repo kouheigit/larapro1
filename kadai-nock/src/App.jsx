@@ -23,8 +23,7 @@ function App() {
                 <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link></nav>
-            <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Todo1">Todo1</Link>
-                <Link to="/Todo2">Todo2</Link></nav>
+            <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Todo1">Todo1</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
@@ -36,7 +35,6 @@ function App() {
                 <Route path="/Pokemon" element={<Pokemon />} />
                 <Route path="/Pokemon1" element={<Pokemon1 />} />
                 <Route path="/Todo1" element={<Todo1 />} />
-                <Route path="/Todo2" element={<Todo2 />} />
             </Routes>
         </BrowserRouter>
 
