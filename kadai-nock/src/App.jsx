@@ -10,6 +10,7 @@ import Pokemon from "./components/Pokemon";
 import Pokemon1 from "./components/Pokemon1";
 import Pokemon3 from "./components/Pokemon3";
 import Todo1 from "./components/Todo1.jsx";
+import Todo3 from "./components/Todo3.jsx";
 import Osero from "./components/Osero.jsx";
 
 
@@ -22,7 +23,7 @@ function App() {
                 <Link to="/hello">課題1Hello</Link> | <Link to="/count">課題2Count</Link>| <Link to="/todo">課題3Todo</Link>
             </nav>
             <nav>
-                <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
+                <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link><Link to="/Todo3">Todo3</Link>
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link><Link to="/Pokemon3">ポケモン3</Link></nav>
             <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Todo1">Todo1</Link><Link to="/Osero">オセロ</Link></nav>
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/Pokemon1" element={<Pokemon1 />} />
                 <Route path="/Pokemon3" element={<Pokemon3 />} />
                 <Route path="/Todo1" element={<Todo1 />} />
+                <Route path="/Todo3" element={<Todo3 />} />
                 <Route path="/Osero" element={<Osero />} />
             </Routes>
         </BrowserRouter>
