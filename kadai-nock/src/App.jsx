@@ -8,8 +8,8 @@ import Review1 from "./components/review1";
 import Profilecard from "./components/Profilecard";
 import Pokemon from "./components/Pokemon";
 import Pokemon1 from "./components/Pokemon1";
-import Pokemon3 from "./components/Pokemon3";
 import Todo1 from "./components/Todo1.jsx";
+import Osero from "./components/Osero.jsx";
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
                 <Link to="/timer">課題4タイマー</Link><Link to="/Profilecard">課題5プロフィールカード</Link>
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link></nav>
-            <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Pokemon3">ポケモン3</Link><Link to="/Todo1">Todo1</Link></nav>
+            <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Todo1">Todo1</Link><Link to="/Osero">オセロ</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
@@ -35,8 +35,8 @@ function App() {
                 <Route path="/Profilecard" element={<Profilecard />} />
                 <Route path="/Pokemon" element={<Pokemon />} />
                 <Route path="/Pokemon1" element={<Pokemon1 />} />
-                <Route path="/Pokemon3" element={<Pokemon3 />} />
                 <Route path="/Todo1" element={<Todo1 />} />
+                <Route path="/Osero" element={<Osero />} />
             </Routes>
         </BrowserRouter>
 
