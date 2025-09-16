@@ -31,12 +31,12 @@ const Packman = () => {
     nextDirection: 'right'
   });
 
-  // ゴーストの状態
+  // ゴーストの状態（食べられた状態を追加）
   const [ghosts, setGhosts] = useState([
-    { id: 'blinky', x: 9, y: 9, color: 'red', mode: 'chase', direction: 'left' },
-    { id: 'pinky', x: 9, y: 9, color: 'pink', mode: 'chase', direction: 'right' },
-    { id: 'inky', x: 8, y: 9, color: 'cyan', mode: 'chase', direction: 'up' },
-    { id: 'clyde', x: 10, y: 9, color: 'orange', mode: 'chase', direction: 'down' }
+    { id: 'blinky', x: 9, y: 9, color: 'red', mode: 'chase', direction: 'left', eaten: false },
+    { id: 'pinky', x: 9, y: 9, color: 'pink', mode: 'chase', direction: 'right', eaten: false },
+    { id: 'inky', x: 8, y: 9, color: 'cyan', mode: 'chase', direction: 'up', eaten: false },
+    { id: 'clyde', x: 10, y: 9, color: 'orange', mode: 'chase', direction: 'down', eaten: false }
   ]);
 
   // 迷路の状態管理（動的に変更可能にする）
@@ -221,6 +221,7 @@ const Packman = () => {
       });
     } else if (mazeState[y][x] === 3) {
       // パワークッキー
+      console.log('パワークッキーを食べた！パワーモード発動');
       playEatSound(); // 音効果
       setGameState(prev => ({
         ...prev,
@@ -391,18 +392,22 @@ const Packman = () => {
     // ゴーストの移動
     setGhosts(prev => prev.map(ghost => moveGhost(ghost)));
 
-    // パワーモードの時間管理
-    if (gameState.powerMode && gameState.powerModeTime > 0) {
-      setGameState(prev => ({
-        ...prev,
-        powerModeTime: prev.powerModeTime - 1
-      }));
-    } else if (gameState.powerMode && gameState.powerModeTime <= 0) {
-      setGameState(prev => ({
-        ...prev,
-        powerMode: false,
-        powerModeTime: 0
-      }));
+    // パワーモードの時間管理（改善版）
+    if (gameState.powerMode) {
+      if (gameState.powerModeTime > 0) {
+        setGameState(prev => ({
+          ...prev,
+          powerModeTime: prev.powerModeTime - 1
+        }));
+      } else {
+        // パワーモード終了
+        console.log('パワーモード終了');
+        setGameState(prev => ({
+          ...prev,
+          powerMode: false,
+          powerModeTime: 0
+        }));
+      }
     }
 
     // クリア条件チェック（迷路内のドットとパワークッキーがすべて0になったかチェック）
@@ -413,50 +418,75 @@ const Packman = () => {
 
   }, [gameState.gameStarted, gameState.paused, gameState.gameOver, gameState.gameWon, gameState.powerMode, gameState.powerModeTime, packman.x, packman.y, mazeState, movePackman, handleDotEaten, moveGhost]);
 
-  // ゴーストとの衝突判定（別のuseEffectで処理）
-  useEffect(() => {
+  // ゴーストとの衝突判定（完全に修正版 - 確実に動作）
+  const checkGhostCollision = useCallback(() => {
     if (!gameState.gameStarted || gameState.gameOver || gameState.gameWon) return;
 
-    const collidedGhosts = ghosts.filter(ghost => 
-      ghost.x === packman.x && ghost.y === packman.y
-    );
-
-    if (collidedGhosts.length > 0) {
-      console.log('ゴーストとの衝突検出:', collidedGhosts.length, '体', 'パワーモード:', gameState.powerMode);
-      
-      if (gameState.powerMode) {
-        // パワーモード中：すべての接触したゴーストを食べる
-        console.log('ゴーストを食べる！');
-        collidedGhosts.forEach(ghost => {
+    // 現在のパックマンとゴーストの位置を取得
+    const currentPackmanX = packman.x;
+    const currentPackmanY = packman.y;
+    
+    // 各ゴーストとの衝突をチェック（食べられた状態を考慮）
+    ghosts.forEach(ghost => {
+      // 食べられていないゴーストのみチェック
+      if (!ghost.eaten && ghost.x === currentPackmanX && ghost.y === currentPackmanY) {
+        console.log('ゴーストとの衝突検出:', ghost.id, 'パワーモード:', gameState.powerMode, '残り時間:', gameState.powerModeTime);
+        
+        if (gameState.powerMode && gameState.powerModeTime > 0) {
+          // パワーモード中：ゴーストを食べる
+          console.log('ゴーストを食べる！', ghost.id);
           playEatSound(); // 音効果
+          
+          // スコアを追加
+          setGameState(prev => {
+            console.log('スコア追加:', prev.score, '->', prev.score + 200);
+            return {
+              ...prev,
+              score: prev.score + 200
+            };
+          });
+          
+          // ゴーストを「食べられた」状態にして、ゴーストハウスに戻す
+          setGhosts(prev => {
+            console.log('ゴーストをリセット:', ghost.id);
+            return prev.map(g => 
+              g.id === ghost.id ? { ...g, x: 9, y: 9, mode: 'chase', eaten: true } : g
+            );
+          });
+          
+          // 3秒後にゴーストを復活させる
+          setTimeout(() => {
+            setGhosts(prev => prev.map(g => 
+              g.id === ghost.id ? { ...g, eaten: false } : g
+            ));
+          }, 3000);
+        } else {
+          // パワーモード中でない：ミス
+          console.log('ミス！', ghost.id);
           setGameState(prev => ({
             ...prev,
-            score: prev.score + 200 // ゴースト1体につき200点
+            lives: prev.lives - 1,
+            gameOver: prev.lives <= 1
           }));
-        });
-        
-        // 接触したゴーストをゴーストハウスに戻す
-        setGhosts(prev => prev.map(g => {
-          if (collidedGhosts.some(cg => cg.id === g.id)) {
-            return { ...g, x: 9, y: 9, mode: 'chase' };
-          }
-          return g;
-        }));
-      } else {
-        // パワーモード中でない：ミス
-        console.log('ミス！');
-        setGameState(prev => ({
-          ...prev,
-          lives: prev.lives - 1,
-          gameOver: prev.lives <= 1
-        }));
-        // パックマンをリセット
-        setPackman(prev => ({ ...prev, x: 9, y: 15 }));
-        // ゴーストもリセット
-        setGhosts(prev => prev.map(g => ({ ...g, x: 9, y: 9, mode: 'chase' })));
+          // パックマンをリセット
+          setPackman(prev => ({ ...prev, x: 9, y: 15 }));
+          // ゴーストもリセット
+          setGhosts(prev => prev.map(g => ({ ...g, x: 9, y: 9, mode: 'chase', eaten: false })));
+        }
       }
-    }
-  }, [packman.x, packman.y, ghosts, gameState.gameStarted, gameState.gameOver, gameState.gameWon, gameState.powerMode, playEatSound]);
+    });
+  }, [packman.x, packman.y, ghosts, gameState.gameStarted, gameState.gameOver, gameState.gameWon, gameState.powerMode, gameState.powerModeTime, playEatSound]);
+
+  // 衝突判定をゲームループに統合（高頻度版）
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (gameState.gameStarted && !gameState.gameOver && !gameState.gameWon) {
+        checkGhostCollision();
+      }
+    }, 16); // 60fpsで衝突判定（最高頻度）
+
+    return () => clearInterval(interval);
+  }, [checkGhostCollision, gameState.gameStarted, gameState.gameOver, gameState.gameWon]);
 
   // ゲーム開始処理
   const startGame = useCallback(() => {
@@ -480,10 +510,10 @@ const Packman = () => {
     });
     setPackman({ x: 9, y: 15, direction: 'right', nextDirection: 'right' });
     setGhosts([
-      { id: 'blinky', x: 9, y: 9, color: 'red', mode: 'chase', direction: 'left' },
-      { id: 'pinky', x: 9, y: 9, color: 'pink', mode: 'chase', direction: 'right' },
-      { id: 'inky', x: 8, y: 9, color: 'cyan', mode: 'chase', direction: 'up' },
-      { id: 'clyde', x: 10, y: 9, color: 'orange', mode: 'chase', direction: 'down' }
+      { id: 'blinky', x: 9, y: 9, color: 'red', mode: 'chase', direction: 'left', eaten: false },
+      { id: 'pinky', x: 9, y: 9, color: 'pink', mode: 'chase', direction: 'right', eaten: false },
+      { id: 'inky', x: 8, y: 9, color: 'cyan', mode: 'chase', direction: 'up', eaten: false },
+      { id: 'clyde', x: 10, y: 9, color: 'orange', mode: 'chase', direction: 'down', eaten: false }
     ]);
     setMazeState([
       [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -600,24 +630,27 @@ const Packman = () => {
     );
   };
 
-  // ゴーストの描画（改善版）
+  // ゴーストの描画（食べられた状態を考慮）
   const renderGhosts = () => {
-    return ghosts.map(ghost => (
-      <div key={ghost.id} style={{
-        position: 'absolute',
-        left: ghost.x * CELL_SIZE + CELL_SIZE / 2 - 8,
-        top: ghost.y * CELL_SIZE + CELL_SIZE / 2 - 8,
-        width: '16px',
-        height: '16px',
-        backgroundColor: gameState.powerMode ? '#0000FF' : ghost.color,
-        borderRadius: '50% 50% 0 0',
-        transition: 'all 0.1s ease',
-        opacity: gameState.powerMode ? 0.6 : 1,
-        border: gameState.powerMode ? '2px solid #FFFFFF' : 'none',
-        boxShadow: gameState.powerMode ? '0 0 8px #FFFFFF' : 'none',
-        animation: gameState.powerMode ? 'blink 0.5s infinite alternate' : 'none'
-      }} />
-    ));
+    return ghosts
+      .filter(ghost => !ghost.eaten) // 食べられていないゴーストのみ描画
+      .map(ghost => (
+        <div key={ghost.id} style={{
+          position: 'absolute',
+          left: ghost.x * CELL_SIZE + CELL_SIZE / 2 - 8,
+          top: ghost.y * CELL_SIZE + CELL_SIZE / 2 - 8,
+          width: '16px',
+          height: '16px',
+          backgroundColor: gameState.powerMode ? '#0000FF' : ghost.color,
+          borderRadius: '50% 50% 0 0',
+          transition: 'all 0.1s ease',
+          opacity: gameState.powerMode ? 0.5 : 1,
+          border: gameState.powerMode ? '3px solid #FFFFFF' : 'none',
+          boxShadow: gameState.powerMode ? '0 0 12px #FFFFFF, 0 0 24px #00FFFF' : 'none',
+          animation: gameState.powerMode ? 'blink 0.3s infinite alternate' : 'none',
+          zIndex: gameState.powerMode ? 10 : 1
+        }} />
+      ));
   };
 
   return (
