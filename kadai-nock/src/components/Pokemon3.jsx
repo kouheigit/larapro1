@@ -47,6 +47,96 @@ export default function Pokemon3() {
 	const [speciesIndex, setSpeciesIndex] = useState([]);
 	const hasSpeciesIndex = useMemo(() => speciesIndex && speciesIndex.length > 0, [speciesIndex]);
 
+	// 効果音を再生する関数
+	const playSound = () => {
+		try {
+			// Web Audio APIを使用してパカッという音を生成
+			const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+			
+			// パカッという音を作成
+			const createPakaSound = () => {
+				// 「パ」の音 - 短く強い破裂音
+				const osc1 = audioContext.createOscillator();
+				const gain1 = audioContext.createGain();
+				
+				osc1.connect(gain1);
+				gain1.connect(audioContext.destination);
+				
+				// パの部分：高い周波数から急激に下がる
+				osc1.frequency.setValueAtTime(600, audioContext.currentTime);
+				osc1.frequency.linearRampToValueAtTime(200, audioContext.currentTime + 0.03);
+				
+				gain1.gain.setValueAtTime(0.6, audioContext.currentTime);
+				gain1.gain.linearRampToValueAtTime(0.01, audioContext.currentTime + 0.03);
+				
+				osc1.type = 'square'; // 硬い破裂音
+				osc1.start(audioContext.currentTime);
+				osc1.stop(audioContext.currentTime + 0.03);
+				
+				// 「カッ」の音 - 木材がぶつかる音
+				const osc2 = audioContext.createOscillator();
+				const gain2 = audioContext.createGain();
+				
+				osc2.connect(gain2);
+				gain2.connect(audioContext.destination);
+				
+				// カッの部分：中間の周波数
+				osc2.frequency.setValueAtTime(400, audioContext.currentTime + 0.04);
+				osc2.frequency.linearRampToValueAtTime(100, audioContext.currentTime + 0.08);
+				
+				gain2.gain.setValueAtTime(0.4, audioContext.currentTime + 0.04);
+				gain2.gain.linearRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
+				
+				osc2.type = 'sawtooth'; // 木材の硬い音
+				osc2.start(audioContext.currentTime + 0.04);
+				osc2.stop(audioContext.currentTime + 0.08);
+				
+				// ノイズ成分（木材の質感）
+				const bufferSize = audioContext.sampleRate * 0.1;
+				const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+				const output = noiseBuffer.getChannelData(0);
+				
+				for (let i = 0; i < bufferSize; i++) {
+					output[i] = Math.random() * 2 - 1;
+				}
+				
+				const noiseSource = audioContext.createBufferSource();
+				const noiseGain = audioContext.createGain();
+				const noiseFilter = audioContext.createBiquadFilter();
+				
+				noiseSource.buffer = noiseBuffer;
+				noiseSource.connect(noiseFilter);
+				noiseFilter.connect(noiseGain);
+				noiseGain.connect(audioContext.destination);
+				
+				// 高周波をカットしてこもった音に
+				noiseFilter.type = 'lowpass';
+				noiseFilter.frequency.setValueAtTime(800, audioContext.currentTime);
+				
+				noiseGain.gain.setValueAtTime(0.15, audioContext.currentTime);
+				noiseGain.gain.linearRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+				
+				noiseSource.start(audioContext.currentTime);
+				noiseSource.stop(audioContext.currentTime + 0.1);
+			};
+			
+			createPakaSound();
+		} catch (error) {
+			// Web Audio APIが使用できない場合は無音
+			console.log('Audio not supported');
+		}
+	};
+
+	const handleOpen = () => {
+		playSound();
+		setIsOpen(true);
+	};
+
+	const handleClose = () => {
+		playSound();
+		setIsOpen(false);
+	};
+
 	useEffect(() => {
 		let aborted = false;
 		(async () => {
@@ -204,103 +294,157 @@ export default function Pokemon3() {
 				/* 閉じた状態のポケモン図鑑 */
 				<div style={{
 					position: "relative",
-					width: "400px",
-					height: "500px",
-					background: "linear-gradient(145deg, #e74c3c, #c0392b)",
-					borderRadius: "20px",
-					boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-					border: "8px solid #2c3e50",
+					width: "320px",
+					height: "450px",
+					background: "linear-gradient(145deg, #dc3545, #c82333)",
+					borderRadius: "15px",
+					boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 2px 10px rgba(255,255,255,0.2)",
+					border: "3px solid #495057",
 					cursor: "pointer",
 					transition: "all 0.3s ease",
-					transform: "perspective(1000px) rotateY(-5deg)",
+					transform: "perspective(1000px) rotateY(-8deg)",
 					overflow: "hidden"
 				}}
-				onClick={() => setIsOpen(true)}
+				onClick={handleOpen}
 				onMouseEnter={(e) => {
-					e.target.style.transform = "perspective(1000px) rotateY(0deg) scale(1.05)";
+					e.target.style.transform = "perspective(1000px) rotateY(-3deg) scale(1.05)";
 				}}
 				onMouseLeave={(e) => {
-					e.target.style.transform = "perspective(1000px) rotateY(-5deg) scale(1)";
+					e.target.style.transform = "perspective(1000px) rotateY(-8deg) scale(1)";
 				}}>
-					{/* 図鑑の表紙デザイン */}
+					{/* 図鑑の表面 */}
 					<div style={{
 						position: "absolute",
-						top: "20px",
-						left: "20px",
-						right: "20px",
-						bottom: "20px",
-						background: "linear-gradient(145deg, #ffffff, #f8f9fa)",
-						borderRadius: "15px",
-						padding: "30px",
-						textAlign: "center"
+						top: "15px",
+						left: "15px",
+						right: "15px",
+						bottom: "15px",
+						background: "linear-gradient(145deg, #dc3545, #b02a37)",
+						borderRadius: "12px",
+						padding: "25px",
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						justifyContent: "space-between"
 					}}>
-						{/* ポケモンボールアイコン */}
+						{/* 上部のポケモンボール */}
 						<div style={{
-							width: "80px",
-							height: "80px",
-							background: "radial-gradient(circle, #ff0000 30%, #ffffff 30%, #ffffff 35%, #000000 35%, #000000 40%, #ffffff 40%)",
-							borderRadius: "50%",
-							margin: "0 auto 20px auto",
-							border: "4px solid #2c3e50",
-							boxShadow: "0 8px 16px rgba(0,0,0,0.2)"
-						}} />
-						
-						{/* タイトル */}
-						<h1 style={{
-							fontSize: "2rem",
-							margin: "0 0 10px 0",
-							color: "#2c3e50",
-							fontWeight: "bold",
-							textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							marginTop: "20px"
 						}}>
-							📖 ポケモン図鑑
-						</h1>
-						
-						<p style={{
-							fontSize: "1rem",
-							margin: "0 0 30px 0",
-							color: "#7f8c8d",
-							fontWeight: "500"
+							{/* 大きなポケモンボール */}
+							<div style={{
+								width: "120px",
+								height: "120px",
+								background: "linear-gradient(145deg, #ffffff, #f8f9fa)",
+								borderRadius: "50%",
+								border: "6px solid #212529",
+								position: "relative",
+								boxShadow: "0 8px 20px rgba(0,0,0,0.3), inset 0 2px 10px rgba(255,255,255,0.5)",
+								cursor: "pointer"
+							}}>
+								{/* 上半分（白） */}
+								<div style={{
+									position: "absolute",
+									top: "0",
+									left: "0",
+									right: "0",
+									height: "50%",
+									background: "linear-gradient(145deg, #ffffff, #f8f9fa)",
+									borderRadius: "120px 120px 0 0"
+								}} />
+								
+								{/* 下半分（赤） */}
+								<div style={{
+									position: "absolute",
+									bottom: "0",
+									left: "0",
+									right: "0",
+									height: "50%",
+									background: "linear-gradient(145deg, #dc3545, #c82333)",
+									borderRadius: "0 0 120px 120px"
+								}} />
+								
+								{/* 中央の黒いライン */}
+								<div style={{
+									position: "absolute",
+									top: "50%",
+									left: "0",
+									right: "0",
+									height: "6px",
+									background: "#212529",
+									transform: "translateY(-50%)"
+								}} />
+								
+								{/* 中央のボタン */}
+								<div style={{
+									position: "absolute",
+									top: "50%",
+									left: "50%",
+									transform: "translate(-50%, -50%)",
+									width: "30px",
+									height: "30px",
+									background: "linear-gradient(145deg, #ffffff, #e9ecef)",
+									borderRadius: "50%",
+									border: "4px solid #212529",
+									boxShadow: "0 4px 8px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8)"
+								}} />
+							</div>
+						</div>
+
+						{/* 下部のボタン群 */}
+						<div style={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							gap: "15px",
+							marginBottom: "20px"
 						}}>
-							Pokédex
-						</p>
+							{/* 青いボタン */}
+							<div style={{
+								width: "50px",
+								height: "20px",
+								background: "linear-gradient(145deg, #007bff, #0056b3)",
+								borderRadius: "10px",
+								border: "2px solid #212529",
+								boxShadow: "0 4px 8px rgba(0,0,0,0.2), inset 0 1px 3px rgba(255,255,255,0.3)"
+							}} />
+							
+							{/* 黒い丸ボタン */}
+							<div style={{
+								width: "25px",
+								height: "25px",
+								background: "linear-gradient(145deg, #343a40, #212529)",
+								borderRadius: "50%",
+								border: "2px solid #495057",
+								boxShadow: "0 4px 8px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.1)"
+							}} />
+						</div>
 
 						{/* 開くボタン */}
 						<div style={{
-							background: "linear-gradient(45deg, #3498db, #2980b9)",
+							background: "linear-gradient(45deg, #28a745, #20c997)",
 							color: "white",
-							padding: "15px 30px",
-							borderRadius: "25px",
-							fontSize: "18px",
+							padding: "12px 25px",
+							borderRadius: "20px",
+							fontSize: "16px",
 							fontWeight: "bold",
-							margin: "20px auto",
-							width: "fit-content",
-							boxShadow: "0 8px 16px rgba(52, 152, 219, 0.3)",
+							boxShadow: "0 6px 12px rgba(40, 167, 69, 0.3)",
 							transition: "all 0.3s ease",
-							cursor: "pointer"
+							cursor: "pointer",
+							border: "2px solid rgba(255,255,255,0.2)"
 						}}
 						onMouseEnter={(e) => {
 							e.target.style.transform = "scale(1.1)";
-							e.target.style.boxShadow = "0 12px 20px rgba(52, 152, 219, 0.4)";
+							e.target.style.boxShadow = "0 8px 16px rgba(40, 167, 69, 0.4)";
 						}}
 						onMouseLeave={(e) => {
 							e.target.style.transform = "scale(1)";
-							e.target.style.boxShadow = "0 8px 16px rgba(52, 152, 219, 0.3)";
+							e.target.style.boxShadow = "0 6px 12px rgba(40, 167, 69, 0.3)";
 						}}>
-							🔍 開く
-						</div>
-
-						{/* 装飾的な要素 */}
-						<div style={{
-							position: "absolute",
-							bottom: "20px",
-							left: "50%",
-							transform: "translateX(-50%)",
-							fontSize: "12px",
-							color: "#95a5a6",
-							fontStyle: "italic"
-						}}>
-							Tap to open
+							OPEN
 						</div>
 					</div>
 				</div>
@@ -325,7 +469,7 @@ export default function Pokemon3() {
 						position: "relative"
 					}}>
 						<button
-							onClick={() => setIsOpen(false)}
+							onClick={handleClose}
 							style={{
 								position: "absolute",
 								top: "15px",
@@ -442,7 +586,7 @@ export default function Pokemon3() {
 						)}
 
 						{/* ポケモンカード */}
-						{result && (
+			{result && (
 							<div style={{
 								display: "flex",
 								justifyContent: "center",
@@ -488,7 +632,7 @@ export default function Pokemon3() {
 									</h2>
 
 									{/* ポケモン画像 */}
-									{result.imageUrl && (
+					{result.imageUrl && (
 										<div style={{
 											textAlign: "center",
 											margin: "20px 0",
