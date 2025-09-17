@@ -66,10 +66,10 @@ const createInitialBoard = () => {
 
 // 難易度設定
 const DIFFICULTY_LEVELS = {
-  EASY: { name: '弱い', depth: 1, randomness: 0.9, evaluationWeight: 0.3 },
-  MEDIUM: { name: '中級', depth: 2, randomness: 0.6, evaluationWeight: 0.7 },
-  HARD: { name: '強い', depth: 3, randomness: 0.3, evaluationWeight: 1.0 },
-  MASTER: { name: '棋聖', depth: 4, randomness: 0.1, evaluationWeight: 1.5 }
+  EASY: { name: '弱い', depth: 1, randomness: 0.9, evaluationWeight: 0.3, thinkingTime: 500 },
+  MEDIUM: { name: '中級', depth: 2, randomness: 0.6, evaluationWeight: 0.7, thinkingTime: 800 },
+  HARD: { name: '強い', depth: 2, randomness: 0.3, evaluationWeight: 1.0, thinkingTime: 1200 },
+  MASTER: { name: '棋聖', depth: 3, randomness: 0.05, evaluationWeight: 2.0, thinkingTime: 1500 }
 };
 
 // 駒の基本価値
@@ -119,6 +119,82 @@ const findKing = (board, player) => {
     }
   }
   return null;
+};
+
+// 王手をチェック
+const isInCheck = (board, player, currentCapturedPieces = capturedPieces) => {
+  const kingPos = findKing(board, player);
+  if (!kingPos) return false;
+  
+  const opponent = player === 'sente' ? 'gote' : 'sente';
+  
+  // 相手のすべての駒が王を攻撃できるかチェック
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      const piece = board[row][col];
+      if (piece && piece.owner === opponent) {
+        if (isValidMove(row, col, kingPos.row, kingPos.col, piece, board)) {
+          return true;
+        }
+      }
+    }
+  }
+  
+  return false;
+};
+
+// 詰みをチェック
+const isCheckmate = (board, player, currentCapturedPieces = capturedPieces) => {
+  if (!isInCheck(board, player, currentCapturedPieces)) {
+    return false; // 王手でなければ詰みではない
+  }
+  
+  // 指定された持ち駒状態での可能な手を取得
+  const possibleMoves = getAllPossibleMovesWithCaptured(board, player, currentCapturedPieces);
+  
+  // すべての可能な手を試して、王手を逃れられるかチェック
+  for (const move of possibleMoves) {
+    const simResult = simulateMove(board, move, currentCapturedPieces);
+    if (!isInCheck(simResult.board, player, simResult.capturedPieces)) {
+      return false; // 王手を逃れられる手がある
+    }
+  }
+  
+  return true; // すべての手で王手が続く = 詰み
+};
+
+// 攻撃的な手を評価
+const evaluateAggressiveMoves = (move, board, player, weight) => {
+  let score = 0;
+  const opponent = player === 'sente' ? 'gote' : 'sente';
+  
+  // 手を実行後、相手が王手になるかチェック
+  const simResult = simulateMove(board, move, capturedPieces);
+  if (isInCheck(simResult.board, opponent, simResult.capturedPieces)) {
+    score += 200 * weight; // 王手は非常に価値が高い
+    
+    // 詰みならさらに高いスコア
+    if (isCheckmate(simResult.board, opponent, simResult.capturedPieces)) {
+      score += 10000 * weight;
+    }
+  }
+  
+  return score;
+};
+
+// 守備的な手を評価
+const evaluateDefensiveMoves = (move, board, player, weight) => {
+  let score = 0;
+  
+  // 現在王手になっている場合、王手を逃れられる手は高評価
+  if (isInCheck(board, player)) {
+    const simResult = simulateMove(board, move, capturedPieces);
+    if (!isInCheck(simResult.board, player, simResult.capturedPieces)) {
+      score += 300 * weight; // 王手を逃れる手は非常に重要
+    }
+  }
+  
+  return score;
 };
 
 // 王の安全性評価
@@ -239,7 +315,7 @@ function Shogi1() {
     
     setIsAiThinking(true);
     
-    // AIの可能な手をすべて取得
+    // AIの可能な手をすべて取得（盤上の駒の移動 + 持ち駒の打ち手）
     const possibleMoves = getAllPossibleMoves(currentBoard, 'gote');
     
     if (possibleMoves.length === 0) {
@@ -251,51 +327,66 @@ function Shogi1() {
     
     // 難易度に応じたAIの手選択
     const selectedMove = selectBestMove(possibleMoves, currentBoard, difficulty);
-    const { fromRow, fromCol, toRow, toCol } = selectedMove;
     
     const newBoard = [...currentBoard];
-    const piece = newBoard[fromRow][fromCol];
-    const targetPiece = newBoard[toRow][toCol];
+    let newCapturedPieces = { ...capturedPieces };
     
-    // 相手の駒を取る場合
-    if (targetPiece && targetPiece.owner !== 'gote') {
-      // 成り駒は元の駒に戻す
-      let capturedPieceType = targetPiece.piece;
-      const revertMap = {
-        [PIECES.RYU]: PIECES.HISHA,     // 龍王 → 飛車
-        [PIECES.UMA]: PIECES.KAKU,      // 龍馬 → 角行
-        [PIECES.NARIGIN]: PIECES.GIN,   // 成銀 → 銀将
-        [PIECES.NARIKEI]: PIECES.KEIMA, // 成桂 → 桂馬
-        [PIECES.NARIKYO]: PIECES.KYOSHA,// 成香 → 香車
-        [PIECES.TOKIN]: PIECES.FU       // と金 → 歩兵
-      };
-      if (revertMap[capturedPieceType]) {
-        capturedPieceType = revertMap[capturedPieceType];
+    if (selectedMove.type === 'move') {
+      // 盤上の駒を移動
+      const { fromRow, fromCol, toRow, toCol } = selectedMove;
+      const piece = newBoard[fromRow][fromCol];
+      const targetPiece = newBoard[toRow][toCol];
+      
+      // 相手の駒を取る場合
+      if (targetPiece && targetPiece.owner !== 'gote') {
+        // 成り駒は元の駒に戻す
+        let capturedPieceType = targetPiece.piece;
+        const revertMap = {
+          [PIECES.RYU]: PIECES.HISHA,     // 龍王 → 飛車
+          [PIECES.UMA]: PIECES.KAKU,      // 龍馬 → 角行
+          [PIECES.NARIGIN]: PIECES.GIN,   // 成銀 → 銀将
+          [PIECES.NARIKEI]: PIECES.KEIMA, // 成桂 → 桂馬
+          [PIECES.NARIKYO]: PIECES.KYOSHA,// 成香 → 香車
+          [PIECES.TOKIN]: PIECES.FU       // と金 → 歩兵
+        };
+        if (revertMap[capturedPieceType]) {
+          capturedPieceType = revertMap[capturedPieceType];
+        }
+        
+        const capturedPiece = { 
+          piece: capturedPieceType, 
+          owner: 'gote' 
+        };
+        newCapturedPieces.gote = [...newCapturedPieces.gote, capturedPiece];
       }
       
-      const capturedPiece = { 
-        piece: capturedPieceType, 
-        owner: 'gote' 
-      };
-      setCapturedPieces(prev => ({
-        ...prev,
-        gote: [...prev.gote, capturedPiece]
-      }));
-    }
-    
-    // 駒を移動
-    newBoard[toRow][toCol] = piece;
-    newBoard[fromRow][fromCol] = null;
-    
-    // AIの成り判定（自動的に成る）
-    if (canPromote(piece.piece, fromRow, toRow, 'gote')) {
+      // 駒を移動
+      newBoard[toRow][toCol] = piece;
+      newBoard[fromRow][fromCol] = null;
+      
+      // AIの成り判定（自動的に成る）
+      if (canPromote(piece.piece, fromRow, toRow, 'gote')) {
+        newBoard[toRow][toCol] = {
+          ...piece,
+          piece: getPromotedPiece(piece.piece)
+        };
+      }
+    } else if (selectedMove.type === 'drop') {
+      // 持ち駒を打つ
+      const { pieceIndex, piece, toRow, toCol } = selectedMove;
+      
+      // 持ち駒を盤上に配置
       newBoard[toRow][toCol] = {
-        ...piece,
-        piece: getPromotedPiece(piece.piece)
+        piece: piece,
+        owner: 'gote'
       };
+      
+      // 持ち駒から削除
+      newCapturedPieces.gote = newCapturedPieces.gote.filter((_, index) => index !== pieceIndex);
     }
     
     setBoard(newBoard);
+    setCapturedPieces(newCapturedPieces);
     playPachi();
     setIsAiThinking(false);
     
@@ -306,7 +397,7 @@ function Shogi1() {
     } else {
       setCurrentPlayer('sente');
     }
-  }, [gameOver, difficulty, canPromote, getPromotedPiece]);
+  }, [gameOver, difficulty, canPromote, getPromotedPiece, capturedPieces]);
 
   // 難易度に応じた最適手の選択
   const selectBestMove = (moves, board, difficultyLevel) => {
@@ -319,7 +410,7 @@ function Shogi1() {
     
     // ミニマックス法で最適手を探索
     if (difficultyConfig.depth >= 2) {
-      return minimaxSearch(board, difficultyConfig.depth, 'gote', moves, difficultyConfig);
+      return minimaxSearch(board, difficultyConfig.depth, 'gote', moves, difficultyConfig, capturedPieces);
     }
     
     // 浅い探索の場合は単純な評価
@@ -337,14 +428,18 @@ function Shogi1() {
     return topMoves[Math.floor(Math.random() * topMoves.length)];
   };
   
-  // ミニマックス法による探索
-  const minimaxSearch = (board, depth, player, availableMoves, config) => {
+  // ミニマックス法による探索（軽量版）
+  const minimaxSearch = (board, depth, player, availableMoves, config, currentCapturedPieces = capturedPieces) => {
     let bestMove = null;
     let bestScore = player === 'gote' ? -Infinity : Infinity;
     
-    for (const move of availableMoves) {
-      const newBoard = simulateMove(board, move);
-      const score = minimax(newBoard, depth - 1, player === 'gote' ? 'sente' : 'gote', -Infinity, Infinity, config);
+    // 手数を大幅に制限
+    const maxMovesToSearch = Math.min(availableMoves.length, 10);
+    const movesToSearch = availableMoves.slice(0, maxMovesToSearch);
+    
+    for (const move of movesToSearch) {
+      const simResult = simulateMove(board, move, currentCapturedPieces);
+      const score = minimax(simResult.board, depth - 1, player === 'gote' ? 'sente' : 'gote', -Infinity, Infinity, config, simResult.capturedPieces);
       
       if (player === 'gote' && score > bestScore) {
         bestScore = score;
@@ -358,23 +453,27 @@ function Shogi1() {
     return bestMove || availableMoves[0];
   };
   
-  // ミニマックス法（アルファベータ枝刈り付き）
-  const minimax = (board, depth, player, alpha, beta, config) => {
+  // ミニマックス法（簡略化版 - 無限ループ防止）
+  const minimax = (board, depth, player, alpha, beta, config, currentCapturedPieces = capturedPieces) => {
     if (depth === 0) {
-      return evaluateBoard(board, config);
+      return evaluateBoard(board, config, currentCapturedPieces);
     }
     
-    const moves = getAllPossibleMoves(board, player);
+    const moves = getAllPossibleMovesWithCaptured(board, player, currentCapturedPieces);
+    
     if (moves.length === 0) {
-      // 手がない場合は負け
       return player === 'gote' ? -10000 : 10000;
     }
     
+    // 手数を大幅に制限して計算量を削減
+    const maxMoves = Math.min(moves.length, depth >= 3 ? 8 : 15);
+    const movesToExplore = moves.slice(0, maxMoves);
+    
     if (player === 'gote') {
       let maxScore = -Infinity;
-      for (const move of moves) {
-        const newBoard = simulateMove(board, move);
-        const score = minimax(newBoard, depth - 1, 'sente', alpha, beta, config);
+      for (const move of movesToExplore) {
+        const simResult = simulateMove(board, move, currentCapturedPieces);
+        const score = minimax(simResult.board, depth - 1, 'sente', alpha, beta, config, simResult.capturedPieces);
         maxScore = Math.max(maxScore, score);
         alpha = Math.max(alpha, score);
         if (beta <= alpha) break; // アルファベータ枝刈り
@@ -382,9 +481,9 @@ function Shogi1() {
       return maxScore;
     } else {
       let minScore = Infinity;
-      for (const move of moves) {
-        const newBoard = simulateMove(board, move);
-        const score = minimax(newBoard, depth - 1, 'gote', alpha, beta, config);
+      for (const move of movesToExplore) {
+        const simResult = simulateMove(board, move, currentCapturedPieces);
+        const score = minimax(simResult.board, depth - 1, 'gote', alpha, beta, config, simResult.capturedPieces);
         minScore = Math.min(minScore, score);
         beta = Math.min(beta, score);
         if (beta <= alpha) break; // アルファベータ枝刈り
@@ -394,27 +493,69 @@ function Shogi1() {
   };
   
   // 手をシミュレート（盤面のコピーを作成して移動を適用）
-  const simulateMove = (board, move) => {
+  const simulateMove = (board, move, currentCapturedPieces = capturedPieces) => {
     const newBoard = board.map(row => [...row]);
-    const { fromRow, fromCol, toRow, toCol } = move;
-    const piece = newBoard[fromRow][fromCol];
+    let newCapturedPieces = {
+      sente: [...currentCapturedPieces.sente],
+      gote: [...currentCapturedPieces.gote]
+    };
     
-    newBoard[toRow][toCol] = piece;
-    newBoard[fromRow][fromCol] = null;
-    
-    // 成り判定（自動的に成る）
-    if (piece && canPromote(piece.piece, fromRow, toRow, piece.owner)) {
+    if (move.type === 'move') {
+      const { fromRow, fromCol, toRow, toCol } = move;
+      const piece = newBoard[fromRow][fromCol];
+      const targetPiece = newBoard[toRow][toCol];
+      
+      // 相手の駒を取る場合
+      if (targetPiece && targetPiece.owner !== piece.owner) {
+        let capturedPieceType = targetPiece.piece;
+        const revertMap = {
+          [PIECES.RYU]: PIECES.HISHA,
+          [PIECES.UMA]: PIECES.KAKU,
+          [PIECES.NARIGIN]: PIECES.GIN,
+          [PIECES.NARIKEI]: PIECES.KEIMA,
+          [PIECES.NARIKYO]: PIECES.KYOSHA,
+          [PIECES.TOKIN]: PIECES.FU
+        };
+        if (revertMap[capturedPieceType]) {
+          capturedPieceType = revertMap[capturedPieceType];
+        }
+        
+        const capturedPiece = { 
+          piece: capturedPieceType, 
+          owner: piece.owner 
+        };
+        newCapturedPieces[piece.owner].push(capturedPiece);
+      }
+      
+      newBoard[toRow][toCol] = piece;
+      newBoard[fromRow][fromCol] = null;
+      
+      // 成り判定（自動的に成る）
+      if (piece && canPromote(piece.piece, fromRow, toRow, piece.owner)) {
+        newBoard[toRow][toCol] = {
+          ...piece,
+          piece: getPromotedPiece(piece.piece)
+        };
+      }
+    } else if (move.type === 'drop') {
+      const { pieceIndex, piece, toRow, toCol } = move;
+      const owner = move.owner || 'gote'; // デフォルトはAI
+      
+      // 持ち駒を盤上に配置
       newBoard[toRow][toCol] = {
-        ...piece,
-        piece: getPromotedPiece(piece.piece)
+        piece: piece,
+        owner: owner
       };
+      
+      // 持ち駒から削除
+      newCapturedPieces[owner] = newCapturedPieces[owner].filter((_, index) => index !== pieceIndex);
     }
     
-    return newBoard;
+    return { board: newBoard, capturedPieces: newCapturedPieces };
   };
   
-  // 盤面全体の評価
-  const evaluateBoard = (board, config) => {
+  // 盤面全体の評価（軽量版）
+  const evaluateBoard = (board, config, currentCapturedPieces = capturedPieces) => {
     let score = 0;
     const weight = config.evaluationWeight;
     
@@ -425,7 +566,7 @@ function Shogi1() {
         if (piece) {
           const pieceValue = getPieceValue(piece.piece);
           const positionValue = getPositionValue(row, col, piece.owner, piece.piece);
-          const totalValue = (pieceValue + positionValue) * weight;
+          const totalValue = (pieceValue + positionValue * 0.1) * weight;
           
           if (piece.owner === 'gote') {
             score += totalValue;
@@ -436,56 +577,100 @@ function Shogi1() {
       }
     }
     
-    // 王の安全性を評価
-    const goteKingPos = findKing(board, 'gote');
-    const senteKingPos = findKing(board, 'sente');
-    
-    if (goteKingPos) {
-      score += evaluateKingSafety(board, goteKingPos, 'gote') * weight;
+    // 持ち駒の価値を評価
+    if (currentCapturedPieces.gote) {
+      for (const capturedPiece of currentCapturedPieces.gote) {
+        score += getPieceValue(capturedPiece.piece) * 0.8 * weight;
+      }
     }
-    if (senteKingPos) {
-      score -= evaluateKingSafety(board, senteKingPos, 'sente') * weight;
+    if (currentCapturedPieces.sente) {
+      for (const capturedPiece of currentCapturedPieces.sente) {
+        score -= getPieceValue(capturedPiece.piece) * 0.8 * weight;
+      }
     }
     
     return score;
   };
   
   
-  // 単純な手の評価関数（浅い探索用）
-  const evaluateMove = (move, board, config) => {
+  // 中央制圧の評価
+  const evaluateCentralControl = (board, weight) => {
     let score = 0;
-    const { fromRow, fromCol, toRow, toCol } = move;
-    const piece = board[fromRow][fromCol];
-    const targetPiece = board[toRow][toCol];
-    const weight = config.evaluationWeight;
+    const centralSquares = [[3,3], [3,4], [3,5], [4,3], [4,4], [4,5], [5,3], [5,4], [5,5]];
     
-    // 相手の駒を取る場合のスコア
-    if (targetPiece && targetPiece.owner !== 'gote') {
-      score += getPieceValue(targetPiece.piece) * weight;
-    }
-    
-    // 位置の価値
-    score += getPositionValue(toRow, toCol, 'gote', piece.piece) * weight * 0.1;
-    
-    // 前進のスコア（後手なので下に進むほど良い）
-    if (toRow > fromRow) {
-      score += (toRow - fromRow) * 20 * weight;
-    }
-    
-    // 王将を守るスコア
-    const kingPos = findKing(board, 'gote');
-    if (kingPos) {
-      const distanceToKing = Math.abs(toRow - kingPos.row) + Math.abs(toCol - kingPos.col);
-      if (distanceToKing <= 2) {
-        score += 50 * weight; // 王の近くにいる駒は価値が高い
+    for (const [row, col] of centralSquares) {
+      const piece = board[row][col];
+      if (piece) {
+        const bonus = 15 * weight;
+        if (piece.owner === 'gote') {
+          score += bonus;
+        } else {
+          score -= bonus;
+        }
       }
     }
     
-    // 成りの価値
-    if (canPromote(piece.piece, fromRow, toRow, 'gote')) {
-      const promotedValue = getPieceValue(getPromotedPiece(piece.piece));
-      const originalValue = getPieceValue(piece.piece);
-      score += (promotedValue - originalValue) * weight;
+    return score;
+  };
+  
+  // 攻撃性の評価（敵陣への進出）
+  const evaluateAggression = (board, weight) => {
+    let score = 0;
+    
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        const piece = board[row][col];
+        if (piece) {
+          if (piece.owner === 'gote' && row >= 6) {
+            // 後手が敵陣（下3段）に進出している
+            score += 25 * weight;
+          } else if (piece.owner === 'sente' && row <= 2) {
+            // 先手が敵陣（上3段）に進出している
+            score -= 25 * weight;
+          }
+        }
+      }
+    }
+    
+    return score;
+  };
+  
+  // 単純な手の評価関数（軽量版）
+  const evaluateMove = (move, board, config) => {
+    let score = 0;
+    const weight = config.evaluationWeight;
+    
+    if (move.type === 'move') {
+      const { fromRow, fromCol, toRow, toCol } = move;
+      const piece = board[fromRow][fromCol];
+      const targetPiece = board[toRow][toCol];
+      
+      // 相手の駒を取る場合のスコア
+      if (targetPiece && targetPiece.owner !== 'gote') {
+        score += getPieceValue(targetPiece.piece) * weight;
+      }
+      
+      // 前進のスコア（後手なので下に進むほど良い）
+      if (toRow > fromRow) {
+        score += (toRow - fromRow) * 20 * weight;
+      }
+      
+      // 成りの価値
+      if (canPromote(piece.piece, fromRow, toRow, 'gote')) {
+        const promotedValue = getPieceValue(getPromotedPiece(piece.piece));
+        const originalValue = getPieceValue(piece.piece);
+        score += (promotedValue - originalValue) * weight;
+      }
+    } else if (move.type === 'drop') {
+      const { piece, toRow } = move;
+      
+      // 持ち駒を打つ価値
+      score += getPieceValue(piece) * 0.6 * weight;
+      
+      // 敵陣への打ち込みボーナス
+      if (toRow >= 6) {
+        score += 30 * weight;
+      }
     }
     
     return score;
@@ -504,10 +689,16 @@ function Shogi1() {
     return null;
   };
 
-  // すべての可能な手を取得
+  // すべての可能な手を取得（盤上の駒の移動 + 持ち駒の打ち手）
   const getAllPossibleMoves = (board, player) => {
+    return getAllPossibleMovesWithCaptured(board, player, capturedPieces);
+  };
+
+  // 指定された持ち駒状態でのすべての可能な手を取得
+  const getAllPossibleMovesWithCaptured = (board, player, currentCapturedPieces) => {
     const moves = [];
     
+    // 盤上の駒の移動
     for (let fromRow = 0; fromRow < 9; fromRow++) {
       for (let fromCol = 0; fromCol < 9; fromCol++) {
         const piece = board[fromRow][fromCol];
@@ -515,9 +706,22 @@ function Shogi1() {
           for (let toRow = 0; toRow < 9; toRow++) {
             for (let toCol = 0; toCol < 9; toCol++) {
               if (isValidMove(fromRow, fromCol, toRow, toCol, piece, board)) {
-                moves.push({ fromRow, fromCol, toRow, toCol });
+                moves.push({ type: 'move', fromRow, fromCol, toRow, toCol });
               }
             }
+          }
+        }
+      }
+    }
+    
+    // 持ち駒の打ち手
+    const playerCapturedPieces = currentCapturedPieces[player] || [];
+    for (let pieceIndex = 0; pieceIndex < playerCapturedPieces.length; pieceIndex++) {
+      const capturedPiece = playerCapturedPieces[pieceIndex];
+      for (let toRow = 0; toRow < 9; toRow++) {
+        for (let toCol = 0; toCol < 9; toCol++) {
+          if (canDropPiece(capturedPiece.piece, toRow, toCol, board, player)) {
+            moves.push({ type: 'drop', pieceIndex, piece: capturedPiece.piece, toRow, toCol });
           }
         }
       }
@@ -553,7 +757,7 @@ function Shogi1() {
   };
 
   // 持ち駒を打つことができるかチェック
-  const canDropPiece = (piece, row, col, board) => {
+  const canDropPiece = (piece, row, col, board, player = currentPlayer) => {
     // 空いているマスかチェック
     if (board[row][col] !== null) return false;
     
@@ -561,27 +765,27 @@ function Shogi1() {
     if (piece === PIECES.FU) {
       for (let r = 0; r < 9; r++) {
         const boardPiece = board[r][col];
-        if (boardPiece && boardPiece.owner === currentPlayer && boardPiece.piece === PIECES.FU) {
+        if (boardPiece && boardPiece.owner === player && boardPiece.piece === PIECES.FU) {
           return false; // 二歩の禁止
         }
       }
       
       // 最前列に歩を打つことはできない
-      if ((currentPlayer === 'sente' && row === 0) || (currentPlayer === 'gote' && row === 8)) {
+      if ((player === 'sente' && row === 0) || (player === 'gote' && row === 8)) {
         return false;
       }
     }
     
     // 桂馬の制限：最前列から2段目には打てない
     if (piece === PIECES.KEIMA) {
-      if ((currentPlayer === 'sente' && row <= 1) || (currentPlayer === 'gote' && row >= 7)) {
+      if ((player === 'sente' && row <= 1) || (player === 'gote' && row >= 7)) {
         return false;
       }
     }
     
     // 香車の制限：最前列には打てない
     if (piece === PIECES.KYOSHA) {
-      if ((currentPlayer === 'sente' && row === 0) || (currentPlayer === 'gote' && row === 8)) {
+      if ((player === 'sente' && row === 0) || (player === 'gote' && row === 8)) {
         return false;
       }
     }
@@ -1028,7 +1232,7 @@ function Shogi1() {
                   onClick={() => setDifficulty(key)}
                 >
                   {config.name}
-                  {key === 'MASTER' && <div className="master-label">(死ぬほど強い)</div>}
+                  {key === 'MASTER' && <div className="master-label">(最強レベル - 持ち駒完全活用)</div>}
                 </button>
               ))}
             </div>
