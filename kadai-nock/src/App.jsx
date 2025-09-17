@@ -14,6 +14,7 @@ import Todo3 from "./components/Todo3.jsx";
 import Osero from "./components/Osero.jsx";
 import Packman from "./components/Packman.jsx";
 import Shogi from "./components/Shogi.jsx";
+import Shogi1 from "./components/Shogi1.jsx";
 
 
 
@@ -30,7 +31,7 @@ function App() {
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link><Link to="/Pokemon3">ポケモン3</Link><Link to="/Packman">パックマン</Link></nav>
             <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Todo1">Todo1</Link><Link to="/Osero">オセロ</Link></nav>
-            <nav><Link to="/Shogi">将棋</Link></nav>
+            <nav><Link to="/Shogi">将棋</Link><Link to="/Shogi1">将棋1</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/Osero" element={<Osero />} />
                 <Route path="/Packman" element={<Packman />} />
                 <Route path="/Shogi" element={<Shogi />} />
+                <Route path="/Shogi1" element={<Shogi1 />} />
             </Routes>
         </BrowserRouter>
 
