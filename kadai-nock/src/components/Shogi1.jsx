@@ -64,8 +64,92 @@ const createInitialBoard = () => {
   return board;
 };
 
+// 難易度設定
+const DIFFICULTY_LEVELS = {
+  EASY: { name: '弱い', depth: 1, randomness: 0.9, evaluationWeight: 0.3 },
+  MEDIUM: { name: '中級', depth: 2, randomness: 0.6, evaluationWeight: 0.7 },
+  HARD: { name: '強い', depth: 3, randomness: 0.3, evaluationWeight: 1.0 },
+  MASTER: { name: '棋聖', depth: 4, randomness: 0.1, evaluationWeight: 1.5 }
+};
+
+// 駒の基本価値
+const getPieceValue = (piece) => {
+  const pieceValues = {
+    [PIECES.FU]: 100, [PIECES.KYOSHA]: 300, [PIECES.KEIMA]: 350, [PIECES.GIN]: 500,
+    [PIECES.KIN]: 600, [PIECES.KAKU]: 850, [PIECES.HISHA]: 1000, [PIECES.GYOKU]: 10000,
+    [PIECES.TOKIN]: 700, [PIECES.NARIKYO]: 700, [PIECES.NARIKEI]: 700, [PIECES.NARIGIN]: 700,
+    [PIECES.UMA]: 1200, [PIECES.RYU]: 1500
+  };
+  return pieceValues[piece] || 0;
+};
+
+// 位置による価値
+const getPositionValue = (row, col, owner, piece) => {
+  let value = 0;
+  
+  // 中央制圧の価値
+  const centerDistance = Math.abs(row - 4) + Math.abs(col - 4);
+  value += (8 - centerDistance) * 5;
+  
+  // 前進の価値
+  if (owner === 'gote') {
+    value += (8 - row) * 10; // 下に進むほど良い
+  } else {
+    value += row * 10; // 上に進むほど良い
+  }
+  
+  // 特定の駒の特別な位置価値
+  if (piece === PIECES.FU) {
+    // 歩は敵陣に近いほど価値が高い
+    if (owner === 'gote' && row >= 6) value += 50;
+    if (owner === 'sente' && row <= 2) value += 50;
+  }
+  
+  return value;
+};
+
+// 王の位置を探す
+const findKing = (board, player) => {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      const piece = board[row][col];
+      if (piece && piece.owner === player && piece.piece === PIECES.GYOKU) {
+        return { row, col };
+      }
+    }
+  }
+  return null;
+};
+
+// 王の安全性評価
+const evaluateKingSafety = (board, kingPos, owner) => {
+  let safety = 0;
+  const { row, col } = kingPos;
+  
+  // 王の周囲の守り駒をチェック
+  const directions = [[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]];
+  for (const [dr, dc] of directions) {
+    const newRow = row + dr;
+    const newCol = col + dc;
+    if (newRow >= 0 && newRow < 9 && newCol >= 0 && newCol < 9) {
+      const piece = board[newRow][newCol];
+      if (piece && piece.owner === owner) {
+        safety += 20; // 味方の駒が近くにいると安全
+      }
+    }
+  }
+  
+  // 端に近いほど安全（将棋の一般的な戦略）
+  if (col <= 2 || col >= 6) safety += 10;
+  if (owner === 'gote' && row <= 2) safety += 15;
+  if (owner === 'sente' && row >= 6) safety += 15;
+  
+  return safety;
+};
+
 function Shogi1() {
   const [gameStarted, setGameStarted] = useState(false);
+  const [difficulty, setDifficulty] = useState('EASY'); // デフォルトは弱い
   const [board, setBoard] = useState(createInitialBoard());
   const [currentPlayer, setCurrentPlayer] = useState('sente'); // sente: 先手, gote: 後手
   const [selectedSquare, setSelectedSquare] = useState(null);
@@ -165,9 +249,9 @@ function Shogi1() {
       return;
     }
     
-    // 簡単なAI：ランダムな手を選択（後で改良可能）
-    const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
-    const { fromRow, fromCol, toRow, toCol } = randomMove;
+    // 難易度に応じたAIの手選択
+    const selectedMove = selectBestMove(possibleMoves, currentBoard, difficulty);
+    const { fromRow, fromCol, toRow, toCol } = selectedMove;
     
     const newBoard = [...currentBoard];
     const piece = newBoard[fromRow][fromCol];
@@ -222,7 +306,203 @@ function Shogi1() {
     } else {
       setCurrentPlayer('sente');
     }
-  }, [gameOver]);
+  }, [gameOver, difficulty, canPromote, getPromotedPiece]);
+
+  // 難易度に応じた最適手の選択
+  const selectBestMove = (moves, board, difficultyLevel) => {
+    const difficultyConfig = DIFFICULTY_LEVELS[difficultyLevel];
+    
+    // ランダム性の高い難易度（弱い）の場合は、ほぼランダムに選択
+    if (Math.random() < difficultyConfig.randomness) {
+      return moves[Math.floor(Math.random() * moves.length)];
+    }
+    
+    // ミニマックス法で最適手を探索
+    if (difficultyConfig.depth >= 2) {
+      return minimaxSearch(board, difficultyConfig.depth, 'gote', moves, difficultyConfig);
+    }
+    
+    // 浅い探索の場合は単純な評価
+    const evaluatedMoves = moves.map(move => ({
+      ...move,
+      score: evaluateMove(move, board, difficultyConfig)
+    }));
+    
+    // スコア順にソート（降順）
+    evaluatedMoves.sort((a, b) => b.score - a.score);
+    
+    // 上位の手から選択（難易度が高いほど最善手を選ぶ確率が高い）
+    const topMovesCount = Math.max(1, Math.floor(evaluatedMoves.length * (1 - difficultyConfig.randomness + 0.2)));
+    const topMoves = evaluatedMoves.slice(0, topMovesCount);
+    return topMoves[Math.floor(Math.random() * topMoves.length)];
+  };
+  
+  // ミニマックス法による探索
+  const minimaxSearch = (board, depth, player, availableMoves, config) => {
+    let bestMove = null;
+    let bestScore = player === 'gote' ? -Infinity : Infinity;
+    
+    for (const move of availableMoves) {
+      const newBoard = simulateMove(board, move);
+      const score = minimax(newBoard, depth - 1, player === 'gote' ? 'sente' : 'gote', -Infinity, Infinity, config);
+      
+      if (player === 'gote' && score > bestScore) {
+        bestScore = score;
+        bestMove = move;
+      } else if (player === 'sente' && score < bestScore) {
+        bestScore = score;
+        bestMove = move;
+      }
+    }
+    
+    return bestMove || availableMoves[0];
+  };
+  
+  // ミニマックス法（アルファベータ枝刈り付き）
+  const minimax = (board, depth, player, alpha, beta, config) => {
+    if (depth === 0) {
+      return evaluateBoard(board, config);
+    }
+    
+    const moves = getAllPossibleMoves(board, player);
+    if (moves.length === 0) {
+      // 手がない場合は負け
+      return player === 'gote' ? -10000 : 10000;
+    }
+    
+    if (player === 'gote') {
+      let maxScore = -Infinity;
+      for (const move of moves) {
+        const newBoard = simulateMove(board, move);
+        const score = minimax(newBoard, depth - 1, 'sente', alpha, beta, config);
+        maxScore = Math.max(maxScore, score);
+        alpha = Math.max(alpha, score);
+        if (beta <= alpha) break; // アルファベータ枝刈り
+      }
+      return maxScore;
+    } else {
+      let minScore = Infinity;
+      for (const move of moves) {
+        const newBoard = simulateMove(board, move);
+        const score = minimax(newBoard, depth - 1, 'gote', alpha, beta, config);
+        minScore = Math.min(minScore, score);
+        beta = Math.min(beta, score);
+        if (beta <= alpha) break; // アルファベータ枝刈り
+      }
+      return minScore;
+    }
+  };
+  
+  // 手をシミュレート（盤面のコピーを作成して移動を適用）
+  const simulateMove = (board, move) => {
+    const newBoard = board.map(row => [...row]);
+    const { fromRow, fromCol, toRow, toCol } = move;
+    const piece = newBoard[fromRow][fromCol];
+    
+    newBoard[toRow][toCol] = piece;
+    newBoard[fromRow][fromCol] = null;
+    
+    // 成り判定（自動的に成る）
+    if (piece && canPromote(piece.piece, fromRow, toRow, piece.owner)) {
+      newBoard[toRow][toCol] = {
+        ...piece,
+        piece: getPromotedPiece(piece.piece)
+      };
+    }
+    
+    return newBoard;
+  };
+  
+  // 盤面全体の評価
+  const evaluateBoard = (board, config) => {
+    let score = 0;
+    const weight = config.evaluationWeight;
+    
+    // 各駒の価値を計算
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        const piece = board[row][col];
+        if (piece) {
+          const pieceValue = getPieceValue(piece.piece);
+          const positionValue = getPositionValue(row, col, piece.owner, piece.piece);
+          const totalValue = (pieceValue + positionValue) * weight;
+          
+          if (piece.owner === 'gote') {
+            score += totalValue;
+          } else {
+            score -= totalValue;
+          }
+        }
+      }
+    }
+    
+    // 王の安全性を評価
+    const goteKingPos = findKing(board, 'gote');
+    const senteKingPos = findKing(board, 'sente');
+    
+    if (goteKingPos) {
+      score += evaluateKingSafety(board, goteKingPos, 'gote') * weight;
+    }
+    if (senteKingPos) {
+      score -= evaluateKingSafety(board, senteKingPos, 'sente') * weight;
+    }
+    
+    return score;
+  };
+  
+  
+  // 単純な手の評価関数（浅い探索用）
+  const evaluateMove = (move, board, config) => {
+    let score = 0;
+    const { fromRow, fromCol, toRow, toCol } = move;
+    const piece = board[fromRow][fromCol];
+    const targetPiece = board[toRow][toCol];
+    const weight = config.evaluationWeight;
+    
+    // 相手の駒を取る場合のスコア
+    if (targetPiece && targetPiece.owner !== 'gote') {
+      score += getPieceValue(targetPiece.piece) * weight;
+    }
+    
+    // 位置の価値
+    score += getPositionValue(toRow, toCol, 'gote', piece.piece) * weight * 0.1;
+    
+    // 前進のスコア（後手なので下に進むほど良い）
+    if (toRow > fromRow) {
+      score += (toRow - fromRow) * 20 * weight;
+    }
+    
+    // 王将を守るスコア
+    const kingPos = findKing(board, 'gote');
+    if (kingPos) {
+      const distanceToKing = Math.abs(toRow - kingPos.row) + Math.abs(toCol - kingPos.col);
+      if (distanceToKing <= 2) {
+        score += 50 * weight; // 王の近くにいる駒は価値が高い
+      }
+    }
+    
+    // 成りの価値
+    if (canPromote(piece.piece, fromRow, toRow, 'gote')) {
+      const promotedValue = getPieceValue(getPromotedPiece(piece.piece));
+      const originalValue = getPieceValue(piece.piece);
+      score += (promotedValue - originalValue) * weight;
+    }
+    
+    return score;
+  };
+  
+  // 王将の位置を探す
+  const findKing = (board, player) => {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        const piece = board[row][col];
+        if (piece && piece.owner === player && piece.piece === PIECES.GYOKU) {
+          return { row, col };
+        }
+      }
+    }
+    return null;
+  };
 
   // すべての可能な手を取得
   const getAllPossibleMoves = (board, player) => {
@@ -350,9 +630,11 @@ function Shogi1() {
           
           // AIのターンの場合
           if (nextPlayer === 'gote') {
+            // 難易度に応じて思考時間を調整
+            const thinkingTime = DIFFICULTY_LEVELS[difficulty].depth * 800 + 500;
             setTimeout(() => {
               makeAiMove(newBoard);
-            }, 1000);
+            }, thinkingTime);
           }
         }
       } else {
@@ -433,9 +715,11 @@ function Shogi1() {
             
             // AIのターンの場合
             if (nextPlayer === 'gote') {
+              // 難易度に応じて思考時間を調整
+              const thinkingTime = DIFFICULTY_LEVELS[difficulty].depth * 800 + 500;
               setTimeout(() => {
                 makeAiMove(newBoard);
-              }, 1000); // 1秒後にAIが動く
+              }, thinkingTime);
             }
           }
         }
@@ -492,9 +776,11 @@ function Shogi1() {
       
       // AIのターンの場合
       if (nextPlayer === 'gote') {
+        // 難易度に応じて思考時間を調整
+        const thinkingTime = DIFFICULTY_LEVELS[difficulty].depth * 800 + 500;
         setTimeout(() => {
           makeAiMove(newBoard);
-        }, 1000);
+        }, thinkingTime);
       }
     }
   };
@@ -732,6 +1018,24 @@ function Shogi1() {
       
       {!gameStarted ? (
         <div className="game-start">
+          <div className="difficulty-selection">
+            <h2>難易度を選択してください</h2>
+            <div className="difficulty-buttons">
+              {Object.entries(DIFFICULTY_LEVELS).map(([key, config]) => (
+                <button
+                  key={key}
+                  className={`difficulty-button ${difficulty === key ? 'selected' : ''}`}
+                  onClick={() => setDifficulty(key)}
+                >
+                  {config.name}
+                  {key === 'MASTER' && <div className="master-label">(死ぬほど強い)</div>}
+                </button>
+              ))}
+            </div>
+            <div className="selected-difficulty">
+              選択中: <strong>{DIFFICULTY_LEVELS[difficulty].name}</strong>
+            </div>
+          </div>
           <button onClick={startGame} className="start-button">
             スタート
           </button>
@@ -850,6 +1154,73 @@ function Shogi1() {
           font-family: Arial, sans-serif;
         }
         
+        .game-start {
+          text-align: center;
+          padding: 20px;
+        }
+        
+        .difficulty-selection {
+          margin-bottom: 30px;
+        }
+        
+        .difficulty-selection h2 {
+          color: #333;
+          margin-bottom: 20px;
+        }
+        
+        .difficulty-buttons {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+        }
+        
+        .difficulty-button {
+          background-color: #f8f9fa;
+          color: #333;
+          border: 2px solid #dee2e6;
+          padding: 15px 25px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+          transition: all 0.3s ease;
+          position: relative;
+          min-width: 120px;
+        }
+        
+        .difficulty-button:hover {
+          background-color: #e9ecef;
+          border-color: #adb5bd;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .difficulty-button.selected {
+          background-color: #4CAF50;
+          color: white;
+          border-color: #45a049;
+          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .master-label {
+          font-size: 12px;
+          color: #ff4444;
+          font-weight: normal;
+          margin-top: 4px;
+        }
+        
+        .difficulty-button.selected .master-label {
+          color: #ffcccc;
+        }
+        
+        .selected-difficulty {
+          font-size: 18px;
+          color: #333;
+          margin-top: 15px;
+        }
+        
         .start-button, .restart-button {
           background-color: #4CAF50;
           color: white;
@@ -857,11 +1228,19 @@ function Shogi1() {
           text-align: center;
           text-decoration: none;
           display: inline-block;
-          font-size: 16px;
+          font-size: 18px;
           margin: 4px 2px;
           cursor: pointer;
           border: none;
-          border-radius: 4px;
+          border-radius: 8px;
+          font-weight: bold;
+          transition: all 0.3s ease;
+        }
+        
+        .start-button:hover, .restart-button:hover {
+          background-color: #45a049;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
         
         .shogi-board {
