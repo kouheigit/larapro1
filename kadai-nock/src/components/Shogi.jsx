@@ -78,25 +78,30 @@ function Shogi() {
   const [possibleMoves, setPossibleMoves] = useState([]);
 
   // 音効果を再生する関数
-  const playMoveSound = () => {
-    // Web Audio APIを使用してクリック音を生成
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.1);
-    
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.1);
-    
-    console.log('パチッ！');
+  const playPachi = () => {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+    // ノイズを作る
+    const bufferSize = ctx.sampleRate * 0.05; // 50ms
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    // ホワイトノイズ生成
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize); // 徐々に減衰
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.4, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+
+    noise.connect(gain);
+    gain.connect(ctx.destination);
+
+    noise.start();
   };
 
   // 駒が成れるかどうかを判定
@@ -207,7 +212,7 @@ function Shogi() {
     }
     
     setBoard(newBoard);
-    playMoveSound();
+    playPachi();
     setIsAiThinking(false);
     
     // 勝利判定
@@ -217,7 +222,7 @@ function Shogi() {
     } else {
       setCurrentPlayer('sente');
     }
-  }, [gameOver, playMoveSound]);
+  }, [gameOver]);
 
   // すべての可能な手を取得
   const getAllPossibleMoves = (board, player) => {
@@ -330,7 +335,7 @@ function Shogi() {
         setCapturedPieces(newCapturedPieces);
         
         setBoard(newBoard);
-        playMoveSound();
+        playPachi();
         setSelectedCapturedPiece(null);
         setPossibleMoves([]);
         
@@ -412,7 +417,7 @@ function Shogi() {
           }
           
           setBoard(newBoard);
-          playMoveSound();
+          playPachi();
           
           // ハイライトをリセット
           setPossibleMoves([]);
@@ -472,7 +477,7 @@ function Shogi() {
     }
     
     setBoard(newBoard);
-    playMoveSound();
+    playPachi();
     setPromotionDialog(null);
     setPossibleMoves([]);
     
@@ -722,6 +727,7 @@ function Shogi() {
   return (
     <div className="shogi-game">
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/earlyaccess/kinryu.css" rel="stylesheet" />
       <h1>将棋ゲーム</h1>
       
       {!gameStarted ? (
@@ -988,17 +994,21 @@ function Shogi() {
         }
         
         .piece-text {
-          font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
-          font-size: 10px;
-          font-weight: 700;
+          font-family: '金龍', 'KinRyu', 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'MS PMincho', serif;
+          font-size: 12px;
+          font-weight: 900;
           color: #1a1208;
-          text-shadow: none;
+          text-shadow: 
+            1px 1px 2px rgba(255,255,255,0.4),
+            -1px -1px 2px rgba(0,0,0,0.3);
           margin-top: 0px;
-          line-height: 0.9;
-          letter-spacing: -0.5px;
+          line-height: 0.85;
+          letter-spacing: -0.2px;
           writing-mode: vertical-rl;
           text-orientation: upright;
           text-align: center;
+          font-style: normal;
+          font-stretch: condensed;
         }
         
         .piece.sente {
