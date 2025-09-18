@@ -68,8 +68,8 @@ const createInitialBoard = () => {
 const DIFFICULTY_LEVELS = {
   EASY: { name: '弱い', depth: 1, randomness: 0.9, evaluationWeight: 0.3, thinkingTime: 500 },
   MEDIUM: { name: '中級', depth: 2, randomness: 0.6, evaluationWeight: 0.7, thinkingTime: 800 },
-  HARD: { name: '強い', depth: 2, randomness: 0.3, evaluationWeight: 1.0, thinkingTime: 1200 },
-  MASTER: { name: '棋聖', depth: 3, randomness: 0.05, evaluationWeight: 2.0, thinkingTime: 1500 }
+  HARD: { name: '強い', depth: 3, randomness: 0.3, evaluationWeight: 1.0, thinkingTime: 1200 },
+  MASTER: { name: '棋聖', depth: 4, randomness: 0.05, evaluationWeight: 2.5, thinkingTime: 1500 }
 };
 
 // 駒の基本価値
@@ -399,9 +399,27 @@ function Shogi1() {
     }
   }, [gameOver, difficulty, canPromote, getPromotedPiece, capturedPieces]);
 
-  // 難易度に応じた最適手の選択
+  // 強化された最適手選択
   const selectBestMove = (moves, board, difficultyLevel) => {
     const difficultyConfig = DIFFICULTY_LEVELS[difficultyLevel];
+    
+    // 持ち駒の打ち手を優先的に考慮
+    const dropMoves = moves.filter(move => move.type === 'drop');
+    const moveMoves = moves.filter(move => move.type === 'move');
+    
+    // 持ち駒がある場合は打ち手を優先
+    if (dropMoves.length > 0 && difficultyLevel === 'MASTER') {
+      const evaluatedDropMoves = dropMoves.map(move => ({
+        ...move,
+        score: evaluateMove(move, board, difficultyConfig)
+      }));
+      evaluatedDropMoves.sort((a, b) => b.score - a.score);
+      
+      // 持ち駒の打ち手が非常に良い場合はそれを選択
+      if (evaluatedDropMoves[0].score > 100) {
+        return evaluatedDropMoves[0];
+      }
+    }
     
     // ランダム性の高い難易度（弱い）の場合は、ほぼランダムに選択
     if (Math.random() < difficultyConfig.randomness) {
@@ -428,16 +446,30 @@ function Shogi1() {
     return topMoves[Math.floor(Math.random() * topMoves.length)];
   };
   
-  // ミニマックス法による探索（軽量版）
+  // 強化されたミニマックス探索
   const minimaxSearch = (board, depth, player, availableMoves, config, currentCapturedPieces = capturedPieces) => {
     let bestMove = null;
     let bestScore = player === 'gote' ? -Infinity : Infinity;
     
-    // 手数を大幅に制限
-    const maxMovesToSearch = Math.min(availableMoves.length, 10);
-    const movesToSearch = availableMoves.slice(0, maxMovesToSearch);
+    // 持ち駒の打ち手を優先的に探索
+    const dropMoves = availableMoves.filter(move => move.type === 'drop');
+    const moveMoves = availableMoves.filter(move => move.type === 'move');
     
-    for (const move of movesToSearch) {
+    // 持ち駒の打ち手を先に評価
+    const priorityMoves = [...dropMoves, ...moveMoves];
+    
+    // 手を事前評価してソート
+    const sortedMoves = priorityMoves.map(move => ({
+      move,
+      quickScore: evaluateMove(move, board, config)
+    })).sort((a, b) => player === 'gote' ? b.quickScore - a.quickScore : a.quickScore - b.quickScore);
+    
+    // 探索幅を調整（持ち駒がある場合はより多く探索）
+    const hasCapturedPieces = currentCapturedPieces[player] && currentCapturedPieces[player].length > 0;
+    const maxMovesToSearch = Math.min(sortedMoves.length, hasCapturedPieces ? 15 : 12);
+    const movesToSearch = sortedMoves.slice(0, maxMovesToSearch);
+    
+    for (const {move} of movesToSearch) {
       const simResult = simulateMove(board, move, currentCapturedPieces);
       const score = minimax(simResult.board, depth - 1, player === 'gote' ? 'sente' : 'gote', -Infinity, Infinity, config, simResult.capturedPieces);
       
@@ -453,7 +485,7 @@ function Shogi1() {
     return bestMove || availableMoves[0];
   };
   
-  // ミニマックス法（簡略化版 - 無限ループ防止）
+  // 強化されたミニマックス法
   const minimax = (board, depth, player, alpha, beta, config, currentCapturedPieces = capturedPieces) => {
     if (depth === 0) {
       return evaluateBoard(board, config, currentCapturedPieces);
@@ -465,13 +497,25 @@ function Shogi1() {
       return player === 'gote' ? -10000 : 10000;
     }
     
-    // 手数を大幅に制限して計算量を削減
-    const maxMoves = Math.min(moves.length, depth >= 3 ? 8 : 15);
-    const movesToExplore = moves.slice(0, maxMoves);
+    // 持ち駒の打ち手を優先
+    const dropMoves = moves.filter(move => move.type === 'drop');
+    const moveMoves = moves.filter(move => move.type === 'move');
+    const priorityMoves = [...dropMoves, ...moveMoves];
+    
+    // 手を事前評価してソート
+    const sortedMoves = priorityMoves.map(move => ({
+      move,
+      quickScore: evaluateMove(move, board, config)
+    })).sort((a, b) => player === 'gote' ? b.quickScore - a.quickScore : a.quickScore - b.quickScore);
+    
+    // 探索幅を調整
+    const hasCapturedPieces = currentCapturedPieces[player] && currentCapturedPieces[player].length > 0;
+    const maxMoves = Math.min(sortedMoves.length, depth >= 3 ? (hasCapturedPieces ? 12 : 10) : (hasCapturedPieces ? 18 : 15));
+    const movesToExplore = sortedMoves.slice(0, maxMoves);
     
     if (player === 'gote') {
       let maxScore = -Infinity;
-      for (const move of movesToExplore) {
+      for (const {move} of movesToExplore) {
         const simResult = simulateMove(board, move, currentCapturedPieces);
         const score = minimax(simResult.board, depth - 1, 'sente', alpha, beta, config, simResult.capturedPieces);
         maxScore = Math.max(maxScore, score);
@@ -481,7 +525,7 @@ function Shogi1() {
       return maxScore;
     } else {
       let minScore = Infinity;
-      for (const move of movesToExplore) {
+      for (const {move} of movesToExplore) {
         const simResult = simulateMove(board, move, currentCapturedPieces);
         const score = minimax(simResult.board, depth - 1, 'gote', alpha, beta, config, simResult.capturedPieces);
         minScore = Math.min(minScore, score);
@@ -554,7 +598,7 @@ function Shogi1() {
     return { board: newBoard, capturedPieces: newCapturedPieces };
   };
   
-  // 盤面全体の評価（軽量版）
+  // 強化された盤面評価関数
   const evaluateBoard = (board, config, currentCapturedPieces = capturedPieces) => {
     let score = 0;
     const weight = config.evaluationWeight;
@@ -566,7 +610,7 @@ function Shogi1() {
         if (piece) {
           const pieceValue = getPieceValue(piece.piece);
           const positionValue = getPositionValue(row, col, piece.owner, piece.piece);
-          const totalValue = (pieceValue + positionValue * 0.1) * weight;
+          const totalValue = (pieceValue + positionValue * 0.3) * weight;
           
           if (piece.owner === 'gote') {
             score += totalValue;
@@ -577,16 +621,33 @@ function Shogi1() {
       }
     }
     
-    // 持ち駒の価値を評価
+    // 持ち駒の価値を評価（大幅強化）
     if (currentCapturedPieces.gote) {
       for (const capturedPiece of currentCapturedPieces.gote) {
-        score += getPieceValue(capturedPiece.piece) * 0.8 * weight;
+        score += getPieceValue(capturedPiece.piece) * 1.2 * weight; // 持ち駒の価値を上げる
       }
     }
     if (currentCapturedPieces.sente) {
       for (const capturedPiece of currentCapturedPieces.sente) {
-        score -= getPieceValue(capturedPiece.piece) * 0.8 * weight;
+        score -= getPieceValue(capturedPiece.piece) * 1.2 * weight;
       }
+    }
+    
+    // 中央制圧ボーナス
+    score += evaluateCentralControl(board, weight);
+    
+    // 攻撃性ボーナス（敵陣への進出）
+    score += evaluateAggression(board, weight);
+    
+    // 王の安全性評価
+    const goteKingPos = findKing(board, 'gote');
+    const senteKingPos = findKing(board, 'sente');
+    
+    if (goteKingPos) {
+      score += evaluateKingSafety(board, goteKingPos, 'gote') * weight;
+    }
+    if (senteKingPos) {
+      score -= evaluateKingSafety(board, senteKingPos, 'sente') * weight;
     }
     
     return score;
@@ -635,7 +696,7 @@ function Shogi1() {
     return score;
   };
   
-  // 単純な手の評価関数（軽量版）
+  // 強化された手の評価関数
   const evaluateMove = (move, board, config) => {
     let score = 0;
     const weight = config.evaluationWeight;
@@ -645,31 +706,63 @@ function Shogi1() {
       const piece = board[fromRow][fromCol];
       const targetPiece = board[toRow][toCol];
       
-      // 相手の駒を取る場合のスコア
+      // 相手の駒を取る場合のスコア（大幅増加）
       if (targetPiece && targetPiece.owner !== 'gote') {
-        score += getPieceValue(targetPiece.piece) * weight;
+        score += getPieceValue(targetPiece.piece) * weight * 1.5;
       }
       
       // 前進のスコア（後手なので下に進むほど良い）
       if (toRow > fromRow) {
-        score += (toRow - fromRow) * 20 * weight;
+        score += (toRow - fromRow) * 30 * weight;
       }
       
-      // 成りの価値
+      // 成りの価値（大幅増加）
       if (canPromote(piece.piece, fromRow, toRow, 'gote')) {
         const promotedValue = getPieceValue(getPromotedPiece(piece.piece));
         const originalValue = getPieceValue(piece.piece);
-        score += (promotedValue - originalValue) * weight;
+        score += (promotedValue - originalValue) * weight * 2.0;
+      }
+      
+      // 位置価値ボーナス
+      score += getPositionValue(toRow, toCol, 'gote', piece.piece) * 0.2 * weight;
+      
+      // 敵王への接近ボーナス
+      const enemyKingPos = findKing(board, 'sente');
+      if (enemyKingPos) {
+        const distanceToEnemyKing = Math.abs(toRow - enemyKingPos.row) + Math.abs(toCol - enemyKingPos.col);
+        if (distanceToEnemyKing <= 3) {
+          score += (4 - distanceToEnemyKing) * 50 * weight;
+        }
       }
     } else if (move.type === 'drop') {
-      const { piece, toRow } = move;
+      const { piece, toRow, toCol } = move;
       
-      // 持ち駒を打つ価値
-      score += getPieceValue(piece) * 0.6 * weight;
+      // 持ち駒を打つ価値（大幅増加）
+      score += getPieceValue(piece) * 1.2 * weight;
       
-      // 敵陣への打ち込みボーナス
+      // 敵陣への打ち込みボーナス（大幅増加）
       if (toRow >= 6) {
-        score += 30 * weight;
+        score += 80 * weight;
+      }
+      
+      // 位置価値ボーナス
+      score += getPositionValue(toRow, toCol, 'gote', piece) * 0.3 * weight;
+      
+      // 敵王への打ち込みボーナス（特に重要）
+      const enemyKingPos = findKing(board, 'sente');
+      if (enemyKingPos) {
+        const distanceToEnemyKing = Math.abs(toRow - enemyKingPos.row) + Math.abs(toCol - enemyKingPos.col);
+        if (distanceToEnemyKing <= 2) {
+          score += 200 * weight; // 敵王の近くへの打ち込みは非常に価値が高い
+        } else if (distanceToEnemyKing <= 3) {
+          score += 100 * weight;
+        }
+      }
+      
+      // 中央への打ち込みボーナス
+      const centerDistance = Math.abs(toRow - 4) + Math.abs(toCol - 4);
+      if (centerDistance <= 2) {
+        score += 40 * weight;
       }
     }
     
