@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { playChessKatta, unlockChessAudio } from '../utils/playChessKatta.js';
 
 /**
  * React ChessBoard with full move validation and difficulty selection:
@@ -407,6 +408,7 @@ function useChess(fen=INITIAL_FEN) {
 
     setState({ board: newBoard, toMove: next, castling: newCastling, ep: epNext });
     setHistory(h => [{ san, fen: boardToFEN(newBoard, next, newCastling, epNext) }, ...h]);
+
     return Promise.resolve();
   }
 
@@ -668,6 +670,30 @@ export default function Chess() {
   const [gameStarted, setGameStarted] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
   const [isThinking, setIsThinking] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+
+  // 音声再生関数
+  const playMoveSound = React.useCallback((move) => {
+    if (!soundEnabled) return;
+    
+    try {
+      // キャスリングの場合は少し異なる音
+      if (move.isCastle) {
+        playChessKatta({ volume: 0.8, woodiness: 0.9, felt: 0.1 });
+      }
+      // 駒を取った場合は少し強い音
+      else if (move.capture) {
+        playChessKatta({ volume: 1.0, woodiness: 0.8, felt: 0.05 });
+      }
+      // 通常の移動
+      else {
+        playChessKatta({ volume: 0.7, woodiness: 0.6, felt: 0.2 });
+      }
+    } catch (error) {
+      // 音声再生エラーは無視（ゲーム進行に影響しない）
+      console.log('Audio playback failed:', error);
+    }
+  }, [soundEnabled]);
 
   // AIの手を実行する関数
   const makeAIMove = React.useCallback(() => {
@@ -682,13 +708,14 @@ export default function Chess() {
       const aiMove = getBestMove(moveList, difficulty);
       if (aiMove) {
         performMove(aiMove).then(() => {
+          playMoveSound(aiMove); // AI の手の音を再生
           setIsThinking(false);
         });
       } else {
         setIsThinking(false);
       }
     }, thinkingTime);
-  }, [toMove, moveList, difficulty, isThinking, performMove]);
+  }, [toMove, moveList, difficulty, isThinking, performMove, playMoveSound]);
 
   // 黒の手番になったらAIを実行
   React.useEffect(() => {
@@ -706,6 +733,7 @@ export default function Chess() {
       const legal = moves.find(m => m.to.x===x && m.to.y===y);
       if (legal) {
         performMove(legal).then(()=>{
+          playMoveSound(legal); // プレイヤーの手の音を再生
           setSelected(null); setMoves([]);
         });
         return;
@@ -724,6 +752,19 @@ export default function Chess() {
     setDifficulty(selectedDifficulty);
     setGameStarted(true);
     resetGame();
+    
+    // オーディオコンテキストをアンロック（iOS対策）
+    try {
+      unlockChessAudio();
+      // テスト音を再生（ゲーム開始の合図）
+      setTimeout(() => {
+        if (soundEnabled) {
+          playChessKatta({ volume: 0.5, woodiness: 0.5, felt: 0.3 });
+        }
+      }, 100);
+    } catch (error) {
+      console.log('Audio unlock failed:', error);
+    }
   }
 
   function handleNewGame() {
@@ -772,20 +813,36 @@ export default function Chess() {
             <strong>難易度:</strong> {difficulty} | <strong>手番:</strong> {toMove==='w' ? '白（あなた）' : '黒（コンピューター）'}
             {isThinking && <span style={{ color: '#e67e22', marginLeft: '10px' }}>🤔 思考中...</span>}
           </div>
-          <button
-            onClick={handleNewGame}
-            style={{
-              padding: '8px 16px',
-              backgroundColor: '#e74c3c',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '0.9rem'
-            }}
-          >
-            新しいゲーム
-          </button>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: soundEnabled ? '#27ae60' : '#95a5a6',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              {soundEnabled ? '🔊 音ON' : '🔇 音OFF'}
+            </button>
+            <button
+              onClick={handleNewGame}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#e74c3c',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              新しいゲーム
+            </button>
+          </div>
         </div>
       </div>
 
