@@ -2,17 +2,16 @@ import React,{ useState } from 'react';
 
 function Todo4(){
     const[todos,setTodos] = useState([]);
-    const[input,setInputs] = useState('');
+    const[inputs,setInputs] = useState('');
 
     const addTodo= () => {
         if(inputs.trim()==='')return;
-        setTodos([...todos,{text,inputs,done:false}]);
+        setTodos([...todos,{text:inputs,done:false}]);
         setInputs('');
     }
     const deleteTodo = (deleteIndex) => {
         setTodos(todos.filter((_,index)=>index!==deleteIndex));
     }
-   
     return(
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
@@ -23,7 +22,7 @@ function Todo4(){
                     <button onClick={()=>deleteTodo(index)}>削除</button>
                 </div>
             ))}
-
         </div>
-    )
+    );
 }
+export default Todo4;
