@@ -8,7 +8,7 @@ function Todo4(){
         setTodos([...todos,{text,inputs,done:false}]);
         setInputs('');
     }
-    
+
     return(
         <div>
 
