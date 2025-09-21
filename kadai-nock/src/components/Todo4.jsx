@@ -14,8 +14,13 @@ function Todo4(){
         <div>
             <input type="text" value={inputs} onChange={(e)=>setInputs(e.target.value)}/>
             <button onClick={addTodo}>追加</button>
+            {todos.map((todo,index)=>(
+                <div key={index}>
+                    {todo.text}
+                    <button onClick={()=>deleteTodo(index)}>削除</button>
+                </div>
+            ))}
             
-
         </div>
     )
 }
