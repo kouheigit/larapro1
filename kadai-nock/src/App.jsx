@@ -11,6 +11,7 @@ import Pokemon1 from "./components/Pokemon1";
 import Pokemon3 from "./components/Pokemon3";
 import Todo1 from "./components/Todo1.jsx";
 import Todo3 from "./components/Todo3.jsx";
+import Todo4 from "./components/Todo4.jsx";
 import Osero from "./components/Osero.jsx";
 import Packman from "./components/Packman.jsx";
 import Shogi from "./components/Shogi.jsx";
@@ -31,7 +32,7 @@ function App() {
             </nav>
             <nav><Link to="/review">復習課題1</Link><Link to="/review">復習課題2</Link><Link to="/Pokemon3">ポケモン3</Link><Link to="/Packman">パックマン</Link></nav>
             <nav><Link to="/Pokemon">ポケモン</Link><Link to="/Pokemon1">ポケモン1</Link><Link to="/Todo1">Todo1</Link><Link to="/Osero">オセロ</Link></nav>
-            <nav><Link to="/Shogi">将棋</Link><Link to="/Shogi1">将棋1</Link><Link to="/Chess">チェス</Link></nav>
+            <nav><Link to="/Shogi">将棋</Link><Link to="/Shogi1">将棋1</Link><Link to="/Chess">チェス</Link><Link to="/Todo4">Todo4</Link></nav>
             <Routes>
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/count" element={<CountPages />} />
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/Pokemon3" element={<Pokemon3 />} />
                 <Route path="/Todo1" element={<Todo1 />} />
                 <Route path="/Todo3" element={<Todo3 />} />
+                <Route path="/Todo4" element={<Todo4 />} />
                 <Route path="/Osero" element={<Osero />} />
                 <Route path="/Packman" element={<Packman />} />
                 <Route path="/Shogi" element={<Shogi />} />
